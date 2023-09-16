@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicos</title>
+</head>
+<body>
+    <h2>Medicos encontrados: {{medicos|length}} medicos.</h2>
+    {% if id == 1 %}
+        <h3>Especialidad: Clinica.</h3>
+    {% elif id == 2 %}
+        <h3>Especialidad: Pediatría.</h3>
+    {% elif id == 3 %}
+        <h3>Especialidad: Traumatología.</h3>
+    {% endif %}
+
+    <ul>
+        {% for medico in medicos %}
+            <li>
+                <strong>Nombre:</strong> {{ medico.0 }}<br>
+                <strong>Especialidad:</strong> {{ medico.1 }}<br>
+                <strong>Matricula N°:</strong> {{ medico.2 }}
+            </li><br>
+        {% endfor %}
+    </ul>
+</body>
+</html>
