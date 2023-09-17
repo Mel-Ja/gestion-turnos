@@ -16,4 +16,14 @@ def medicos(request, id_especialidad):
     elif id_especialidad == 3:
         medicos = [['María Rodríguez','Traumatologia','3001'],['Pepe Argento','Traumatologia','3002'],['Sofía Torres','Traumatologia','3003']]
 
-    return render(request,'medicos.html',{"id":id_especialidad,"medicos":medicos})
+    return render(request,'turnos/medicos.html',{"id":id_especialidad,"medicos":medicos})
+
+def especialidades(request):
+    especialidades = [['Pediatría'], ['Clínica'], ['Traumatología'], ['Cirugía'], ['Obstetricia'], ['Oftalmología'], ]
+    return render(request, "turnos/especialidades.html", {'especialidades':especialidades})
+
+def agenda(request):
+    return HttpResponse('<h1>Agenda de turnos</h1>')
+
+def solicitarturno(request):
+    return HttpResponse('<h1>Formulario para solicitar turnos</h1>')

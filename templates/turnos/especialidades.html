@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block titulo_pagina %}{% endblock %}
+{% block titulo_principal %}Especialidades que se atienden{% endblock %}
+{% block principal %}
+   
+    <ul>
+        {% for especialidad in especialidades %}
+            <li>
+                {{ especialidad.0 }}<br>
+            </li><br>
+        {% endfor %}
+    </ul>
+{% endblock %}

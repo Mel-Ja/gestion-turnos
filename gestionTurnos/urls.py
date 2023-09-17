@@ -20,4 +20,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name="indice"),
     path('medicos/<int:id_especialidad>/', views.medicos, name="medicos"),
+    path('especialidades/', views.especialidades, name="especialidades"),
+    path('agenda/', views.agenda, name="agenda"),
+    path('solicitarturno/', views.solicitarturno, name="solicitarturno"),
 ]
