@@ -7,6 +7,20 @@ body{
     height: 91px;
 }
 
+.nav-link:hover{
+  transform: translateY(4px);
+  background-color: #0d6dfd;
+  color:rgba(255, 255, 255, 0.852);
+  scale: 1.15;
+  transition: 0.17s;
+}
+
+.nav-item{
+  width: 160px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .footer-bottom {
     margin-top: 200px;
     background-color: #f0f0f0; /* Color de fondo del footer */
@@ -53,7 +67,8 @@ body{
     align-items: center;
     height: 250px;
   }
-  
+
+    
   .card img {
     width: 35%;
     height: auto;
