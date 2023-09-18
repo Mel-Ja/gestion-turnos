@@ -2,8 +2,9 @@
 {% block titulo %}Medicos{% endblock %}
 {% block titulo_principal %}Plantel de Médicos{% endblock %}
 {% block principal %}
+{% load static %}
 
-
+<br>
 {% comment %}
 Desde la vista medicos se redirige a esta template 
 y nos envia el id_especialidad ingresado por el usuario desde el navegador
@@ -14,11 +15,11 @@ que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera dis
 {% endcomment %}
 
     {% if id == 1 %}
-        <h3>Especialidad Clinica:
+        <h4>Especialidad Clinica:
     {% elif id == 2 %}
-        <h3>Especialidad Pediatría:
+        <h4>Especialidad Pediatría:
     {% elif id == 3 %}
-        <h3>Especialidad Traumatología:
+        <h4>Especialidad Traumatología:
     {% endif %}
 
     {% comment %} 
@@ -33,7 +34,7 @@ que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera dis
     la posicion 1, la especialidad  
     y la posicion 2 la matricula
     {% endcomment %}
-    <ul>
+    {% comment %} <ul>
         {% for medico in medicos %}
             <li>
                 <strong>Nombre:</strong> {{ medico.0 }}<br>
@@ -41,5 +42,39 @@ que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera dis
                 <strong>Matricula N°:</strong> {{ medico.2 }}
             </li><br>
         {% endfor %}
-    </ul>    
+    </ul>     {% endcomment %}
+
+
+   <br>
+        <div class="container-card">
+            <ul class="card-list">
+              {% for medico in medicos %}
+                <li class="card-item">
+                    <div class="card">
+                        {% if id == 1 %}   
+                            <img class="card-img-top" src="{% static 'mediturnosApp/img/clinico.png' %}" alt="Logo">
+                        {% endif %}
+                        {% if id == 2 %}   
+                            <img class="card-img-top" src="{% static 'mediturnosApp/img/pediatria.png' %}" alt="Logo">
+                        {% endif %}
+                        {% if id == 3 %}   
+                        <img class="card-img-top" src="{% static 'mediturnosApp/img/traumatologia.png' %}" alt="Logo">   
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ medico.0 }}</h5>
+                            <p class="card-text">{{ medico.1 }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Matricula N°: {{ medico.2 }}</small>
+                        </div>
+                    </div>
+                </li>
+              {% endfor %}
+            </ul>
+        </div>
+          
+        
+
 {% endblock %}
+
+

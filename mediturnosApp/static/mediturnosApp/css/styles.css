@@ -17,6 +17,48 @@ body{
   }
 
 .display-5{
-    font-weight: 320;
+    font-weight: 0;
 }
 
+.container-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;  
+    padding: 20px; 
+  }
+  
+
+.card-list {
+    list-style: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .card-item {
+    width: 30%; /* Ancho deseado para cada tarjeta */
+    margin-bottom: 20px; /* Espacio entre las tarjetas */
+    margin: 10px;
+  }
+  
+  .card {
+    width: 100%;
+    border: 1px solid #ccc; /* Añade un borde a las tarjetas si lo deseas */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card img {
+    width: 35%;
+    height: auto;
+  }
+
+  .card-img-top{
+    margin-top: 10px;
+    width: 10px;
+    height: 10px;
+  }
+
+ 
