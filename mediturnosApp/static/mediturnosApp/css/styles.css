@@ -59,6 +59,16 @@ body{
     height: auto;
   }
 
+  .card-text{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card-title{
+    justify-content: center;
+    align-items: center;
+  }
   .card-img-top{
     margin-top: 10px;
     width: 10px;
