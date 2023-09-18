@@ -89,7 +89,8 @@ body{
 
   .card:hover{
     scale: 1.06;
-    transition: all 0.235s ease-in-out; /* Efecto de transición suave */
+    transition: all 0.2s ease-in-out; /* Efecto de transición suave */
+    border-color: black;
   }
 
     
