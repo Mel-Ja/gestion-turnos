@@ -51,6 +51,7 @@ body{
     border: 1px solid #ccc; /* Añade un borde a las tarjetas si lo deseas */
     justify-content: center;
     align-items: center;
+    height: 250px;
   }
   
   .card img {
