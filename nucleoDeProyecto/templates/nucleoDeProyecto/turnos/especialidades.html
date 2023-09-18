@@ -1,0 +1,44 @@
+{% extends "../base.html" %}
+{% block titulo_pagina %}{% endblock %}
+
+
+{% load static %}
+{% block navbar %}
+<li class="nav-item">
+    <img class="logo" src="{% static 'nucleoDeProyecto/img/logo.png' %}" alt="Logo">
+  </li>
+  <li class="nav-item">
+    <a class="nav-link " href="{% url 'indice' %}">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'agenda' %}">Agenda</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link active" href="{% url 'especialidades' %}">Especialidades</a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="{% url 'solicitarturno' %}">Solicitar turno</a>
+  </li>
+{% endblock %}
+
+{% block titulo_principal %}Especialidades que se atienden{% endblock %}
+
+
+{% block principal %}
+{% comment %}
+Desde la vista especialidades se redirige a esta template 
+y nos envia una lista con diferentes especialidades medicas
+esa lista llega con el nombre: especialidades
+{% endcomment %}
+   
+
+{% comment %} listamos cada una de las especialidades de la lista {% endcomment %}
+<br>
+    <ul>
+        {% for especialidad in especialidades %}
+            <li>
+                {{ especialidad.0 }}<br>
+            </li><br>
+        {% endfor %}
+    </ul>
+{% endblock %}
