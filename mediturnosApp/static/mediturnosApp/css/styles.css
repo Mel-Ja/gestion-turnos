@@ -9,7 +9,7 @@ body{
 
 .footer-bottom {
     background-color: #f0f0f0; /* Color de fondo del footer */
-    padding: 20px;
+    padding: 0px;
     text-align: center;
     width: 100%;
     position: fixed;
@@ -24,7 +24,7 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;  
-    padding: 20px; 
+    padding: 20px;
   }
   
 
