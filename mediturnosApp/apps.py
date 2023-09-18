@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class NucleodeproyectoConfig(AppConfig):
+class MediturnosappConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'nucleoDeProyecto'
+    name = 'mediturnosApp'

@@ -5,7 +5,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-    return render(request,'nucleoDeProyecto/turnos/indice.html')
+    return render(request,'mediturnosApp/turnos/indice.html')
 
 def medicos(request, id_especialidad):
     medicos = []
@@ -17,14 +17,14 @@ def medicos(request, id_especialidad):
     elif id_especialidad == 3:
         medicos = [['María Rodríguez','Traumatologia','3001'],['Pepe Argento','Traumatologia','3002'],['Sofía Torres','Traumatologia','3003']]
 
-    return render(request,'nucleoDeProyecto/turnos/medicos.html',{"id":id_especialidad,"medicos":medicos})
+    return render(request,'mediturnosApp/turnos/medicos.html',{"id":id_especialidad,"medicos":medicos})
 
 def especialidades(request):
     especialidades = [['Pediatría'], ['Clínica'], ['Traumatología'], ['Cirugía'], ['Obstetricia'], ['Oftalmología'], ]
-    return render(request, "nucleoDeProyecto/turnos/especialidades.html", {'especialidades':especialidades})
+    return render(request, "mediturnosApp/turnos/especialidades.html", {'especialidades':especialidades})
 
 def agenda(request):
-      return render(request, "nucleoDeProyecto/turnos/agenda.html")
+      return render(request, "mediturnosApp/turnos/agenda.html")
 
 def solicitarturno(request):
-    return render(request, "nucleoDeProyecto/turnos/solicitarturno.html")
+    return render(request, "mediturnosApp/turnos/solicitarturno.html")

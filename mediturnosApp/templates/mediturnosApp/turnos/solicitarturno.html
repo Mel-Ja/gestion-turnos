@@ -5,10 +5,10 @@
 
 {% block navbar %}
 <li class="nav-item">
-    <img class="logo" src="{% static 'nucleoDeProyecto/img/logo.png' %}" alt="Logo">
+    <img class="logo" src="{% static 'mediturnosApp/img/logo.png' %}" alt="Logo">
   </li>
   <li class="nav-item">
-    <a class="nav-link active" href="{% url 'indice' %}">Home</a>
+    <a class="nav-link " href="{% url 'indice' %}">Home</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="{% url 'agenda' %}">Agenda</a>
@@ -17,12 +17,12 @@
       <a class="nav-link" href="{% url 'especialidades' %}">Especialidades</a>
   </li>
   <li class="nav-item">
-      <a class="nav-link" href="{% url 'solicitarturno' %}">Solicitar turno</a>
+      <a class="nav-link active" href="{% url 'solicitarturno' %}">Solicitar turno</a>
   </li>
 {% endblock %}
 
 {% block principal %}
 
-<h1>Bienvenido a Mediturnos</h1>
+<h1>Formulario para solicitar turnos</h1>
 
 {% endblock %}
