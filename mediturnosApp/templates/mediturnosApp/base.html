@@ -12,7 +12,24 @@
         
         {% comment %} Inicio Navbar {% endcomment %}
         <ul class="nav nav-pills nav-fill">
-            {% block navbar %}{% endblock %}   
+            <li class="nav-item">
+                <img class="logo" src="{% static 'mediturnosApp/img/logo.png' %}" alt="Logo">
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'indice' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if request.path == '/agenda/' %}active{% endif %}" href="{% url 'agenda' %}">Agenda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link {% if '/medicos/' in request.path %}active{% endif %}" href="{% url 'medicos' id_especialidad=0 %}">Médicos</a>
+                </li>
+              <li class="nav-item">
+                  <a class="nav-link {% if request.path == '/especialidades/' %}active{% endif %}" href="{% url 'especialidades' %}">Especialidades</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link {% if request.path == '/solicitarturno/' %}active{% endif %}" href="{% url 'solicitarturno' %}">Solicitar turno</a>
+              </li>
         </ul>
         {% comment %} Fin Navbar {% endcomment %}
 
