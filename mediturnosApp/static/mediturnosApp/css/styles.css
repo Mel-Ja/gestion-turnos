@@ -8,10 +8,12 @@ body{
 }
 
 .footer-bottom {
+    margin-top: 200px;
     background-color: #f0f0f0; /* Color de fondo del footer */
     padding: 0px;
     text-align: center;
     width: 100%;
+    height: auto;
     position: fixed;
     bottom: 0;
   }
@@ -19,6 +21,7 @@ body{
 .display-5{
     font-weight: 0;
 }
+
 
 .container-card {
     display: flex;
