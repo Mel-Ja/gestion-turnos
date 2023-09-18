@@ -20,7 +20,23 @@
         <h3 class="display-5">{% block titulo_principal %}{% endblock %}</h3>
         <h4 class="display-6">{% block titulo_secundario %}{% endblock %}</h4> 
         {% block principal %}{% endblock %}
+       
         
     </div>
+    {% comment %} Inicio Footer {% endcomment %}
+     
+    <div class="footer-bottom">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            <hr> <!-- Línea -->
+            <p>&copy; 2023 Mediturnos. Todos los derechos reservados.</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    </footer>
+
+   {% comment %} Fin Footer {% endcomment %}
 </body>
 </html>
