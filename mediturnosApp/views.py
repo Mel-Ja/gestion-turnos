@@ -1,13 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from datetime import datetime
 
 
 # Create your views here.
 
 def index(request):
-    return render(request,'mediturnosApp/turnos/indice.html')
+    contexto = {
+        'fecha': datetime.now().strftime('%d/%m/%Y %H:%M')
+        }
+    return render(request,'mediturnosApp/turnos/indice.html', contexto)
 
 def medicos(request, id_especialidad):
+   
     medicos = []
 
     if id_especialidad == 1:
@@ -23,10 +28,21 @@ def medicos(request, id_especialidad):
 
 def especialidades(request):
     especialidades = [['Pediatría'], ['Clínica'], ['Traumatología'], ['Cirugía'], ['Obstetricia'], ['Oftalmología'], ]
-    return render(request, "mediturnosApp/turnos/especialidades.html", {'especialidades':especialidades})
+    contexto = {
+            'especialidades': especialidades,
+            'fecha': datetime.now().strftime('%d/%m/%Y %H:%M')
+                }
+    
+    return render(request, "mediturnosApp/turnos/especialidades.html", contexto)
 
 def agenda(request):
-      return render(request, "mediturnosApp/turnos/agenda.html")
+    contexto = {
+            'fecha': datetime.now().strftime('%d/%m/%Y %H:%M')
+                }
+    return render(request, "mediturnosApp/turnos/agenda.html", contexto)
 
 def solicitarturno(request):
-    return render(request, "mediturnosApp/turnos/solicitarturno.html")
+    contexto = {
+            'fecha': datetime.now().strftime('%d/%m/%Y %H:%M')
+                }
+    return render(request, "mediturnosApp/turnos/solicitarturno.html", contexto)

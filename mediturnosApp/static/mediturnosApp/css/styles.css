@@ -8,8 +8,13 @@ body{
     /* animation: agrandarYachicar 1.5s ease-in-out 1; */
 }
 
+.fecha{
+  position: fixed; /* o absolute */
+  right: 10px;
+  bottom: 70px;
+}
 
-/* @keyframes agrandarYachicar {
+/* @keyframes agrandarYachicar {q 
   0% {
     transform: scale(1);
   }
