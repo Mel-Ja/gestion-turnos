@@ -1,5 +1,6 @@
 body{
     margin-top: 15px;
+    margin-bottom: 100px; /* Ajusta el margen inferior del cuerpo para dejar espacio para el footer */
 }
 
 .logo{
@@ -59,6 +60,11 @@ body{
 
 .display-5{
     font-weight: 0;
+    text-align: center; /* Centra el texto horizontalmente */
+    display: flex; /* Utiliza flexbox para centrar verticalmente */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    margin-top: -30px;
 }
 
 
@@ -120,11 +126,27 @@ body{
     height: 10px;
   }
 
- 
-.fondoRojo{
-  background-color: red;
+.formulario{
+  width: 50%;
+  height: auto; /* Ajusta la altura según sea necesario */
+  border-style: outset;
+  border-color: #0d6dfdba;
+  border-width: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; /* Esto centrará el div en la página */
+  margin-top:30px;
 }
 
-.fondo-azul {
-  background-color: blue;
+.mostrarEspecialidades{
+  width: 50%;
+  height: auto; /* Ajusta la altura según sea necesario */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; /* Esto centrará el div en la página */
+  margin-top:30px;
 }
