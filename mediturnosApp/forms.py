@@ -8,7 +8,7 @@ class SolicitarTurnoForm(forms.Form):
 	email = forms.EmailField(label="Email", required=True)
 	Especialidad = forms.CharField(label="Especialidad", required=True)
 	Medico = forms.CharField(label="Medico", required=True)
-	Fecha = forms.CharField(label="Fecha", required=True)
-	Hora = forms.CharField(label="Hora", required=True)
+	fecha = forms.DateField(label="Fecha", required=True, widget=forms.DateInput(attrs={'type': 'date'}))
+	hora = forms.TimeField(label="Hora", required=True, widget=forms.TimeInput(attrs={'type': 'time'}))
 	
 	
