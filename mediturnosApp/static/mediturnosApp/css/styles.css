@@ -150,3 +150,7 @@ body{
   margin: 0 auto; /* Esto centrará el div en la página */
   margin-top:30px;
 }
+
+.labelFormulario{
+  color:red;
+}
