@@ -8,7 +8,15 @@
 {% block titulo_principal %}Formulario para solicitar turnos{% endblock %}
 {% block principal %}
 
+<form method="POST" action=" {% url 'solicitarturno' %} ">
 
+{% csrf_token %}
+{{ formulario.as_p }}
+
+<input type="submit">
+
+<br><br><br><br><br><br>
+</form>
 
 {% endblock %}
 {% block fecha %} 

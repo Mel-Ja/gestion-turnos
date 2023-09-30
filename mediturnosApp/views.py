@@ -1,9 +1,24 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from datetime import datetime
+from .forms import SolicitarTurnoForm
+
 
 
 # Create your views here.
+def solicitarturno(request):
+    
+    formulario= SolicitarTurnoForm()
+    
+    contexto = {
+            'fecha': datetime.now().strftime('%d/%m/%Y %H:%M'),
+            'formulario': formulario
+    }
+                
+    return render(request, "mediturnosApp/turnos/solicitarturno.html", contexto)
+
+
+ 
 
 def index(request):
     contexto = {
@@ -41,8 +56,3 @@ def agenda(request):
                 }
     return render(request, "mediturnosApp/turnos/agenda.html", contexto)
 
-def solicitarturno(request):
-    contexto = {
-            'fecha': datetime.now().strftime('%d/%m/%Y %H:%M')
-                }
-    return render(request, "mediturnosApp/turnos/solicitarturno.html", contexto)

@@ -12,6 +12,7 @@ body{
   position: fixed; /* o absolute */
   right: 10px;
   bottom: 70px;
+ 
 }
 
 /* @keyframes agrandarYachicar {q 
@@ -120,3 +121,10 @@ body{
   }
 
  
+.fondoRojo{
+  background-color: red;
+}
+
+.fondo-azul {
+  background-color: blue;
+}

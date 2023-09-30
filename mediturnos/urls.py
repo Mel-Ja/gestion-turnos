@@ -23,4 +23,7 @@ urlpatterns = [
     path('especialidades/', views.especialidades, name="especialidades"),
     path('agenda/', views.agenda, name="agenda"),
     path('solicitarturno/', views.solicitarturno, name="solicitarturno"),
+ 
+    
 ]
+
