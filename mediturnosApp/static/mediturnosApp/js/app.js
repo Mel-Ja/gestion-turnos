@@ -15,7 +15,7 @@ document.addEventListener('input', function (e) {
 // Validacion de inputs que solo llevan Letras
 document.addEventListener('input', function (e) {
     if (e.target.classList.contains('solo-letras')) {
-        // Permite solo letras en los campos especificados
-        e.target.value = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚ\s]/g, '');
+        // Permitimos solo letras (mayúsculas, minúsculas y la letra "ñ")
+        e.target.value = e.target.value.replace(/[^a-zA-ZáéíóúüÁÉÍÓÚñÑ\s]/g, '');
     }
 });
