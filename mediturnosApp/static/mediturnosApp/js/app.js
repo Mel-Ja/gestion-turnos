@@ -19,3 +19,5 @@ document.addEventListener('input', function (e) {
         e.target.value = e.target.value.replace(/[^a-zA-ZáéíóúüÁÉÍÓÚñÑ\s]/g, '');
     }
 });
+
+
