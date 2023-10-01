@@ -136,6 +136,7 @@ body{
   border-style: outset;
   border-color: #0d6dfdba;
   border-width: 10px;
+  background-color: #0d6dfd2b;
   display: flex;
   flex-direction: column;
   justify-content: center;
