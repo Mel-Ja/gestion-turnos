@@ -1,4 +1,7 @@
 body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 15px;
     margin-bottom: 100px; /* Ajusta el margen inferior del cuerpo para dejar espacio para el footer */
 }
@@ -153,4 +156,26 @@ body{
 
 .labelFormulario{
   color:red;
+}
+
+.contenedor{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divImagenFrente {
+  width: 40%;
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divImagenFrente img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
