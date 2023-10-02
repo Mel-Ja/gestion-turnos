@@ -8,8 +8,8 @@
 {% block titulo_principal %}Formulario para solicitar turnos{% endblock %}
 {% block principal %}
 
-<div class="contenedorTurnos">
-    <div class="divImagenTurnos">
+<div class="contenedor-turnos">
+    <div class="div-imagen-turnos">
         <img src="{% static 'mediturnosApp/img/turnos.png' %}" alt="Mediturnos">
     </div>
 </div>
@@ -23,7 +23,7 @@
     {{ formulario.as_p }}
 
     <div class="d-flex justify-content-center">
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <button type="submit" id="boton-enviar" class="btn btn-primary">Enviar</button>
     </div>
 
     </form>
