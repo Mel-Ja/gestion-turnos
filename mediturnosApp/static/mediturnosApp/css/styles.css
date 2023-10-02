@@ -38,7 +38,7 @@ body{
 
 .botonesEncabezado{
   transform: translateY(15px); 
-  border-color: #849cac;
+  border-color: #ac8984;
   color: #04405c;
   font-family: 'Open Sans', Arial, sans-serif;
   font-weight: 700;
@@ -46,7 +46,7 @@ body{
 
 .nav-link:hover{
   transform: translateY(20px);
-  background-color:  #84a4ac;
+  background-color: #0d6dfdba;
   color:rgba(255, 255, 255, 0.852);
   scale: 1.05;
   transition: 0.17s;
@@ -59,7 +59,7 @@ body{
 }
 
 .encabezado{
-  background-color:  #2caca454 ;
+  background-color:  #849cacaf ;
   border-radius: 40px;
   height: 15vh;
 }

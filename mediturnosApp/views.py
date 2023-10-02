@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.http import HttpResponse
 from datetime import datetime
 from .forms import SolicitarTurnoForm
@@ -8,7 +9,12 @@ from .forms import SolicitarTurnoForm
 # Create your views here.
 def solicitarturno(request):
     
+    #instanciamos un formulario vacio
     formulario= SolicitarTurnoForm()
+    
+    if formulario.is_valid():
+        #dar de alta la informacion
+        redirect(reverse("index"))
     
     contexto = {
             'fecha': datetime.now().strftime('%d/%m/%Y %H:%M'),
