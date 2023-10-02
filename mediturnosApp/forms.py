@@ -1,5 +1,6 @@
 from django import forms
 from datetime import datetime, timedelta
+from django.core.exceptions import ValidationError
 
 class SolicitarTurnoForm(forms.Form):
     nombre = forms.CharField(label="Nombre", required=True, widget=forms.TextInput(attrs={'class': 'form-control solo-letras', 'placeholder': 'Ingrese su nombre'}))
@@ -20,3 +21,18 @@ class SolicitarTurnoForm(forms.Form):
         )
     )
     hora = forms.TimeField(label="Hora", required=True, widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}))
+
+
+    def clean_especialidad(self):
+        especialidad = self.cleaned_data.get("especialidad")
+        especialidades_permitidas = ["clinica", "pediatria", "traumatologia", "cirugia", "obstetricia", "oftalmologia"]
+
+        if especialidad not in especialidades_permitidas:
+            raise ValidationError("La especialidad no es válida")
+
+        return especialidad
+    
+    
+    
+    
+    

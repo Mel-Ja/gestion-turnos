@@ -10,11 +10,11 @@ from .forms import SolicitarTurnoForm
 def solicitarturno(request):
     
     #instanciamos un formulario vacio
-    formulario= SolicitarTurnoForm()
+    formulario= SolicitarTurnoForm(request.POST)
     
     if formulario.is_valid():
         #dar de alta la informacion
-        redirect(reverse("index"))
+        return redirect(reverse("indice"))
     
     contexto = {
             'fecha': datetime.now().strftime('%d/%m/%Y %H:%M'),
