@@ -6,34 +6,37 @@
     <title>{% block titulo %}{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'mediturnosApp/css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet">
 </head>
 <body>
     
     <div class="container">
-        
+        <div class="encabezado">
         {% comment %} Inicio Navbar {% endcomment %}
         <ul class="nav nav-pills nav-fill">
             <li class="nav-item">
                 <img class="logo" src="{% static 'mediturnosApp/img/logo.png' %}" alt="Logo">
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'indice' %}">Home</a>
+                <a class="nav-link {% if request.path == '/' %}active{% endif %} botonesEncabezado" href="{% url 'indice' %}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if request.path == '/agenda/' %}active{% endif %}" href="{% url 'agenda' %}">Agenda</a>
+                <a class="nav-link {% if request.path == '/agenda/' %}active{% endif %} botonesEncabezado" href="{% url 'agenda' %}">Agenda</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if '/medicos/' in request.path %}active{% endif %}" href="{% url 'medicos' id_especialidad=0 %}">Médicos</a>
+                <a class="nav-link {% if '/medicos/' in request.path %}active{% endif %} botonesEncabezado" href="{% url 'medicos' id_especialidad=0 %}">Médicos</a>
                 </li>
               <li class="nav-item">
-                  <a class="nav-link {% if request.path == '/especialidades/' %}active{% endif %}" href="{% url 'especialidades' %}">Especialidades</a>
+                  <a class="nav-link {% if request.path == '/especialidades/' %}active{% endif %} botonesEncabezado" href="{% url 'especialidades' %}">Especialidades</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link {% if request.path == '/solicitarturno/' %}active{% endif %}" href="{% url 'solicitarturno' %}">Solicitar turno</a>
+                  <a class="nav-link {% if request.path == '/solicitarturno/' %}active{% endif %} botonesEncabezado" href="{% url 'solicitarturno' %}">Solicitar turno</a>
               </li>
         </ul>
         {% comment %} Fin Navbar {% endcomment %}
-
+    </div>
         <br>
         <h1 class="display-5">{% block titulo_principal %}{% endblock %}</h1>
         <h4 class="display-6">{% block titulo_secundario %}{% endblock %}</h4> 
