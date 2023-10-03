@@ -8,8 +8,23 @@
 
 {% block principal %}
 <div class="contenedor">
+<section class="carrusel-contenido">
+    <div class="carrusel-caja">
+         <div class="carrusel-elemento">   
+            <img src="{% static 'mediturnosApp/img/imagen1.jpg' %}" alt="Mediturnos">
+        </div>
+        <div class="carrusel-elemento">   
+            <img src="{% static 'mediturnosApp/img/imagen2.jpg' %}" alt="Mediturnos">
+        </div>
+        <div class="carrusel-elemento">
+            <img src="{% static 'mediturnosApp/img/imagen3.jpg' %}" alt="Mediturnos">
+        </div>    
+    </div>
+</section>
+</div>
+<!-- <div class="contenedor">
     <div class="div-imagen-frente">
         <img src="{% static 'mediturnosApp/img/imagen1.jpg' %}" alt="Mediturnos">
     </div>
-</div>
+</div> -->
 {% endblock %}
