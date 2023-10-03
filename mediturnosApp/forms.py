@@ -13,6 +13,8 @@ ESPECIALIDADES_CHOICES = [
     ('Oftalmología', 'Oftalmología')
 ]
 
+HOUR_CHOICES = [(f"{hour:02d}:{minute:02d}", f"{hour:02d}:{minute:02d}") for hour in range(8, 20) for minute in range(0, 60, 15)]
+
 class SolicitarTurnoForm(forms.Form):
     nombre = forms.CharField(label="Nombre", required=True, widget=forms.TextInput(attrs={'class': 'form-control solo-letras', 'placeholder': 'Ingrese su nombre'}))
     apellido = forms.CharField(label="Apellido", required=True, widget=forms.TextInput(attrs={'class': 'form-control solo-letras', 'placeholder': 'Ingrese su apellido'}))
@@ -32,20 +34,24 @@ class SolicitarTurnoForm(forms.Form):
             }
         )
     )
-    hora = forms.TimeField(label="Hora", required=True, widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}))
-    
+    hora = forms.ChoiceField(
+        label="Hora",
+        required=True,
+        choices=HOUR_CHOICES,  # Utiliza las opciones actualizadas
+        widget=forms.Select(
+            attrs={'class': 'form-control'}
+        )
+    )
 
     def clean_especialidad(self):
-        
         especialidad = self.cleaned_data.get("especialidad")
-        especialidades_lista = [['Pediatría'], ['Clínica'], ['Traumatología'], ['Cirugía'], ['Obstetricia'], ['Oftalmología'], ] # Esto lo va a ir a verificar a la BDD
+        especialidades_lista = ['Pediatría', 'Clínica', 'Traumatología', 'Cirugía', 'Obstetricia', 'Oftalmología'] # Esto lo va a ir a verificar a la BDD
 
-        if especialidad not in [item[0] for item in especialidades_lista]:
+        if especialidad not in especialidades_lista:
             raise ValidationError("La especialidad ingresada no es válida, las especialidades disponibles son: Clínica, Pediatría, Traumatología, Cirugia, Obstetricia y Oftalmologia")
         
         return especialidad
 
-    
     def clean_medico(self):
         medico = self.cleaned_data.get("medico")
         especialidad = self.cleaned_data.get("especialidad")
@@ -72,7 +78,7 @@ class SolicitarTurnoForm(forms.Form):
         ]
 
         for fecha_hora_ocupada in fecha_hora_ocupadas:
-            if hora == fecha_hora_ocupada.time() and self.cleaned_data['fecha'] == fecha_hora_ocupada.date():
+            if hora == fecha_hora_ocupada.strftime('%H:%M') and self.cleaned_data['fecha'] == fecha_hora_ocupada.date():
                 raise forms.ValidationError("La hora seleccionada no está disponible para esta fecha")
 
         return hora
