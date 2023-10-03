@@ -42,6 +42,18 @@ document.addEventListener('input', function (e) {
 });
 
 
+document.addEventListener('DOMContentLoaded', function () {
+    var especialidadSelect = document.getElementById('id_especialidad');
+    var optionElegir = especialidadSelect.querySelector('option[value=""]');
+  
+    // Cambia el color de la opción "Elegir"
+    optionElegir.style.color = 'gray';
+  
+    // Deshabilita la opción "Elegir"
+    optionElegir.disabled = true;
+});
+
+
 
 
 
