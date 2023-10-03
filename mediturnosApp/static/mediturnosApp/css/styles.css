@@ -251,3 +251,17 @@ body{
   background-color: rgba(255, 255, 0, 0.446)  ;
   color:rgb(0, 0, 0);
 }
+
+.messages{
+  position: relative;
+  top: 50%;
+  left: 40%;
+  background-color: rgba(0, 255, 85, 0.298);
+  width:15%;
+}
+
+.messages li{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

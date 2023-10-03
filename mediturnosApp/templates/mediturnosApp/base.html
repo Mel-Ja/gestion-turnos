@@ -40,16 +40,7 @@
         <br>
         <h1 class="display-5">{% block titulo_principal %}{% endblock %}</h1>
         <h4 class="display-6">{% block titulo_secundario %}{% endblock %}</h4> 
-        {% block principal %}{% endblock %}
-        
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-       
+        {% block principal %}{% endblock %}      
         
     </div>
     
