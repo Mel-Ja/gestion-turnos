@@ -61,11 +61,11 @@ class SolicitarTurnoForm(forms.Form):
         medicos_especialidad = [medico[0] for medico in medicos if medico[1] == especialidad]
         if medico not in medicos_especialidad:
             if especialidad == "Clínica":
-                raise forms.ValidationError("Médico no válido para esta especialidad, los medicos disponibles para la especialidad clínica son: Juan Perez, Laura Garcia y Ana Martinez")
+                raise forms.ValidationError("Médico no válido para esta especialidad, los medicos disponibles para la especialidad clínica son: Juan Perez, Laura García y Ana Martinez")
             elif especialidad == "Traumatología":
-                raise forms.ValidationError("Médico no válido para esta especialidad, los medicos disponibles para la especialidad Traumatología son: Maria Rodriguez, Pepe Argento y Sofia Torres")
+                raise forms.ValidationError("Médico no válido para esta especialidad, los medicos disponibles para la especialidad Traumatología son: María Rodríguez, Pepe Argento y Sofía Torres")
             elif especialidad == "Pediatría":
-                raise forms.ValidationError("Médico no válido para esta especialidad, los medicos disponibles para la especialidad Pediatría son: Carlos Lopez, Laura Garcia y Diego Fernandez")
+                raise forms.ValidationError("Médico no válido para esta especialidad, los medicos disponibles para la especialidad Pediatría son: Carlos López, Laura García y Diego Fernández")
         
         return medico
         
