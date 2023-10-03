@@ -65,11 +65,16 @@ class SolicitarTurnoForm(forms.Form):
         
     def clean_hora(self):
         hora = self.cleaned_data.get('hora')
-        horas_ocupadas = [datetime(2023, 10, 4, 10, 0).time(), datetime(2023, 10, 5, 15, 30).time(), datetime(2023, 10, 6, 14, 45).time()]
+        fecha_hora_ocupadas = [
+            datetime(2023, 10, 4, 10, 0),
+            datetime(2023, 10, 5, 15, 30),
+            datetime(2023, 10, 6, 14, 45)
+        ]
 
-        if hora in horas_ocupadas:
-            raise forms.ValidationError("La hora seleccionada no está disponible")
-        
+        for fecha_hora_ocupada in fecha_hora_ocupadas:
+            if hora == fecha_hora_ocupada.time() and self.cleaned_data['fecha'] == fecha_hora_ocupada.date():
+                raise forms.ValidationError("La hora seleccionada no está disponible para esta fecha")
+
         return hora
 
     
