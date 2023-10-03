@@ -41,7 +41,7 @@ document.addEventListener('input', function (e) {
 
 });
 
-
+//Deshabilita en el formulario, la opcion "elegir" del select Especialidades
 document.addEventListener('DOMContentLoaded', function () {
     var especialidadSelect = document.getElementById('id_especialidad');
     var optionElegir = especialidadSelect.querySelector('option[value=""]');
