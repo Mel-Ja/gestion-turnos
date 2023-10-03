@@ -24,16 +24,45 @@ class SolicitarTurnoForm(forms.Form):
     hora = forms.TimeField(label="Hora", required=True, widget=forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}))
 
 
+    # def clean_especialidad(self):
+    #     especialidad = self.cleaned_data.get("especialidad")
+    #     especialidad = especialidad.lower() #convertimos a minuscula todo lo que el usuario haya puesto en cada campo
+    #     especialidades_permitidas = ["clinica", "pediatria", "traumatologia", "cirugia", "obstetricia", "oftalmologia"]
+
+    #     if especialidad not in especialidades_permitidas:
+    #         raise ValidationError("La especialidad ingresada no es válida, las especialidades disponibles son: Clinica, Pediatria, Traumatologia, Cirugia, Obstetricia y Oftalmologia")
+
+    #     return especialidad
     def clean_especialidad(self):
-        especialidad = self.cleaned_data.get("especialidad")
-        especialidad = especialidad.lower() #convertimos a minuscula todo lo que el usuario haya puesto en cada campo
-        especialidades_permitidas = ["clinica", "pediatria", "traumatologia", "cirugia", "obstetricia", "oftalmologia"]
+        especialidad = self.cleaned_data["especialidad"]
+        especialidades_lista = [['Pediatría'], ['Clínica'], ['Traumatología'], ['Cirugía'], ['Obstetricia'], ['Oftalmología'], ] # Esto lo va a ir a verificar a la BDD
 
-        if especialidad not in especialidades_permitidas:
-            raise ValidationError("La especialidad ingresada no es válida, las especialidades disponibles son: Clinica, Pediatria, Traumatologia, Cirugia, Obstetricia y Oftalmologia")
-
+        if especialidad not in [item[0] for item in especialidades_lista]:
+            raise forms.ValidationError("Especialidad invalida")
+        
         return especialidad
+
     
+    def clean_medico(self):
+        medico = self.cleaned_data["medico"]
+        especialidad = self.cleaned_data["especialidad"]
+        medicos = [['Juan Perez','Clinica','1001'],['Laura García','Clinica','1002'],['Ana Martinez','Clinica','1003'],['María Rodríguez','Traumatología','3001'],['Pepe Argento','Traumatología','3002'],['Sofía Torres','Traumatología','3003'], ['Juan Perez','Clinica','1001'],['Laura García','Clinica','1002'],['Ana Martinez','Clinica','1003'],['Carlos López','Pediatría','2001'],['Laura García','Pediatría','2002'],['Diego Fernández','Pediatría','2003'],['María Rodríguez','Traumatología','3001'],['Pepe Argento','Traumatología','3002'],['Sofía Torres','Traumatología','3003']]
+
+        medicos_especialidad = [medico[0] for medico in medicos if medico[1] == especialidad]
+        if medico not in medicos_especialidad:
+            raise forms.ValidationError("Médico no válido para esta especialidad")
+        
+        return medico
+        
+    def clean_hora(self):
+        hora = self.cleaned_data['hora'] 
+        horas_ocupadas = [datetime(2023, 10, 4, 10, 0).time(), datetime(2023, 10, 5, 15, 30).time(), datetime(2023, 10, 6, 14, 45).time()]
+
+        if hora in horas_ocupadas:
+            raise forms.ValidationError("La hora seleccionada no está disponible")
+        
+        return hora
+
     
     
     

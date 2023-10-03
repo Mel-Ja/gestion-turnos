@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.contrib import messages
 from django.http import HttpResponse
 from datetime import datetime
 from .forms import SolicitarTurnoForm
@@ -9,12 +10,19 @@ from .forms import SolicitarTurnoForm
 # Create your views here.
 def solicitarturno(request):
     
-    #instanciamos un formulario vacio
-    formulario= SolicitarTurnoForm(request.POST)
-    
-    if formulario.is_valid():
-        #dar de alta la informacion
-        return redirect(reverse("indice"))
+    if request.method == "POST":
+        #instanciamos un formulario con datos
+        formulario = SolicitarTurnoForm(request.POST)
+
+        #validamos
+        if formulario.is_valid():
+            # dar alta la información
+
+            messages.info(request, "Turno reservado exitosamente")
+            return redirect(reverse("indice"))
+        
+    else: # entro en GET
+        formulario= SolicitarTurnoForm()
     
     contexto = {
             'fecha': datetime.now().strftime('%d/%m/%Y %H:%M'),
