@@ -227,6 +227,10 @@ footer {
     height: 100%; 
     width: 300%;
 }
+.cantidad-medicos{
+  display:flex;
+  justify-content: center;
+}
 
 .carrusel-elemento {
     float: left;
@@ -525,6 +529,7 @@ footer {
 .div-imagen-agenda{
   width: 80%;
   height: 80%;
+  margin-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
