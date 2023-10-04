@@ -230,6 +230,7 @@ footer {
 .cantidad-medicos{
   display:flex;
   justify-content: center;
+  font-weight: 600;
 }
 
 .carrusel-elemento {
