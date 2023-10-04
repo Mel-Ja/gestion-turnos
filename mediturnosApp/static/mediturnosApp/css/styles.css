@@ -110,6 +110,7 @@ header {
   color: #3a4958;
   position: relative;
   text-shadow: .6px .6px 1px #0d6efd;
+  
 }
 
 
@@ -117,6 +118,11 @@ header {
   color: #448fff;
   position: relative;
   text-shadow: .6px .6px 1px #3a4958;
+  
+}
+
+.link-item i:hover{
+  scale: 1.5;
 }
 
 
@@ -368,7 +374,6 @@ footer {
   border-radius: 15px;
   background-color: #0d6dfd63;
   transition: 0.1s;
-  transform:scale(1.4);
   user-select: none;
 }
 
