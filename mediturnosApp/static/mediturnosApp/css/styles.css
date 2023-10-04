@@ -93,6 +93,7 @@ header {
   color: #3a4958;
   position: relative;
   text-shadow: .6px .6px 1px #0d6efd;
+  margin: 10px;
 }
 
 .nav-item:hover {
