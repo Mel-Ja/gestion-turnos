@@ -16,14 +16,17 @@ esa lista llega con el nombre: especialidades
    
 
 {% comment %} listamos cada una de las especialidades de la lista {% endcomment %}
-<br>
-    <ul class="mostrar-especialidades">
-        {% for especialidad in especialidades %}
-            <li>
-                {{ especialidad.0 }}<br>
-            </li><br>
-        {% endfor %}
-    </ul>
+
+<ul class="list-group mostrar-especialidades">
+    {% for especialidad in especialidades %}
+    <li class="list-group-item item-especialidades">
+        {{ especialidad.0 }}<br>
+    </li>
+{% endfor %}
+
+    
+  </ul> 
+
 {% endblock %}
 {% block fecha %} 
     {{ block.super }}
