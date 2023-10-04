@@ -555,11 +555,14 @@ footer {
   top: 50%;
   left: 40%;
   background-color: rgba(0, 255, 85, 0.298);
-  width:15%;
+  width:35%;
+  padding: 10px 10px;
+  border-radius: 7px;
 }
 
 .messages li{
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 20px;
 }
