@@ -13,6 +13,18 @@ ESPECIALIDADES_CHOICES = [
     ('Oftalmología', 'Oftalmología')
 ]
 
+MEDICOS_CHOICES = [
+    ('','Selecciona un médico'),
+    ('Juan Perez','Juan Perez'),
+    ('Laura García','Laura García'),
+    ('Ana Martinez','Ana Martinez'),
+    ('Carlos López','Carlos López'),
+    ('Diego Fernández','Diego Fernández'),
+    ('María Rodríguez','María Rodríguez'),
+    ('Pepe Argento','Pepe Argento'),
+    ('Sofía Torres','Sofía Torres')
+]
+
 HOUR_CHOICES = [(f"{hour:02d}:{minute:02d}", f"{hour:02d}:{minute:02d}") for hour in range(8, 20) for minute in range(0, 60, 15)]
 
 class SolicitarTurnoForm(forms.Form):
@@ -22,7 +34,7 @@ class SolicitarTurnoForm(forms.Form):
     email = forms.EmailField(label="Email", required=True, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su email'}))
     especialidad = forms.ChoiceField(label="Especialidad", choices=ESPECIALIDADES_CHOICES, widget=forms.Select(attrs={'class': 'form-control solo-letras'}))
     
-    medico = forms.CharField(label="Médico", required=True, widget=forms.TextInput(attrs={'class': 'form-control solo-letras', }))
+    medico = forms.ChoiceField(label="Médico", choices=MEDICOS_CHOICES, widget=forms.Select(attrs={'class': 'form-control solo-letras', }))
     fecha = forms.DateField(
         label="Fecha",
         required=True,

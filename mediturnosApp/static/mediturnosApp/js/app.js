@@ -54,7 +54,37 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+document.addEventListener("DOMContentLoaded", function() {
+    var especialidadSelect = document.getElementById("id_especialidad");
+    var medicoSelect = document.getElementById("id_medico");
 
+    // Define un objeto que mapea especialidades a médicos
+    var medicosPorEspecialidad = {
+        Pediatría: ["Carlos López", "Laura García", "Diego Fernández"],
+        Traumatología: ["María Rodríguez", "Pepe Argento", "Sofía Torres"],
+        Clínica: ["Juan Perez", "Laura García", "Ana Martinez"]
+    };
 
+    // Escucha el cambio en el select de especialidad
+    especialidadSelect.addEventListener("change", function() {
+        var especialidadSeleccionada = especialidadSelect.value;
+        var medicos = medicosPorEspecialidad[especialidadSeleccionada] || [];
 
+        // Limpiar el campo de selección de médicos
+        medicoSelect.innerHTML = "";
 
+        // Agregar opción predeterminada
+        var defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.text = "Selecciona un médico";
+        medicoSelect.appendChild(defaultOption);
+
+        // Agregar opciones de médicos
+        medicos.forEach(function(medico) {
+            var option = document.createElement("option");
+            option.value = medico;
+            option.text = medico;
+            medicoSelect.appendChild(option);
+        });
+    });
+});
