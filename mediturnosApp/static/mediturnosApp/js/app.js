@@ -20,7 +20,7 @@ document.addEventListener('input', function (e) {
     }
 
     // Validación de inputs que solo llevan Letras
-     if (e.target.classList.contains('solo-letras')) {
+    if (e.target.classList.contains('solo-letras')) {
         // Permitimos solo letras (mayúsculas, minúsculas y la letra "ñ")
         e.target.value = e.target.value.replace(/[^a-zA-ZáéíóúüÁÉÍÓÚñÑ\s]/g, '');
     }
@@ -45,16 +45,16 @@ document.addEventListener('input', function (e) {
 document.addEventListener('DOMContentLoaded', function () {
     var especialidadSelect = document.getElementById('id_especialidad');
     var optionElegir = especialidadSelect.querySelector('option[value=""]');
-  
+
     // Cambia el color de la opción "Elegir"
     optionElegir.style.color = 'gray';
-  
+
     // Deshabilita la opción "Elegir"
     optionElegir.disabled = true;
 });
 
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     var especialidadSelect = document.getElementById("id_especialidad");
     var medicoSelect = document.getElementById("id_medico");
 
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     // Escucha el cambio en el select de especialidad
-    especialidadSelect.addEventListener("change", function() {
+    especialidadSelect.addEventListener("change", function () {
         var especialidadSeleccionada = especialidadSelect.value;
         var medicos = medicosPorEspecialidad[especialidadSeleccionada] || [];
 
@@ -80,11 +80,28 @@ document.addEventListener("DOMContentLoaded", function() {
         medicoSelect.appendChild(defaultOption);
 
         // Agregar opciones de médicos
-        medicos.forEach(function(medico) {
+        medicos.forEach(function (medico) {
             var option = document.createElement("option");
             option.value = medico;
             option.text = medico;
             medicoSelect.appendChild(option);
         });
     });
+
+    window.addEventListener("DOMContentLoaded", function () {
+        // Obtén referencias a los controles select
+        var especialidadSelect = document.getElementById("id_especialidad");
+        var medicoSelect = document.getElementById("id_medico");
+        medicoSelect.disabled = true;
+
+        // Agrega un evento "change" al select de especialidad
+        especialidadSelect.addEventListener("change", function () {
+            // Verifica si el valor de especialidadSelect no es vacío
+            if (especialidadSelect.value !== "") {
+                // Habilita el select de médicos
+                medicoSelect.disabled = false;
+            }
+        });
+    });
+    
 });
