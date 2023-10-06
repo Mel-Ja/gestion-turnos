@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Agregar opción predeterminada
         var defaultOption = document.createElement("option");
         defaultOption.value = "";
-        defaultOption.text = "Selecciona un médico";
+        defaultOption.text = "Seleccione un médico";
         medicoSelect.appendChild(defaultOption);
 
         // Agregar opciones de médicos
@@ -92,7 +92,12 @@ document.addEventListener("DOMContentLoaded", function () {
         // Obtén referencias a los controles select
         var especialidadSelect = document.getElementById("id_especialidad");
         var medicoSelect = document.getElementById("id_medico");
+        var opcionMedico = document.getElementById("id_medico");
         medicoSelect.disabled = true;
+        if (opcionMedico){
+            var optionIndex = 0;
+            opcionMedico.options[optionIndex].text = "Elija una especialidad";
+        }
 
         // Agrega un evento "change" al select de especialidad
         especialidadSelect.addEventListener("change", function () {

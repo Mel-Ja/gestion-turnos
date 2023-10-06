@@ -14,7 +14,7 @@ ESPECIALIDADES_CHOICES = [
 ]
 
 MEDICOS_CHOICES = [
-    ('','Selecciona un médico'),
+    ('','Seleccione un médico'),
     ('Juan Perez','Juan Perez'),
     ('Laura García','Laura García'),
     ('Ana Martinez','Ana Martinez'),
@@ -84,9 +84,9 @@ class SolicitarTurnoForm(forms.Form):
     def clean_hora(self):
         hora = self.cleaned_data.get('hora')
         fecha_hora_ocupadas = [
-            datetime(2023, 10, 4, 10, 0),
-            datetime(2023, 10, 5, 15, 30),
-            datetime(2023, 10, 6, 14, 45)
+            datetime(2023, 10, 6, 10, 0),
+            datetime(2023, 10, 9, 15, 30),
+            datetime(2023, 10, 10, 14, 45)
         ]
 
         for fecha_hora_ocupada in fecha_hora_ocupadas:
