@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@300;500&family=Lobster&display=swap" rel="stylesheet">
 </head>
 <body>
+   
     <header>
         <!-- <a class="header-logo" href="index.html">
             <img src="imagenes/logo.png">
@@ -84,5 +85,7 @@
     {% comment %} Fin Footer {% endcomment %}
     
    <script src="{% static 'mediturnosApp/js/app.js' %}"></script>
+   {% comment %} api de chat proveniente de app.purechat.com {% endcomment %}
+   <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: 'e580a924-8d32-4966-b697-6d26d0179769', f: true }); done = true; } }; })();</script>
 </body>
 </html>
