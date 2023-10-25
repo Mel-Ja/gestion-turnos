@@ -53,17 +53,18 @@ que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera dis
               {% for medico in medicos %}
                 <li class="card-item">
                     <div class="card">
-                        {% comment %} {% if medico.especialidad == 'Clinica' %}
+                        <img class="card-img-top" src="{% static 'mediturnosApp/img/medicoengeneral.png' %}" alt="Logo">
+                        {% comment %} {% if medico.especialidad == 'Clínica' %}
                             <img class="card-img-top" src="{% static 'mediturnosApp/img/clinico.png' %}" alt="Logo">
                         {% endif %}
-                        {% if medico.especialidad == 'Pediatria' %}
+                        {% if medico.especialidad == 'Traumatología' %}
                             <img class="card-img-top" src="{% static 'mediturnosApp/img/pediatria.png' %}" alt="Logo">
                         {% endif %}
-                        {% if medico.especialidad == 'Traumatologia' %}
+                        {% if medico.especialidad == 'Pediatría' %}
                         <img class="card-img-top" src="{% static 'mediturnosApp/img/traumatologia.png' %}" alt="Logo">
-                        {% endif %} {% endcomment %}
+                        {% endif %}  {% endcomment %}
                         <div class="card-body">
-                            <h5 class="card-title">{{ medico.nombre }}</h5>
+                            <h5 class="card-title">{{ medico.nombre_completo }}</h5>
                             {% comment %} <p class="card-text">{{ medico.especialidad }}</p> {% endcomment %}
                         </div>
                         <div class="card-footer">

@@ -9,6 +9,9 @@ class Persona(models.Model):
 
     class Meta:
         abstract = True
+        
+    def nombre_completo(self):
+        return f"{self.nombre}  {self.apellido}"
 
 
 class Paciente(Persona):

@@ -1,0 +1,39 @@
+{% extends "../base.html" %}
+{% block titulo %}Alta de especialidad{% endblock %}
+
+{% load static %}
+
+
+
+{% block titulo_principal %}Realice el alta de una especialidad{% endblock %}
+{% block principal %}
+
+<div class="contenedor-turnos">
+    
+</div>
+
+<div class="formulario">
+    
+    <br>
+    <h3> Datos de la nueva especialidad </h3>
+
+    <form method="POST" action=" {% url 'especialidad-alta' %} ">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="d-flex justify-content-center">
+        <button type="submit" id="boton-enviar" class="btn btn-primary">Enviar</button>
+    </div>
+
+    </form>
+    <br>
+<div>
+
+
+
+
+{% endblock %}
+{% block fecha %} 
+    {{ block.super }}
+{% endblock %}
