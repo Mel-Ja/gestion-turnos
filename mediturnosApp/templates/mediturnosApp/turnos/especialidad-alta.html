@@ -5,25 +5,25 @@
 
 
 
-{% block titulo_principal %}Realice el alta de una especialidad{% endblock %}
+{% block titulo_principal %}Alta de una nueva especialidad{% endblock %}
 {% block principal %}
 
 <div class="contenedor-turnos">
     
 </div>
 
-<div class="formulario">
+<div class="formulario  formularioespecialidad">
     
     <br>
-    <h3> Datos de la nueva especialidad </h3>
-
+    <h3> Indicar la nueva especialidad </h3>
+    <br>
     <form method="POST" action=" {% url 'especialidad-alta' %} ">
 
     {% csrf_token %}
     {{ form.as_p }}
 
     <div class="d-flex justify-content-center">
-        <button type="submit" id="boton-enviar" class="btn btn-primary">Enviar</button>
+        <button type="submit" id="boton-enviar" class="btn btn-primary" placeholder="hola">Realizar alta</button>
     </div>
 
     </form>

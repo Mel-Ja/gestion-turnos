@@ -573,13 +573,36 @@ footer {
   font-size: 20px;
 }
 
-.medicosnuevos{
+.medicos-nuevos-img{
   display: flex;
-  scale: 2.5;
+  scale: 1.8;
   margin-top: 40px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+  
 }
 
 .secciondeedicion{
   color:rgba(159, 35, 35, 0.866);
+}
+
+.medicos-nuevos-tarjetas{
+  width: 300px;
+  height: 700px;
+}
+
+
+.formularioespecialidad{
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  
+  text-align: center;
+}
+
+#id_especialidades{
+  margin-top: 22px;
+}
+
+#id_especialidades > div{
+  margin-top: 10px;
 }

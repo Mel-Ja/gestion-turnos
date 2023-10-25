@@ -51,9 +51,9 @@ que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera dis
         <div class="container-card">
             <ul class="card-list">
               {% for medico in medicos %}
-                <li class="card-item">
+                <li class="card-item  medicos-nuevos-tarjetas">
                     <div class="card">
-                        <img class="card-img-top medicosnuevos" src="{% static 'mediturnosApp/img/medicoengeneral.png' %}" alt="Logo">
+                        <img class="card-img-top medicos-nuevos-img" src="{% static 'mediturnosApp/img/medicoengeneral.png' %}" alt="Logo">
                         {% comment %} {% if medico.especialidad == 'Clínica' %}
                             <img class="card-img-top" src="{% static 'mediturnosApp/img/clinico.png' %}" alt="Logo">
                         {% endif %}
