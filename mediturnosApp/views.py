@@ -6,8 +6,8 @@ from datetime import datetime
 from .forms import SolicitarTurnoForm
 from django.views.generic.edit import CreateView
 from django.views.generic.list import ListView
-from .models import Medico
-
+from .models import Medico, Especialidad
+from .forms import MedicoForm
 
 
 # Create your views here.
@@ -73,20 +73,35 @@ def agenda(request):
                 }
     return render(request, "mediturnosApp/turnos/agenda.html", contexto)
 
+# class MedicoCreateView(CreateView):
+#     model = Medico
+#     template_name = 'mediturnosApp/turnos/medicos-alta.html'
+#     success_url = '/'
+#     fields = '__all__'
+    
 class MedicoCreateView(CreateView):
     model = Medico
-    template_name = 'mediturnosApp/turnos/medicosAlta.html'
-    success_url = 'listado'
-    fields = '__all__'
+    form_class = MedicoForm  # Usa el formulario personalizado
+    template_name = 'mediturnosApp/turnos/medicos-alta.html'
+    success_url = '/'
 
-
-# Para que funcione la vista basada en clases, y muestre los medicos que hay en la base de datos
-# temporalmente hay que cargar manualmente los medicos, en la base de datos, a traves del pgadmin
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# Aclaracion importe!!
+# Para probarlo y que funcione, temporalmente, primero se debe cargar las especialidades en 
+# el fontend, en la seccion "Alta de especialidad"
+# y luego si, cargar el alta de un medico en la seccion "Alta de medico"
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 class MedicoListView(ListView):
     model = Medico
     context_object_name = 'medicos'
     template_name = 'mediturnosApp/turnos/medicosListado.html' 
+    
+class EspecialidadCreateView(CreateView):
+    model = Especialidad
+    template_name = 'mediturnosApp/turnos/especialidad-alta.html'
+    success_url = '/'
+    fields = '__all__'
     
 
 

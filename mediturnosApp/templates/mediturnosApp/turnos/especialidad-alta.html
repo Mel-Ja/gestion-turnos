@@ -1,11 +1,11 @@
 {% extends "../base.html" %}
-{% block titulo %}Solicitud de turno{% endblock %}
+{% block titulo %}Alta de especialidad{% endblock %}
 
 {% load static %}
 
 
 
-{% block titulo_principal %}Solicite su turno completando el siguiente formulario:{% endblock %}
+{% block titulo_principal %}Realice el alta de una especialidad{% endblock %}
 {% block principal %}
 
 <div class="contenedor-turnos">
@@ -15,9 +15,9 @@
 <div class="formulario">
     
     <br>
-    <h3> Datos del nuevo medico </h3>
+    <h3> Datos de la nueva especialidad </h3>
 
-    <form method="POST" action=" {% url 'medicosalta' %} ">
+    <form method="POST" action=" {% url 'especialidad-alta' %} ">
 
     {% csrf_token %}
     {{ form.as_p }}

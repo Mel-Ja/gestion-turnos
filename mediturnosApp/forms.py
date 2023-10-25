@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from django.core.exceptions import ValidationError
 from .models import Medico
 
+
 # Define las opciones de especialidades
 ESPECIALIDADES_CHOICES = [
     ('', 'Elegir'),
@@ -97,14 +98,22 @@ class SolicitarTurnoForm(forms.Form):
         return hora
     
     
-    class AltaMedicoForm(forms.ModelForm):
-        
-        class Meta:
-            model = Medico
-            fields = '__all__'
-    
 
-    
+
+class MedicoForm(forms.ModelForm):
+    # Definimos los campos adicionales de Persona, que no se muestran en el formulario 
+    # si no los ponemos manualmente
+    nombre = forms.CharField(label="Nombre", required=True)
+    apellido = forms.CharField(label="Apellido", required=True)
+    email = forms.EmailField(label="Email", required=True)
+    dni = forms.IntegerField(label="DNI", required=True)
+
+    class Meta:
+        model = Medico
+        fields = ['nombre', 'apellido', 'email', 'dni', 'matricula', 'especialidades']
+        widgets = {
+            'especialidades': forms.CheckboxSelectMultiple(),
+        }
     
     
     

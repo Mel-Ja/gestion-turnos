@@ -1,0 +1,39 @@
+{% extends "../base.html" %}
+{% block titulo %}Solicitud de turno{% endblock %}
+
+{% load static %}
+
+
+
+{% block titulo_principal %}Solicite su turno completando el siguiente formulario:{% endblock %}
+{% block principal %}
+
+<div class="contenedor-turnos">
+    
+</div>
+
+<div class="formulario">
+    
+    <br>
+    <h3> Datos del nuevo medico </h3>
+
+    <form method="POST" action=" {% url 'medicos-alta' %} ">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="d-flex justify-content-center">
+        <button type="submit" id="boton-enviar" class="btn btn-primary">Enviar</button>
+    </div>
+
+    </form>
+    <br>
+<div>
+
+
+
+
+{% endblock %}
+{% block fecha %} 
+    {{ block.super }}
+{% endblock %}

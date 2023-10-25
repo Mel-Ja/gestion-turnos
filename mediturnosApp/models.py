@@ -10,16 +10,29 @@ class Persona(models.Model):
     class Meta:
         abstract = True
 
-class Especialidad(models.Model):
-    descripcion = models.CharField(max_length=250, verbose_name="Especialidad")
 
 class Paciente(Persona):
     historia_clinica = models.CharField(verbose_name="Historia Clínica", primary_key=True)
+    
+
+
+class Especialidad(models.Model):
+    descripcion = models.CharField(max_length=250, verbose_name="Especialidad")
+    
+    def __str__(self):
+        return self.descripcion
+
 
 class Medico(Persona):
-    matricula = models.CharField(verbose_name="Matrícula", primary_key=True)
-    especialidad = models.ManyToManyField(Especialidad)
+    matricula = models.CharField(max_length=50, primary_key=True, verbose_name="Matrícula")
+    especialidades = models.ManyToManyField(Especialidad, through='MedicoEspecialidad')
 
+
+class MedicoEspecialidad(models.Model):
+    medico = models.ForeignKey(Medico, on_delete=models.CASCADE, db_column='matricula')
+    especialidad = models.ForeignKey(Especialidad, on_delete=models.CASCADE, db_column='especialidad_id')
+    
+    
 class Turnos(models.Model):
     fecha = models.DateField()
     hora = models.TimeField()
