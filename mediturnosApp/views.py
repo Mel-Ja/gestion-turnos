@@ -88,7 +88,7 @@ class MedicoCreateView(CreateView):
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # Aclaracion importe!!
 # Para probarlo y que funcione, temporalmente, primero se debe cargar las especialidades en 
-# el fontend, en la seccion "Alta de especialidad"
+# el frontend, en la seccion "Alta de especialidad"
 # y luego si, cargar el alta de un medico en la seccion "Alta de medico"
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
