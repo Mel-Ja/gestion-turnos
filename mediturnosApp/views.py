@@ -99,7 +99,7 @@ class MedicoListView(ListView):
     
 class EspecialidadCreateView(CreateView):
     model = Especialidad
-    template_name = 'mediturnosApp/especialidades/especialidad-alta.html'
+    template_name = 'mediturnosApp/especialidades/especialidades-alta.html'
     success_url = '/'
     fields = '__all__'
     
