@@ -23,6 +23,9 @@ urlpatterns = [
     path('especialidades/', views.especialidades, name="especialidades"),
     path('agenda/', views.agenda, name="agenda"),
     path('solicitarturno/', views.solicitarturno, name="solicitarturno"),
+    path('medicos/alta', views.MedicoCreateView.as_view(), name="medicosalta"),
+    path('medicos/listado', views.MedicoListView.as_view(), name="medicoslistado"),
+    
  
     
 ]

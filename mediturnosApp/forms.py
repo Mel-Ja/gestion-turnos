@@ -1,6 +1,7 @@
 from django import forms
 from datetime import datetime, timedelta
 from django.core.exceptions import ValidationError
+from .models import Medico
 
 # Define las opciones de especialidades
 ESPECIALIDADES_CHOICES = [
@@ -94,6 +95,14 @@ class SolicitarTurnoForm(forms.Form):
                 raise forms.ValidationError("La hora seleccionada no está disponible para esta fecha")
 
         return hora
+    
+    
+    class AltaMedicoForm(forms.ModelForm):
+        
+        class Meta:
+            model = Medico
+            fields = '__all__'
+    
 
     
     

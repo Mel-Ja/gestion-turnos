@@ -4,6 +4,9 @@ from django.contrib import messages
 from django.http import HttpResponse
 from datetime import datetime
 from .forms import SolicitarTurnoForm
+from django.views.generic.edit import CreateView
+from django.views.generic.list import ListView
+from .models import Medico
 
 
 
@@ -69,4 +72,21 @@ def agenda(request):
             'fecha': datetime.now().strftime('%d/%m/%Y %H:%M')
                 }
     return render(request, "mediturnosApp/turnos/agenda.html", contexto)
+
+class MedicoCreateView(CreateView):
+    model = Medico
+    template_name = 'mediturnosApp/turnos/medicosAlta.html'
+    success_url = 'listado'
+    fields = '__all__'
+
+
+# Para que funcione la vista basada en clases, y muestre los medicos que hay en la base de datos
+# temporalmente hay que cargar manualmente los medicos, en la base de datos, a traves del pgadmin
+
+class MedicoListView(ListView):
+    model = Medico
+    context_object_name = 'medicos'
+    template_name = 'mediturnosApp/turnos/medicosListado.html' 
+    
+
 

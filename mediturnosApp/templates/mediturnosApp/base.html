@@ -39,6 +39,10 @@
                         <a class="nav-item {% if request.path == '/especialidades/' %}active{% endif %} botonesEncabezado" href="{% url 'especialidades' %}">Especialidades</a>
                     
                         <a class="nav-item {% if request.path == '/solicitarturno/' %}active{% endif %} botonesEncabezado" href="{% url 'solicitarturno' %}">Solicitar turno</a>
+
+                        <a class="nav-item {% if request.path == '/medicos/alta/' %}active{% endif %} botonesEncabezado" href="{% url 'medicosalta' %}">Alta de Medico</a>
+
+                        <a class="nav-item {% if request.path == '/medicos/listado/' %}active{% endif %} botonesEncabezado" href="{% url 'medicoslistado' %}">Lista de Medicos</a>
                     </div>
                 </nav>
            
