@@ -119,7 +119,7 @@ class TurnosCreateView(CreateView):
     template_name = 'mediturnosApp/turnos/solicitarturno.html'
     success_url = '/'    
 
-
+################### No borrar, es una alternativa para chequear si un dni existe ##############
 def verificar_dni(request): #Definimos una función de vista llamada verificar_dni, que atendera cuando se ingrese en el navegador "/verificar_dni", o cuando se envien datos a esa direccion. Esta funcion de vista, a la que le llegan datos en el request, verificara si el dni del paciente existe. 
     if request.method == "POST": #Si el metodo es POST, significa que el usuario apreto enviar al formulario, y nos mando el dni
         dni = request.POST.get("dni") #Obtenemos el valor del campo dni, de los datos que se enviaron en la request por el usuario
@@ -131,11 +131,11 @@ def verificar_dni(request): #Definimos una función de vista llamada verificar_d
     
     else: #Si la solicitud no es de tipo POST, se responde con un JSON que contiene la clave "existe" establecida en False. 
        return JsonResponse({'existe': False})
+################### No borrar, es una alternativa para chequear si un dni existe ##############   
    
    
    
-   
-   
+######################### No borrar, me da una idea de algo a futuro ##############################   
 # def crear_turno(request):
 #     if request.method == 'POST':
 #         form = TurnosAltaForm(request.POST)
@@ -148,3 +148,4 @@ def verificar_dni(request): #Definimos una función de vista llamada verificar_d
 #     else:
 #         form = TurnosAltaForm()
 #     return render(request, 'template.html', {'form': form})
+######################### No borrar, me da una idea de algo a futuro ##############################   
