@@ -74,18 +74,8 @@ def agenda(request):
             'fecha': datetime.now().strftime('%d/%m/%Y %H:%M')
                 }
     return render(request, "mediturnosApp/turnos/agenda.html", contexto)
-
-# class MedicoCreateView(CreateView):
-#     model = Medico
-#     template_name = 'mediturnosApp/turnos/medicos-alta.html'
-#     success_url = '/'
-#     fields = '__all__'
     
-class MedicoCreateView(CreateView):
-    model = Medico
-    form_class = MedicoAltaForm  # Usa el formulario personalizado del modelForms de forms.py
-    template_name = 'mediturnosApp/medicos/medicos-alta.html'
-    success_url = '/'
+
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # Aclaracion importe!!
@@ -98,24 +88,28 @@ class MedicoListView(ListView):
     model = Medico
     context_object_name = 'medicos'
     template_name = 'mediturnosApp/medicos/medicos-nuevos-listado.html' 
-    
+
+class MedicoCreateView(CreateView):
+    model = Medico
+    form_class = MedicoAltaForm  # Usamos el formulario personalizado del modelForms de forms.py
+    template_name = 'mediturnosApp/medicos/medicos-alta.html'
+    success_url = '/'
+
 class EspecialidadCreateView(CreateView):
     model = Especialidad
     template_name = 'mediturnosApp/especialidades/especialidades-alta.html'
     success_url = '/'
     fields = '__all__'
     
-    
 class PacienteCreateView(CreateView):
     model = Paciente
-    form_class = PacienteAltaForm  # Usa el formulario personalizado del modelForms de forms.py
+    form_class = PacienteAltaForm  # Usamos el formulario personalizado del modelForms de forms.py
     template_name = 'mediturnosApp/pacientes/pacientes-alta.html'
     success_url = '/'    
 
-
 class TurnosCreateView(CreateView):
     model = Turnos
-    form_class = TurnosAltaForm  # Usa el formulario personalizado del modelForms de forms.py
+    form_class = TurnosAltaForm  # Usamos el formulario personalizado del modelForms de forms.py
     template_name = 'mediturnosApp/turnos/solicitarturno.html'
     success_url = '/'    
 
