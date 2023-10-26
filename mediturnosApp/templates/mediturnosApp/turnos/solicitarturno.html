@@ -1,34 +1,73 @@
 {% extends "../base.html" %}
-{% block titulo %}Solicitud de turno{% endblock %}
+{% block titulo %}Solicitar Turno{% endblock %}
 
 {% load static %}
 
 
 
-{% block titulo_principal %}Solicite su turno completando el siguiente formulario:{% endblock %}
+{% block titulo_principal %}Realice la solicitud de su turno completando el siguiente formulario:{% endblock %}
 {% block principal %}
 
+{% comment %} Inicio de No borrar, es una prueba {% endcomment %}
+<div class="verificar-dni">
+    <input type="text" id="dni" name="dni">
+    <button id="verificar-dni">Verificar DNI</button>
+</div>
+{% comment %} fin de no borrar, es una prueba {% endcomment %}
+
 <div class="contenedor-turnos">
-    
+    <div class="formulario ">
+        
+        <br>
+        <h3> Datos del paciente</h3>
+        <br>
+        <form method="POST" action=" {% url 'solicitar-turno' %} ">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <div class="d-flex justify-content-center">
+            <button type="submit" id="boton-enviar" class="btn btn-primary">Solicitar turno</button>
+        </div>
+
+        </form>
+        <br>
+    <div>
+
 </div>
 
-<div class="formulario">
-    
-    <br>
-    <form method="POST" action=" {% url 'solicitarturno' %} ">
-
-    {% csrf_token %}
-    {{ formulario.as_p }}
-
-    <div class="d-flex justify-content-center">
-        <button type="submit" id="boton-enviar" class="btn btn-primary">Enviar</button>
-    </div>
-
-    </form>
-    <br>
-<div>
 
 
+{% comment %} Inicio de No borrar, es una prueba {% endcomment %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() { //esta funcion se ejecuta solo cuando el documento este completamente cargado
+        var dniExiste = false; //esto es para cambiar a true si se comprueba que el dni existe
+
+        var csrf_token = $("[name=csrfmiddlewaretoken]").val();  // Obtener el token CSRF del formulario  (esto es importante para las solicitudes POST seguras).
+        $("#verificar-dni").click(function() { //Cuando se haga click en el boton verificar-dni, se ejecutará esta funcion
+            var dni = $("#dni").val(); //obtener el valor del input dni
+            $.ajax({ //realizamos una solicitud AJAX POST a la URL "/verificar_dni de urls.py".  utilizando la función $.ajax() de jQuery.
+                type: "POST",  //es una solicitud de tipo POST, significa que estamos enviando datos al servidor
+                url: "/verificar_dni", //a esta direccion de urls.py
+                data: { //Definimos los datos que se enviaran en la solicitud POST
+                    csrfmiddlewaretoken: csrf_token,  // Agregar el token CSRF por seguridad
+                    dni: dni //el valor del input dni, es el número de DNI que el usuario ha ingresado.
+                },
+                success: function(datosDeRespuesta) { //Definimos la funcion que se ejecutara cuando la solicitud AJAX sea exitosa y se reciba una respuesta con los datosDeRespuesta de la vista 
+                    if (datosDeRespuesta.existe) {// Comprobamos si el objeto data recibido en la respuesta del servidor (de la vista viene esta respuesta), contiene la propiedad "existe" en true. Si esta en true significa que el DNI existe en la base de datos.
+                        alert("El DNI existe, en la tabla Paciente de la base de datos."); //entonces, lanzamos una alerta diciendo que el dni existe en la base de datos
+                        dniExiste = true;
+                    } else {
+                        alert("El DNI no existe, en la tabla Paciente de la base de datos.");//caso contrario, lanzamos una alerta diciendo que el dni no existe en la base de datos
+                        dniExiste = false;
+                    }
+                }
+            });
+        });
+    });
+</script>    
+{% comment %} fin de no borrar, es una prueba {% endcomment %}
 
 
 {% endblock %}

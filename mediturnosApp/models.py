@@ -15,7 +15,7 @@ class Persona(models.Model):
 
 
 class Paciente(Persona):
-    historia_clinica = models.CharField(verbose_name="Historia Clínica", primary_key=True)
+    historia_clinica = models.CharField(verbose_name="Historia Clínica", primary_key=True, unique=True)
     
 
 
@@ -42,3 +42,4 @@ class Turnos(models.Model):
     cancelado = models.BooleanField()
     matricula = models.ForeignKey(Medico, on_delete=models.CASCADE)
     historia_clinica = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    

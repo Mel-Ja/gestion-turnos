@@ -606,3 +606,32 @@ footer {
 #id_especialidades > div{
   margin-top: 10px;
 }
+
+.alta-paciente form p:nth-child(6) label{
+  display: block; /* Asegura que el label esté en una línea por sí solo */
+  text-align: center; /* Centra el texto horizontalmente */
+  margin: 0 auto; /* Centra el elemento en el medio de la pantalla */
+  width: 50%;
+  font-weight: 700;
+}
+
+
+.alta-paciente form p:nth-child(6) input{
+  display: block; /* Asegura que el label esté en una línea por sí solo */
+  text-align: center; /* Centra el texto horizontalmente */
+  margin: 0 auto; /* Centra el elemento en el medio de la pantalla */
+  width: 50%;
+}
+
+.verificar-dni{
+  position: absolute;
+  top: 650px; /* Ajusta este valor según tus necesidades */
+  right: 10px;
+}
+
+/* .nav-links{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+} */
