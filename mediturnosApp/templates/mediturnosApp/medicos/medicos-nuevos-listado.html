@@ -79,26 +79,31 @@ que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera dis
                 {% for medico in medicos %}
                     <li class="card-item medicos-nuevos-tarjetas">
                         <div class="card">
-                            {% if medico.especialidades.count == 1 %}
-                                {% if medico.especialidades.first.descripcion == 'Clínica' %}
-                                    <img class="card-img-top img-clinico" src="{% static 'mediturnosApp/img/clinico.png' %}" alt="Logo">
-                                {% elif medico.especialidades.first.descripcion == 'Traumatología' %}
-                                    <img class="card-img-top img-traumatologia" src="{% static 'mediturnosApp/img/traumatologia.png' %}" alt="Logo">
-                                {% elif medico.especialidades.first.descripcion == 'Pediatría' %}
-                                    <img class="card-img-top img-pediatria" src="{% static 'mediturnosApp/img/pediatria.png' %}" alt="Logo">
-                                {% elif medico.especialidades.first.descripcion == 'Cirugía' %}
-                                    <img class="card-img-top img-cirugia" src="{% static 'mediturnosApp/img/cirugia.png' %}" alt="Logo">
+                            {% if medico.especialidades.count < 1 %}
+                                <img class="card-img-top img-sin-especialidad-cargada" src="{% static 'mediturnosApp/img/sin-especialidad-cargada.png' %}" alt="Logo">
+                            {% else %} 
+                                {% if medico.especialidades.count == 1 %}
+                                    {% if medico.especialidades.first.descripcion == 'Clínica' %}
+                                        <img class="card-img-top img-clinico" src="{% static 'mediturnosApp/img/clinico.png' %}" alt="Logo">
+                                    {% elif medico.especialidades.first.descripcion == 'Traumatología' %}
+                                        <img class="card-img-top img-traumatologia" src="{% static 'mediturnosApp/img/traumatologia.png' %}" alt="Logo">
+                                    {% elif medico.especialidades.first.descripcion == 'Pediatría' %}
+                                        <img class="card-img-top img-pediatria" src="{% static 'mediturnosApp/img/pediatria.png' %}" alt="Logo">
+                                    {% elif medico.especialidades.first.descripcion == 'Cirugía' %}
+                                        <img class="card-img-top img-cirugia" src="{% static 'mediturnosApp/img/cirugia.png' %}" alt="Logo">
 
+                                    {% else %}
+                                        <img class="card-img-top img-multiespecialidad" src="{% static 'mediturnosApp/img/especialidad-multiple.png' %}" alt="Logo">
+                                    {% endif %}
                                 {% else %}
                                     <img class="card-img-top img-multiespecialidad" src="{% static 'mediturnosApp/img/especialidad-multiple.png' %}" alt="Logo">
                                 {% endif %}
-                            {% else %}
-                                <img class="card-img-top img-multiespecialidad" src="{% static 'mediturnosApp/img/especialidad-multiple.png' %}" alt="Logo">
                             {% endif %}
+
                             <div class="card-body">
                                 <h5 class="card-title">{{ medico.nombre_completo }}</h5>
                                 {% if medico.especialidades.count < 1 %}
-                                    <small class="text-muted texto-especialidad-medico"> Cargue la especialidad del médico</small>
+                                    <small class="text-muted mensaje-cargue-especialidad"> Cargue la especialidad del médico</small>
                                 {% else %}    
                                     {% if medico.especialidades.count == 1 %}
                                     <small class="text-muted texto-especialidad-medico"> Especialidad: {{ medico.especialidades.first.descripcion }}</small>

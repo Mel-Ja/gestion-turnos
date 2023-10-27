@@ -603,10 +603,17 @@ footer {
 }
 
 .img-multiespecialidad{
-   display: flex;
+  display: flex;
   scale: 1;
   margin-top: 10px;
   margin-bottom: 7px;
+}
+
+.img-sin-especialidad-cargada{
+  display: flex;
+  scale: 1;
+  margin-top: 12px;
+  margin-bottom: 5px;
 }
 
 .secciondeedicion{
@@ -666,6 +673,11 @@ footer {
 .texto-especialidad-medico{
   display: flex;
   justify-content: center;  
-  
+}
+
+.mensaje-cargue-especialidad{
+  display: flex;
+  justify-content: center;  
+  font-weight: 600;
 }
 
