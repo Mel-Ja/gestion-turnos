@@ -36,9 +36,9 @@
 
                         {% comment %} <a class="nav-item {% if request.path == '/agenda/' %}active{% endif %} botonesEncabezado" href="{% url 'agenda' %}">Agenda</a> {% endcomment %}
                     
-                        <a class="nav-item {% if '/medicos/' in request.path %}active{% endif %} botonesEncabezado" href="{% url 'medicos' id_especialidad=0 %}">Médicos</a>
+                        {% comment %} <a class="nav-item {% if '/medicos/' in request.path %}active{% endif %} botonesEncabezado" href="{% url 'medicos' id_especialidad=0 %}">Médicos</a> {% endcomment %}
                         
-                        <a class="nav-item secciondeedicion {% if request.path == '/medicos/listado/' %}active{% endif %} botonesEncabezado" href="{% url 'medicos-listado' %}">Médicos nuevos</a>
+                        <a class="nav-item {% if request.path == '/medicos/listado/' %}active{% endif %} botonesEncabezado" href="{% url 'medicos-listado' %}">Plantel de Médicos</a>
 
                         <a class="nav-item secciondeedicion {% if request.path == '/especialidades/alta/' %}active{% endif %} botonesEncabezado" href="{% url 'especialidad-alta' %}">Alta de especialidad (1ero)</a>
 
