@@ -16,8 +16,11 @@ Including another URLconf
 """
 from django.urls import path
 from mediturnosApp import views
+from django.contrib import admin
 
 urlpatterns = [
+    
+    path('admin/', admin.site.urls),
     path('', views.index, name="indice"),
     path('medicos/<int:id_especialidad>/', views.medicos, name="medicos"),
     path('especialidades/', views.especialidades, name="especialidades"),
