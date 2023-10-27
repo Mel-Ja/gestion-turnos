@@ -9,7 +9,7 @@ from django.views.generic.list import ListView
 from .models import Medico, Especialidad, Paciente, Turnos
 from .forms import MedicoAltaForm, PacienteAltaForm, TurnosAltaForm
 from django.http import JsonResponse
-
+from django.db.models import Count
 
 
 # Create your views here.
@@ -84,10 +84,10 @@ def agenda(request):
 # y luego si, cargar el alta de un medico en la seccion "Alta de medico"
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-class MedicoListView(ListView):
-    model = Medico
-    context_object_name = 'medicos'
-    template_name = 'mediturnosApp/medicos/medicos-nuevos-listado.html' 
+# class MedicoListView(ListView):
+#     model = Medico
+#     context_object_name = 'medicos'
+#     template_name = 'mediturnosApp/medicos/medicos-nuevos-listado.html' 
 
 class MedicoCreateView(CreateView):
     model = Medico
@@ -143,3 +143,18 @@ def verificar_dni(request): #Definimos una función de vista llamada verificar_d
 #         form = TurnosAltaForm()
 #     return render(request, 'template.html', {'form': form})
 ######################### No borrar, me da una idea de algo a futuro ##############################   
+
+class MedicoListView(ListView):
+    model = Medico
+    context_object_name = 'medicos'
+    template_name = 'mediturnosApp/medicos/medicos-nuevos-listado.html'
+
+    def get_queryset(self):
+        medicos = super().get_queryset().annotate(especialidades_count=Count('especialidades'))
+        for medico in medicos:
+            especialidades_lista = [especialidad.descripcion for especialidad in medico.especialidades.all()]
+            medico.tiene_especialidad_permitida = (
+                len(especialidades_lista) <= 1
+                and any(especialidad in ['Clínica', 'Traumatología', 'Pediatría', 'Cirugía'] for especialidad in especialidades_lista)
+            )
+        return medicos

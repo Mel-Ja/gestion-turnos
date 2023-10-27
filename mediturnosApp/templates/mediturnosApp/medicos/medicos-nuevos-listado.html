@@ -49,12 +49,12 @@ que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera dis
 
    <br>
         <div class="container-card">
-            <ul class="card-list">
+            {% comment %} <ul class="card-list">
               {% for medico in medicos %}
                 <li class="card-item  medicos-nuevos-tarjetas">
                     <div class="card">
                         <img class="card-img-top medicos-nuevos-img" src="{% static 'mediturnosApp/img/medicoengeneral.png' %}" alt="Logo">
-                        {% comment %} {% if medico.especialidad == 'Clínica' %}
+                        {% if medico.especialidad== 'Clínica' %}
                             <img class="card-img-top" src="{% static 'mediturnosApp/img/clinico.png' %}" alt="Logo">
                         {% endif %}
                         {% if medico.especialidad == 'Traumatología' %}
@@ -62,18 +62,57 @@ que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera dis
                         {% endif %}
                         {% if medico.especialidad == 'Pediatría' %}
                         <img class="card-img-top" src="{% static 'mediturnosApp/img/traumatologia.png' %}" alt="Logo">
-                        {% endif %}  {% endcomment %}
+                        {% endif %}  
                         <div class="card-body">
                             <h5 class="card-title">{{ medico.nombre_completo }}</h5>
                             {% comment %} <p class="card-text">{{ medico.especialidad }}</p> {% endcomment %}
-                        </div>
+                        {% comment %} </div>
                         <div class="card-footer">
                             <small class="text-muted">Matricula N°: {{ medico.matricula }}</small>
                         </div>
                     </div>
                 </li>
               {% endfor %}
+            </ul> {% endcomment %} 
+
+            <ul class="card-list">
+                {% for medico in medicos %}
+                    <li class="card-item medicos-nuevos-tarjetas">
+                        <div class="card">
+                            {% if medico.especialidades.count == 1 %}
+                                {% if medico.especialidades.first.descripcion == 'Clínica' %}
+                                    <img class="card-img-top img-clinico" src="{% static 'mediturnosApp/img/clinico.png' %}" alt="Logo">
+                                {% elif medico.especialidades.first.descripcion == 'Traumatología' %}
+                                    <img class="card-img-top img-traumatologia" src="{% static 'mediturnosApp/img/traumatologia.png' %}" alt="Logo">
+                                {% elif medico.especialidades.first.descripcion == 'Pediatría' %}
+                                    <img class="card-img-top img-pediatria" src="{% static 'mediturnosApp/img/pediatria.png' %}" alt="Logo">
+                                {% elif medico.especialidades.first.descripcion == 'Cirugía' %}
+                                    <img class="card-img-top img-cirugia" src="{% static 'mediturnosApp/img/cirugia.png' %}" alt="Logo">
+
+                                {% else %}
+                                    <img class="card-img-top img-multiespecialidad" src="{% static 'mediturnosApp/img/especialidad-multiple.png' %}" alt="Logo">
+                                {% endif %}
+                            {% else %}
+                                <img class="card-img-top img-multiespecialidad" src="{% static 'mediturnosApp/img/especialidad-multiple.png' %}" alt="Logo">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ medico.nombre_completo }}</h5>
+                                {% if medico.especialidades.count == 1 %}
+                                <small class="text-muted texto-especialidad-medico"> Especialidad: {{ medico.especialidades.first.descripcion }}</small>
+                                {% else %}
+                                <small class="text-muted texto-especialidad-medico"> Especialidad: Múltiple</small>
+                                {% endif %}
+                            </div>
+                            <div class="card-footer">
+                                <small class="text-muted">Matricula N°: {{ medico.matricula }}</small>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
             </ul>
+              
+            
+
         </div>
     <p class="fecha"> {{ fecha }} </p>
     

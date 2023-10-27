@@ -381,10 +381,12 @@ footer {
 
 
 .container-card {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;  
-    padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  padding: 20px;
+  margin-left: 30px; /* Ajusta el margen izquierdo a cero */
   }
   
 
@@ -429,6 +431,7 @@ footer {
   }
 
   .card-title{
+    display: flex;
     justify-content: center;
     align-items: center;
   }
@@ -573,12 +576,37 @@ footer {
   font-size: 20px;
 }
 
-.medicos-nuevos-img{
+
+
+.img-clinico{
   display: flex;
-  scale: 1.8;
-  margin-top: 40px;
+  scale: 1.6;
+  margin-top: 25px;  
   margin-bottom: 10px;
+
   
+}
+
+.img-traumatologia{
+  display: flex;
+  scale: 1.2;
+  margin-top: 20px;
+  margin-bottom: 17px;
+}
+
+.img-cirugia{
+  display: flex;
+  scale: 1.68;
+  margin-top: 23px;
+  margin-bottom: 15px;
+  
+}
+
+.img-multiespecialidad{
+   display: flex;
+  scale: 1;
+  margin-top: 10px;
+  margin-bottom: 7px;
 }
 
 .secciondeedicion{
@@ -587,7 +615,6 @@ footer {
 
 .medicos-nuevos-tarjetas{
   width: 300px;
-  height: 700px;
 }
 
 
@@ -635,3 +662,9 @@ footer {
   justify-content: space-between;
   align-items: center;
 } */
+
+.texto-especialidad-medico{
+  display: flex;
+  justify-content: center;  
+}
+
