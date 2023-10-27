@@ -97,10 +97,14 @@ que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera dis
                             {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title">{{ medico.nombre_completo }}</h5>
-                                {% if medico.especialidades.count == 1 %}
-                                <small class="text-muted texto-especialidad-medico"> Especialidad: {{ medico.especialidades.first.descripcion }}</small>
-                                {% else %}
-                                <small class="text-muted texto-especialidad-medico"> Especialidad: Múltiple</small>
+                                {% if medico.especialidades.count < 1 %}
+                                    <small class="text-muted texto-especialidad-medico"> Cargue la especialidad del médico</small>
+                                {% else %}    
+                                    {% if medico.especialidades.count == 1 %}
+                                    <small class="text-muted texto-especialidad-medico"> Especialidad: {{ medico.especialidades.first.descripcion }}</small>
+                                    {% else %}
+                                    <small class="text-muted texto-especialidad-medico"> Especialidad: Múltiple</small>
+                                    {% endif %}
                                 {% endif %}
                             </div>
                             <div class="card-footer">
