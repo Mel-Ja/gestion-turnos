@@ -17,6 +17,8 @@ class Persona(models.Model):
 class Paciente(Persona):
     historia_clinica = models.CharField(verbose_name="Historia Clínica", primary_key=True, unique=True)
     
+    def __str__(self):
+        return f"{self.nombre_completo()}"
 
 class Especialidad(models.Model):
     descripcion = models.CharField(max_length=250, verbose_name="Especialidad")
@@ -29,11 +31,15 @@ class Medico(Persona):
     matricula = models.CharField(max_length=50, primary_key=True, verbose_name="Matrícula")
     especialidades = models.ManyToManyField(Especialidad, through='MedicoEspecialidad')
 
+    def __str__(self):
+        return f"{self.nombre_completo()}"
 
 class MedicoEspecialidad(models.Model):
     medico = models.ForeignKey(Medico, on_delete=models.CASCADE, db_column='matricula')
     especialidad = models.ForeignKey(Especialidad, on_delete=models.CASCADE, db_column='especialidad_id')
     
+    def __str__(self):
+        return f"Médico: {self.medico.nombre_completo()} - Especialidad: {self.especialidad.descripcion}"
        
 class Turnos(models.Model):
     fecha = models.DateField()
@@ -43,4 +49,4 @@ class Turnos(models.Model):
     historia_clinica = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     
     def __str__(self):
-        return f"{self.matricula} {self.fecha} {self.hora}"
+        return f" Paciente: {self.historia_clinica.nombre_completo()} Turno: {self.fecha} {self.hora} con el médico: {self.matricula.nombre_completo()}"
