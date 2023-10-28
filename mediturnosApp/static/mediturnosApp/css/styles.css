@@ -616,6 +616,16 @@ footer {
   margin-bottom: 5px;
 }
 
+.gif-cargue-medicos{
+  display: block; /* Asegura que el label esté en una línea por sí solo */
+  text-align: center; /* Centra el texto horizontalmente */
+  margin: 0 auto; /* Centra el elemento en el medio de la pantalla */
+  width: 35%;
+  height: 35%;
+  font-weight: 700;
+}
+
+
 .secciondeedicion{
   color:rgba(159, 35, 35, 0.866);
 }
