@@ -632,7 +632,8 @@ footer {
   width: 17%;
   height: 17%;
   font-weight: 700;
-  margin-bottom: 120px;
+  margin-top: 30px;
+  margin-bottom: 90px;
 }
 
 .gif-cargue-paciente{
@@ -641,8 +642,8 @@ footer {
   margin: 0 auto; /* Centra el elemento en el medio de la pantalla */
   width: 17%;
   height: 17%;
-  font-weight: 700;
-  margin-bottom: 120px;
+  margin-top: 30px;
+  margin-bottom: 90px;
 }
 
 
