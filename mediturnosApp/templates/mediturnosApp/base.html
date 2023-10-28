@@ -40,13 +40,13 @@
                         
                         <a class="nav-item {% if request.path == '/medicos/listado/' %}active{% endif %} botonesEncabezado" href="{% url 'medicos-listado' %}">Plantel de Médicos</a>
 
-                        <a class="nav-item secciondeedicion {% if request.path == '/especialidades/alta/' %}active{% endif %} botonesEncabezado" href="{% url 'especialidad-alta' %}">Alta de especialidad (1ero)</a>
+                        <a class="nav-item secciondeedicion{% if request.path == '/especialidades/alta/' %}active{% endif %} botonesEncabezado" href="{% url 'especialidad-alta' %}">Alta de especialidad</a>
 
-                        <a class="nav-item secciondeedicion {% if request.path == '/medicos/alta/' %}active{% endif %} botonesEncabezado" href="{% url 'medicos-alta' %}">Alta de Médico (2do)</a>
+                        <a class="nav-item secciondeedicion{% if request.path == '/medicos/alta/' %}active{% endif %} botonesEncabezado" href="{% url 'medicos-alta' %}">Alta de Médico</a>
 
-                        <a class="nav-item secciondeedicion {% if request.path == '/pacientes/alta/' %}active{% endif %} botonesEncabezado" href="{% url 'pacientes-alta' %}">Alta de Pacientes  </a>
+                        <a class="nav-item secciondeedicion{% if request.path == '/pacientes/alta/' %}active{% endif %} botonesEncabezado" href="{% url 'pacientes-alta' %}">Alta de Pacientes  </a>
 
-                        <a class="nav-item secciondeedicion {% if request.path == '/pacientes/turnos/' %}active{% endif %} botonesEncabezado" href="{% url 'solicitar-turno' %}">Solicitar turno</a>
+                        <a class="nav-item secciondeedicion{% if request.path == '/pacientes/turnos/' %}active{% endif %} botonesEncabezado" href="{% url 'solicitar-turno' %}">Solicitar turno</a>
                     </div>
                 </nav>
            

@@ -12,23 +12,31 @@
     
 </div>
 
-<div class="formulario">
+
+{% if cantidad_especialidades == 0 %}
     
-    <br>
-    <h3> Datos del nuevo médico </h3>
-    <br>
-    <form method="POST" action=" {% url 'medicos-alta' %} ">
+    <img class="card-img-top gif-cargue-especialidad" src="{% static 'mediturnosApp/img/cargue-especialidad.gif' %}" alt="Cargando...">
 
-    {% csrf_token %}
-    {{ form.as_p }}
+{% else %}
+    <div class="formulario">
+        
+        <br>
+        <h3> Datos del nuevo médico </h3>
+        <br>
+        <form method="POST" action=" {% url 'medicos-alta' %} ">
 
-    <div class="d-flex justify-content-center">
-        <button type="submit" id="boton-enviar" class="btn btn-primary">Enviar</button>
-    </div>
+        {% csrf_token %}
+        {{ form.as_p }}
 
-    </form>
-    <br>
-<div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" id="boton-enviar" class="btn btn-primary">Enviar</button>
+        </div>
+
+        </form>
+        <br>
+    <div>
+{% endif %}
+
 
 
 

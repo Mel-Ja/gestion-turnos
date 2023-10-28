@@ -91,9 +91,15 @@ def agenda(request):
 
 class MedicoCreateView(CreateView):
     model = Medico
-    form_class = MedicoAltaForm  # Usamos el formulario personalizado del modelForms de forms.py
+    form_class = MedicoAltaForm
     template_name = 'mediturnosApp/medicos/medicos-alta.html'
     success_url = '/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Obtener el conteo de especialidades y agregarlo al contexto
+        context['cantidad_especialidades'] = Especialidad.objects.count()
+        return context
 
 class EspecialidadCreateView(CreateView):
     model = Especialidad
@@ -112,6 +118,12 @@ class TurnosCreateView(CreateView):
     form_class = TurnosAltaForm  # Usamos el formulario personalizado del modelForms de forms.py
     template_name = 'mediturnosApp/turnos/solicitarturno.html'
     success_url = '/'    
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Obtener el conteo de especialidades y agregarlo al contexto
+        context['cantidad_pacientes'] = Paciente.objects.count()
+        return context
 
 ################### No borrar, es una alternativa para chequear si un dni existe ##############
 def verificar_dni(request): #Definimos una función de vista llamada verificar_dni, que atendera cuando se ingrese en el navegador "/verificar_dni", o cuando se envien datos a esa direccion. Esta funcion de vista, a la que le llegan datos en el request, verificara si el dni del paciente existe. 
