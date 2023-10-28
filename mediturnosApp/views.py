@@ -122,6 +122,7 @@ class TurnosCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Obtener el conteo de especialidades y agregarlo al contexto
+        context['cantidad_medicos'] = Medico.objects.count()
         context['cantidad_pacientes'] = Paciente.objects.count()
         return context
 

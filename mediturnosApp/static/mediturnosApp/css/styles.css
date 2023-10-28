@@ -625,6 +625,16 @@ footer {
   font-weight: 700;
 }
 
+.gif-cargue-medicos-turno{
+  display: block; /* Asegura que el label esté en una línea por sí solo */
+  text-align: center; /* Centra el texto horizontalmente */
+  margin: 0 auto; /* Centra el elemento en el medio de la pantalla */
+  width: 17%;
+  height: 17%;
+  font-weight: 700;
+  margin-bottom: 120px;
+}
+
 .gif-cargue-especialidad{
   display: block; /* Asegura que el label esté en una línea por sí solo */
   text-align: center; /* Centra el texto horizontalmente */
