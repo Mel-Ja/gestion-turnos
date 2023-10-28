@@ -9,17 +9,18 @@
 {% block principal %}
 
 {% comment %} Inicio de No borrar, es una prueba {% endcomment %}
-<div class="verificar-dni">
-    <input type="text" id="dni" name="dni">
-    <button id="verificar-dni">Verificar DNI</button>
-</div>
+
 {% comment %} fin de no borrar, es una prueba {% endcomment %}
 
 <div class="contenedor-turnos">
 
     {% if cantidad_pacientes == 0 %}
-        <img class="card-img-top gif-cargue-especialidad" src="{% static 'mediturnosApp/img/cargue-paciente.gif' %}" alt="Cargando...">
+        <img class="card-img-top gif-cargue-paciente" src="{% static 'mediturnosApp/img/cargue-paciente.gif' %}" alt="Cargando...">
     {% else %}
+        <div class="verificar-dni">
+            <input type="text" id="dni" name="dni">
+            <button id="verificar-dni">Verificar DNI</button>
+        </div>
         <div class="formulario ">
             
             <br>
