@@ -286,6 +286,34 @@ footer {
   animation: agitar 5s infinite;
 }
 
+.card-especialidad {
+  align-items: center;
+  justify-items: center;
+}
+.especialidad {
+  border: 1px solid #dedede;
+  margin-top: 25px;  
+  /* width: 60%; */
+
+}
+
+.especialidad-titulo {
+  padding: 10px;
+  /* background-color: #637691; */
+  color: #507dbb;
+  font-weight: 700;
+  font-size: 20px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+
+.especialidad-descripcion {
+  padding: 10px;
+  margin-bottom: 5px;
+  vertical-align: middle;
+}
+
 /*
 .fecha{
   position: fixed;
@@ -381,12 +409,10 @@ footer {
 
 
 .container-card {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  padding: 20px;
-  margin-left: 30px; /* Ajusta el margen izquierdo a cero */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;  
+    padding: 20px;
   }
   
 
@@ -431,7 +457,6 @@ footer {
   }
 
   .card-title{
-    display: flex;
     justify-content: center;
     align-items: center;
   }
@@ -442,7 +467,7 @@ footer {
   }
 
 .formulario{
-  width: 50%;
+  width: 90%;
   height: auto; /* Ajusta la altura según sea necesario */
   border-style: outset;
   border-color: #0d6dfdba;
@@ -576,85 +601,13 @@ footer {
   font-size: 20px;
 }
 
-
-
-.img-clinico{
+.medicos-nuevos-img{
   display: flex;
-  scale: 1.6;
-  margin-top: 25px;  
+  scale: 1.8;
+  margin-top: 40px;
   margin-bottom: 10px;
-
   
 }
-
-.img-traumatologia{
-  display: flex;
-  scale: 1.2;
-  margin-top: 20px;
-  margin-bottom: 17px;
-}
-
-.img-cirugia{
-  display: flex;
-  scale: 1.68;
-  margin-top: 23px;
-  margin-bottom: 15px;
-  
-}
-
-.img-multiespecialidad{
-  display: flex;
-  scale: 1;
-  margin-top: 10px;
-  margin-bottom: 7px;
-}
-
-.img-sin-especialidad-cargada{
-  display: flex;
-  scale: 1;
-  margin-top: 12px;
-  margin-bottom: 5px;
-}
-
-.gif-cargue-medicos{
-  display: block; /* Asegura que el label esté en una línea por sí solo */
-  text-align: center; /* Centra el texto horizontalmente */
-  margin: 0 auto; /* Centra el elemento en el medio de la pantalla */
-  width: 35%;
-  height: 35%;
-  font-weight: 700;
-}
-
-.gif-cargue-medicos-turno{
-  display: block; /* Asegura que el label esté en una línea por sí solo */
-  text-align: center; /* Centra el texto horizontalmente */
-  margin: 0 auto; /* Centra el elemento en el medio de la pantalla */
-  width: 17%;
-  height: 17%;
-  font-weight: 700;
-  margin-bottom: 120px;
-}
-
-.gif-cargue-especialidad{
-  display: block; /* Asegura que el label esté en una línea por sí solo */
-  text-align: center; /* Centra el texto horizontalmente */
-  margin: 0 auto; /* Centra el elemento en el medio de la pantalla */
-  width: 17%;
-  height: 17%;
-  font-weight: 700;
-  margin-bottom: 120px;
-}
-
-.gif-cargue-paciente{
-  display: block; /* Asegura que el label esté en una línea por sí solo */
-  text-align: center; /* Centra el texto horizontalmente */
-  margin: 0 auto; /* Centra el elemento en el medio de la pantalla */
-  width: 17%;
-  height: 17%;
-  font-weight: 700;
-  margin-bottom: 120px;
-}
-
 
 .secciondeedicion{
   color:rgba(159, 35, 35, 0.866);
@@ -662,6 +615,7 @@ footer {
 
 .medicos-nuevos-tarjetas{
   width: 300px;
+  height: 700px;
 }
 
 
@@ -670,7 +624,7 @@ footer {
   padding-right: 20px;
   display: flex;
   
-  text-align: center;
+  /* text-align: center; */
 }
 
 #id_especialidades{
@@ -709,15 +663,3 @@ footer {
   justify-content: space-between;
   align-items: center;
 } */
-
-.texto-especialidad-medico{
-  display: flex;
-  justify-content: center;  
-}
-
-.mensaje-cargue-especialidad{
-  display: flex;
-  justify-content: center;  
-  font-weight: 600;
-}
-

@@ -7,75 +7,79 @@
 
 
 <br>
-{% comment %}
-Desde la vista medicos se redirige a esta template 
-y nos envia el id_especialidad ingresado por el usuario desde el navegador
-en la variable id
 
-tambien nos envia a esta template la lista de medicos 
-que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera distinta
-{% endcomment %}
+<h4 class="cantidad-medicos">{{medicos|length}} médicos prestadores</h3>
 
-    {% if id == 1 %}
-        <h4>Especialidad Clinica:
-    {% elif id == 2 %}
-        <h4>Especialidad Pediatría:
-    {% elif id == 3 %}
-        <h4>Especialidad Traumatología:
-    {% endif %}
+<!-- <ul>
+    {% for medico in medicos %}
+        <li>
+            <strong>Nombre:</strong> {{ medico.nombre }}<br>
+            <strong>Apellido:</strong> {{ medico.apellido }}<br>
+            <strong>Email:</strong> {{ medico.email }}<br>
+            <strong>Matricula N°:</strong> {{ medico.matricula }}
+        </li><br>
+    {% endfor %}
+</ul>      -->
 
-    {% comment %} 
-    En la lista de medicos que viene desde la vista
-    vemos cuanta cantidad de registros vienen, con el medicos|length
-    {% endcomment %}
-    <h4 class="cantidad-medicos">{{medicos|length}} médicos</h3>
-
-    {% comment %}
-    listamos medico por medico, teniendo en cuenta 
-    que la posicion 0 sera la del nombre del medico
-    la posicion 1, la especialidad  
-    y la posicion 2 la matricula
-    {% endcomment %}
-    {% comment %} <ul>
-        {% for medico in medicos %}
-            <li>
-                <strong>Nombre:</strong> {{ medico.0 }}<br>
-                <strong>Especialidad:</strong> {{ medico.1 }}<br>
-                <strong>Matricula N°:</strong> {{ medico.2 }}
-            </li><br>
-        {% endfor %}
-    </ul>     {% endcomment %}
-
-
-   <br>
-        <div class="container-card">
-            <ul class="card-list">
-              {% for medico in medicos %}
-                <li class="card-item">
-                    <div class="card">
-                        {% if medico.1 == 'Clinica' %}
-                            <img class="card-img-top" src="{% static 'mediturnosApp/img/clinico.png' %}" alt="Logo">
-                        {% endif %}
-                        {% if medico.1 == 'Pediatria' %}
-                            <img class="card-img-top" src="{% static 'mediturnosApp/img/pediatria.png' %}" alt="Logo">
-                        {% endif %}
-                        {% if medico.1 == 'Traumatologia' %}
-                        <img class="card-img-top" src="{% static 'mediturnosApp/img/traumatologia.png' %}" alt="Logo">
-                        {% endif %}
-                        <div class="card-body">
-                            <h5 class="card-title">{{ medico.0 }}</h5>
-                            <p class="card-text">{{ medico.1 }}</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">Matricula N°: {{ medico.2 }}</small>
-                        </div>
+<br>
+    <div class="container-card">
+        <ul class="card-list">
+            {% for medico in medicos %}
+            <li class="card-item">
+                <div class="card">
+                    {% if medico.especialidad == 'Clinica' %}
+                        <img class="card-img-top" src="{% static 'mediturnosApp/img/clinico.png' %}" alt="Logo">
+                    {% endif %}
+                    {% if medico.especialidad == 'Pediatria' %}
+                        <img class="card-img-top" src="{% static 'mediturnosApp/img/pediatria.png' %}" alt="Logo">
+                    {% endif %}
+                    {% if medico.especialidad == 'Traumatologia' %}
+                    <img class="card-img-top" src="{% static 'mediturnosApp/img/traumatologia.png' %}" alt="Logo">
+                    {% endif %}
+                    {% if medico.especialidad == 'Endocrinologia' %}
+                    <img class="card-img-top" src="{% static 'mediturnosApp/img/endocrinologia.png' %}" alt="Logo">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ medico.nombre }}
+                        {{ medico.apellido }}</h5>
+                        <p class="card-text">{{ medico.email }}</p>
                     </div>
-                </li>
-              {% endfor %}
-            </ul>
-        </div>
-    <p class="fecha"> {{ fecha }} </p>
+                    <div class="card-footer">
+                        <small class="text-muted">Matricula N°: {{ medico.matricula }}</small>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+<!-- <br>
+    <div class="container-card">
+        <ul class="card-list">
+            {% for medico in medicos %}
+            <li class="card-item">
+                <div class="card">
+                    {% if medico.1 == 'Clinica' %}
+                        <img class="card-img-top" src="{% static 'mediturnosApp/img/clinico.png' %}" alt="Logo">
+                    {% endif %}
+                    {% if medico.1 == 'Pediatria' %}
+                        <img class="card-img-top" src="{% static 'mediturnosApp/img/pediatria.png' %}" alt="Logo">
+                    {% endif %}
+                    {% if medico.1 == 'Traumatologia' %}
+                    <img class="card-img-top" src="{% static 'mediturnosApp/img/traumatologia.png' %}" alt="Logo">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ medico.0 }}</h5>
+                        <p class="card-text">{{ medico.1 }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Matricula N°: {{ medico.2 }}</small>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div> -->
+<p class="fecha"> {{ fecha }} </p>
     
 {% endblock %}
-
-

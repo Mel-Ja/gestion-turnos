@@ -9,40 +9,31 @@
 {% block principal %}
 
 {% comment %} Inicio de No borrar, es una prueba {% endcomment %}
-
+<div class="verificar-dni">
+    <input type="text" id="dni" name="dni">
+    <button id="verificar-dni">Verificar DNI</button>
+</div>
 {% comment %} fin de no borrar, es una prueba {% endcomment %}
 
 <div class="contenedor-turnos">
+    <div class="formulario ">
+        
+        <br>
+        <h3> Datos del paciente</h3>
+        <br>
+        <form method="POST" action=" {% url 'solicitar-turno' %} ">
 
-    {% if cantidad_pacientes == 0 %}
-        <img class="card-img-top gif-cargue-paciente" src="{% static 'mediturnosApp/img/cargue-paciente.gif' %}" alt="Cargando...">
-    {% else %}
-        {% if cantidad_medicos == 0 %}
-            <img class="card-img-top gif-cargue-medicos-turno" src="{% static 'mediturnosApp/img/cargue-medicos.gif' %}" alt="Cargando...">
-        {% else %}
-            <div class="verificar-dni">
-                <input type="text" id="dni" name="dni">
-                <button id="verificar-dni">Verificar DNI</button>
-            </div>
-            <div class="formulario ">
-                
-                <br>
-                <h3> Datos del paciente</h3>
-                <br>
-                <form method="POST" action=" {% url 'solicitar-turno' %} ">
+        {% csrf_token %}
+        {{ form.as_p }}
 
-                {% csrf_token %}
-                {{ form.as_p }}
+        <div class="d-flex justify-content-center">
+            <button type="submit" id="boton-enviar" class="btn btn-primary">Solicitar turno</button>
+        </div>
 
-                <div class="d-flex justify-content-center">
-                    <button type="submit" id="boton-enviar" class="btn btn-primary">Solicitar turno</button>
-                </div>
+        </form>
+        <br>
+    <div>
 
-                </form>
-                <br>
-            <div>
-        {% endif %}    
-    {% endif %}
 </div>
 
 

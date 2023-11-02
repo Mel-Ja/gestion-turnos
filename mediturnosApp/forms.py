@@ -1,7 +1,7 @@
 from django import forms
 from datetime import datetime, timedelta
 from django.core.exceptions import ValidationError
-from .models import Medico, Paciente, Turnos
+from .models import Especialidad, Medico, Paciente, Turnos
 
 
 # Define las opciones de especialidades
@@ -28,6 +28,11 @@ MEDICOS_CHOICES = [
 ]
 
 HOUR_CHOICES = [(f"{hour:02d}:{minute:02d}", f"{hour:02d}:{minute:02d}") for hour in range(8, 20) for minute in range(0, 60, 15)]
+
+class EspecialidadForm(forms.ModelForm):
+    class Meta:
+        model = Especialidad
+        fields = ['nombre', 'descripcion', 'imagen']
 
 class SolicitarTurnoForm(forms.Form):
     nombre = forms.CharField(label="Nombre", required=True, widget=forms.TextInput(attrs={'class': 'form-control solo-letras', 'placeholder': 'Ingrese su nombre'}))

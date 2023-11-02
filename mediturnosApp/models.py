@@ -21,10 +21,12 @@ class Paciente(Persona):
         return f"{self.nombre_completo()}"
 
 class Especialidad(models.Model):
-    descripcion = models.CharField(max_length=250, verbose_name="Especialidad")
-    
+    nombre = models.CharField(max_length=250, verbose_name="Especialidad", default='')
+    descripcion = models.CharField(max_length=250, verbose_name="EspecialidadDescripcion", default='')
+    imagen = models.ImageField(upload_to='images')
+        
     def __str__(self):
-        return f"{self.descripcion}"
+        return f"{self.nombre}"
 
 
 class Medico(Persona):
