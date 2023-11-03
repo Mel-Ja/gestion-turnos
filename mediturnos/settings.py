@@ -85,16 +85,11 @@ WSGI_APPLICATION = 'mediturnos.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        # 'HOST': config("DATABASE_HOST"),
-        # 'PORT': config("DATABASE_PORT"),
-        # 'NAME': config("DATABASE_NAME"),
-        # 'USER': config("DATABASE_USER"),
-        # 'PASSWORD': config("DATABASE_PASSWORD")
-        'HOST': 'LOCALHOST',
-        'PORT': '5432',
-        'NAME': 'gestionturnos',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'HOST': config("DATABASE_HOST"),
+        'PORT': config("DATABASE_PORT"),
+        'NAME': config("DATABASE_NAME"),
+        'USER': config("DATABASE_USER"),
+        'PASSWORD': config("DATABASE_PASSWORD")
     }
 }
 
