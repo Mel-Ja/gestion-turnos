@@ -15,7 +15,7 @@ class Persona(models.Model):
 
 
 class Paciente(Persona):
-    historia_clinica = models.CharField(verbose_name="Historia Clínica", primary_key=True, unique=True)
+    historia_clinica = models.CharField(max_length=30, verbose_name="Historia Clínica", primary_key=True, unique=True)
     
     def __str__(self):
         return f"{self.nombre_completo()} (Historia clínica N°{self.historia_clinica})"

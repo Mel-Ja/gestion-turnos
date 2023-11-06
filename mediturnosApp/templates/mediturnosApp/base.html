@@ -48,6 +48,8 @@
                         <a class="nav-item secciondeedicion {% if request.path == '/pacientes/alta/' %}active{% endif %} botonesEncabezado" href="{% url 'pacientes-alta' %}">Alta de Pacientes  </a>
 
                         <a class="nav-item secciondeedicion {% if request.path == '/pacientes/turnos/' %}active{% endif %} botonesEncabezado" href="{% url 'solicitar-turno' %}">Solicitar turno</a>
+                    
+                        <a class="nav-item {% if request.path == '/login/' %}active{% endif %} botonesEncabezado" href="{% url 'login' %}">Iniciar Sesión</a>
                     </div>
                 </nav>
            

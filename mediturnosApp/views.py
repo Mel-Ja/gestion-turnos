@@ -18,6 +18,12 @@ def index(request):
         }
     return render(request,'mediturnosApp/index/indice.html', contexto)
 
+def login(request):
+    context = {
+        
+    }
+    return render(request,'mediturnosApp/index/login.html', context)
+
 def especialidades(request):
     listado = Especialidad.objects.all().order_by('nombre')
     context = {

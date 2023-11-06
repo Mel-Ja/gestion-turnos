@@ -663,3 +663,168 @@ footer {
   justify-content: space-between;
   align-items: center;
 } */
+
+
+
+/*                         Inicio de sesion                                  */
+
+
+/* importamos la fuente poppins de google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root{
+    --color-amarillo: #ffcc7e;
+    --color-background: #d2cecb;
+    --color-hover: #f0f0f0;
+}
+
+.container-login{
+    border-color: #0d6dfdba;
+    border-style: outset;
+    border-width: 10px;
+    background-color: #0d6dfd2b;
+    padding: 45px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 550px; 
+    
+}
+
+.container-login h1{
+    text-align: center; 
+    margin-bottom: 15px;
+    font-weight: 900;
+}
+
+.container-login h2{
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.input-inicio-sesion{
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: none;
+    font-family: inherit;
+    border: 2px solid #eee;
+    font-size: 15px;
+    color: #000;  
+}
+
+.input-inicio-sesion:focus{
+    outline: none;
+    border: 2px solid #55c57a   
+}
+
+.input-inicio-sesion:focus:invalid{ 
+    outline: none;
+    border: 2px solid rgb(255, 14, 14);
+}
+
+.input-inicio-sesion::-webkit-input-placeholder{
+    color: #878b90;
+    font-weight: 500;
+}
+
+.input-inicio-sesion:not(:last-child){
+     margin-bottom: 15px;
+}
+
+.input-password{
+    position: relative;
+    width: 440px;
+    height: 55px;
+}
+
+.btn-hide-show{
+    position:absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    border: none;
+    background: none;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+#hide-password{
+    display: none;
+}
+
+.parrafo-1{
+    display: flex;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 14px;
+    margin-top:20px;
+    margin-bottom: 30px;
+}
+
+.btn-sign-in{
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    border: none;
+    background-color: #84a3d08c;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 900;
+    font-size: 16px;
+}
+
+.btn-sign-in:hover{
+  background-color: #84a3d0e7;
+}
+
+.parrafo-2{
+    font-weight: 500;
+    font-size: 14px;
+    margin: 25px 0;
+    text-align: center;
+}
+
+.container-btn-login-with{
+    display:flex;
+    gap: 10px;
+}
+
+.btn-login-with{
+    flex: 1;
+    border: 1px solid #eee;
+    background: none;
+    padding: 15px;
+    font-weight: 900;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-login-with:hover{
+    background-color: var(--color-hover);
+}
+
+.btn-login-with i{
+    font-size: 22px;
+    margin-right: 10px;
+}
+
+.create-account{
+    text-align: center;
+    margin-top: 25px;
+    font-weight: 500;
+}
+
+.create-account a{
+    text-decoration: none;
+    font-weight: 700;
+    color: #000;
+}
+

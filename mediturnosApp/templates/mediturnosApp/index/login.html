@@ -1,0 +1,34 @@
+{% extends "../base.html" %}
+{% block titulo %}Iniciar Sesión{% endblock %}
+
+{% load static %}
+
+{% block titulo_principal %}Inicio de sesión para pacientes{% endblock %}
+
+{% block principal %}    
+    <form class="container-login"> 
+        <h2>Ingresa tus datos para iniciar sesión en tu cuenta</h2>
+        <input class="input-inicio-sesion" type="email" placeholder="Correo electrónico">
+        <div class="input-password">
+            <input class="input-inicio-sesion" type="password" placeholder="Contraseña" id="ingresodecontraseña">
+            <button class="btn-hide-show">
+                <i id="show-password" class="fa-solid fa-eye"></i><i id="hide-password" class="fa-solid fa-eye-slash"></i>
+            </button>
+        </div>
+
+        <button type="submit" class="btn-sign-in">
+            Iniciar sesión                
+        </button>
+    
+        <p class="create-account">
+            ¿No tienes una cuenta?  <a href="#">Regístrate ahora</a>
+        </p>
+    </form>
+    
+    <script src="https://kit.fontawesome.com/e808169f4d.js" crossorigin="anonymous"></script>   
+     
+{% endblock %}
+
+{% block fecha %} 
+    {{ block.super }}
+{% endblock %}
