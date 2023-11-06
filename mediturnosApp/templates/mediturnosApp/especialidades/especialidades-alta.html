@@ -17,7 +17,7 @@
     <br>
     <h3> Indicar la nueva especialidad </h3>
     <br>
-    <form method="POST" action=" {% url 'especialidad-alta' %} ">
+    <form method="POST" action=" {% url 'especialidad-alta' %} " enctype="multipart/form-data">
 
     {% csrf_token %}
     {{ form.as_p }}

@@ -1,7 +1,7 @@
 from django import forms
 from datetime import datetime, timedelta
 from django.core.exceptions import ValidationError
-from .models import Medico, Paciente, Turnos
+from .models import Especialidad, Medico, Paciente, Turnos
 
 
 # Define las opciones de especialidades
@@ -28,6 +28,11 @@ MEDICOS_CHOICES = [
 ]
 
 HOUR_CHOICES = [(f"{hour:02d}:{minute:02d}", f"{hour:02d}:{minute:02d}") for hour in range(8, 20) for minute in range(0, 60, 15)]
+
+class EspecialidadForm(forms.ModelForm):
+    class Meta:
+        model = Especialidad
+        fields = ['nombre', 'descripcion', 'imagen']
 
 class SolicitarTurnoForm(forms.Form):
     nombre = forms.CharField(label="Nombre", required=True, widget=forms.TextInput(attrs={'class': 'form-control solo-letras', 'placeholder': 'Ingrese su nombre'}))
@@ -108,6 +113,21 @@ class MedicoAltaForm(forms.ModelForm):
     email = forms.EmailField(label="Email", required=True)
     dni = forms.IntegerField(label="DNI", required=True)
 
+    def clean_matricula(self):
+        if int(self.cleaned_data['matricula']) < 0:
+            raise ValidationError("La matrícula debe ser un número positivo")
+        
+        return self.cleaned_data['matricula']
+
+    def clean_dni(self):
+        if not (0 < self.cleaned_data['dni'] <= 99999999):
+            raise ValidationError("El dni debe ser un número positivo")
+        
+        if len(str(self.cleaned_data['dni'])) < 8:
+            raise ValidationError("El dni debe contener al menos 8 caracteres")
+
+        return self.cleaned_data['dni']
+
     class Meta:
         model = Medico
         fields = ['nombre', 'apellido', 'email', 'dni', 'matricula', 'especialidades']
@@ -116,6 +136,21 @@ class MedicoAltaForm(forms.ModelForm):
         }
     
 class PacienteAltaForm(forms.ModelForm):
+
+    def clean_historia_clinica(self):
+        if int(self.cleaned_data['historia_clinica']) < 0:
+            raise ValidationError("La historia clínica debe ser un número positivo")
+        return self.cleaned_data['historia_clinica']
+
+
+    def clean_dni(self):
+        if not (0 < self.cleaned_data['dni'] <= 99999999):
+            raise ValidationError("El dni debe ser un número positivo")
+        
+        if len(str(self.cleaned_data['dni'])) < 8:
+            raise ValidationError("El dni debe contener al menos 8 caracteres")
+
+        return self.cleaned_data['dni']
    
     class Meta:
         model = Paciente

@@ -16,16 +16,35 @@ esa lista llega con el nombre: especialidades
    
 
 {% comment %} listamos cada una de las especialidades de la lista {% endcomment %}
+<table class="table table-striped">
+    <div class="card-especialidad">
+        {% for especialidad in especialidades %}
+        
+            <tr>
+                <td rowspan="2">
+                    <img src="{{ especialidad.imagen.url }}" width = '110' height="110"/>
+                </td>
+            </tr>    
+            <tr>
+                <td class="especialidad-titulo">
+                            <!-- <div class="especialidad-titulo"> -->
+                    {{ especialidad.nombre }}
+                        <!-- </div> -->
+                </td>
+                <td class="especialidad-descripcion">
+                    <!-- <div class="especialidad-descripcion"> -->
+                    {{ especialidad.descripcion }}
+                    <br><a href="#">Ver médicos</a>
+                    <!-- </div> -->
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
 
-<ul class="list-group mostrar-especialidades">
-    {% for especialidad in especialidades %}
-    <li class="list-group-item item-especialidades">
-        {{ especialidad.0 }}<br>
-    </li>
-{% endfor %}
 
     
-  </ul> 
+  <!-- </ul>  -->
 
 {% endblock %}
 {% block fecha %} 

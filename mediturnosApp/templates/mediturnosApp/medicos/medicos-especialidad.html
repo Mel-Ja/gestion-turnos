@@ -1,8 +1,8 @@
 {% extends "../base.html" %}
-{% block titulo %}Médicos nuevos{% endblock %}
+{% block titulo %}Medicos{% endblock %}
 {% load static %}
 
-{% block titulo_principal %}Médicos adheridos recientemente a nuestro equipo :{% endblock %}
+{% block titulo_principal %}Plantel de Médicos{% endblock %}
 {% block principal %}
 
 
@@ -28,7 +28,7 @@ que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera dis
     En la lista de medicos que viene desde la vista
     vemos cuanta cantidad de registros vienen, con el medicos|length
     {% endcomment %}
-    <h4 class="cantidad-medicos">{{medicos.count}} médicos</h3>
+    <h4 class="cantidad-medicos">{{medicos|length}} médicos.-</h3>
 
     {% comment %}
     listamos medico por medico, teniendo en cuenta 
@@ -39,9 +39,10 @@ que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera dis
     {% comment %} <ul>
         {% for medico in medicos %}
             <li>
-                <strong>Nombre:</strong> {{ medico.0 }}<br>
-                <strong>Especialidad:</strong> {{ medico.1 }}<br>
-                <strong>Matricula N°:</strong> {{ medico.2 }}
+                <!-- <strong>Nombre:</strong> {{ medico.nombre }}<br> -->
+                <!-- <strong>Apellido:</strong> {{ medico.apellido }}<br> -->
+                <strong>Email:</strong> {{ medico.email }}<br>
+                <strong>Matricula N°:</strong> {{ medico.matricula }}
             </li><br>
         {% endfor %}
     </ul>     {% endcomment %}
@@ -51,24 +52,23 @@ que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera dis
         <div class="container-card">
             <ul class="card-list">
               {% for medico in medicos %}
-                <li class="card-item  medicos-nuevos-tarjetas">
+                <li class="card-item">
                     <div class="card">
-                        <img class="card-img-top medicos-nuevos-img" src="{% static 'mediturnosApp/img/medicoengeneral.png' %}" alt="Logo">
-                        {% comment %} {% if medico.especialidad == 'Clínica' %}
+                        {% if medico.1 == 'Clinica' %}
                             <img class="card-img-top" src="{% static 'mediturnosApp/img/clinico.png' %}" alt="Logo">
                         {% endif %}
-                        {% if medico.especialidad == 'Traumatología' %}
+                        {% if medico.1 == 'Pediatria' %}
                             <img class="card-img-top" src="{% static 'mediturnosApp/img/pediatria.png' %}" alt="Logo">
                         {% endif %}
-                        {% if medico.especialidad == 'Pediatría' %}
+                        {% if medico.1 == 'Traumatologia' %}
                         <img class="card-img-top" src="{% static 'mediturnosApp/img/traumatologia.png' %}" alt="Logo">
-                        {% endif %}  {% endcomment %}
+                        {% endif %}
                         <div class="card-body">
-                            <h5 class="card-title">{{ medico.nombre_completo }}</h5>
-                            {% comment %} <p class="card-text">{{ medico.especialidad }}</p> {% endcomment %}
+                            <h5 class="card-title">{{ medico.0 }}</h5>
+                            <p class="card-text">{{ medico.1 }}</p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">Matricula N°: {{ medico.matricula }}</small>
+                            <small class="text-muted">Matricula N°: {{ medico.2 }}</small>
                         </div>
                     </div>
                 </li>
