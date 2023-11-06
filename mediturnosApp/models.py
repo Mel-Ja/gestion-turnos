@@ -23,7 +23,7 @@ class Paciente(Persona):
 class Especialidad(models.Model):
     nombre = models.CharField(max_length=250, verbose_name="Especialidad", default='')
     descripcion = models.TextField(max_length=250, verbose_name="Descripción de la especialidad", default='')
-    imagen = models.ImageField(upload_to='images')
+    imagen = models.ImageField(upload_to='media')
         
     def __str__(self):
         return f"{self.nombre}"
