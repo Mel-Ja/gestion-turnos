@@ -113,6 +113,21 @@ class MedicoAltaForm(forms.ModelForm):
     email = forms.EmailField(label="Email", required=True)
     dni = forms.IntegerField(label="DNI", required=True)
 
+    def clean_matricula(self):
+        if int(self.cleaned_data['matricula']) < 0:
+            raise ValidationError("La matrícula debe ser un número positivo")
+        
+        return self.cleaned_data['matricula']
+
+    def clean_dni(self):
+        if not (0 < self.cleaned_data['dni'] <= 99999999):
+            raise ValidationError("El dni debe ser un número positivo")
+        
+        if len(str(self.cleaned_data['dni'])) < 8:
+            raise ValidationError("El dni debe contener al menos 8 caracteres")
+
+        return self.cleaned_data['dni']
+
     class Meta:
         model = Medico
         fields = ['nombre', 'apellido', 'email', 'dni', 'matricula', 'especialidades']
@@ -121,6 +136,21 @@ class MedicoAltaForm(forms.ModelForm):
         }
     
 class PacienteAltaForm(forms.ModelForm):
+
+    def clean_historia_clinica(self):
+        if int(self.cleaned_data['historia_clinica']) < 0:
+            raise ValidationError("La historia clínica debe ser un número positivo")
+        return self.cleaned_data['historia_clinica']
+
+
+    def clean_dni(self):
+        if not (0 < self.cleaned_data['dni'] <= 99999999):
+            raise ValidationError("El dni debe ser un número positivo")
+        
+        if len(str(self.cleaned_data['dni'])) < 8:
+            raise ValidationError("El dni debe contener al menos 8 caracteres")
+
+        return self.cleaned_data['dni']
    
     class Meta:
         model = Paciente

@@ -18,15 +18,18 @@ class Paciente(Persona):
     historia_clinica = models.CharField(verbose_name="Historia Clínica", primary_key=True, unique=True)
     
     def __str__(self):
-        return f"{self.nombre_completo()}"
+        return f"{self.nombre_completo()} (Historia clínica N°{self.historia_clinica})"
 
 class Especialidad(models.Model):
     nombre = models.CharField(max_length=250, verbose_name="Especialidad", default='')
-    descripcion = models.CharField(max_length=250, verbose_name="EspecialidadDescripcion", default='')
+    descripcion = models.TextField(max_length=250, verbose_name="Descripción de la especialidad", default='')
     imagen = models.ImageField(upload_to='images')
         
     def __str__(self):
         return f"{self.nombre}"
+
+    class Meta:
+        verbose_name_plural = "Especialidades"  # Nombre en plural
 
 
 class Medico(Persona):
@@ -34,14 +37,18 @@ class Medico(Persona):
     especialidades = models.ManyToManyField(Especialidad, through='MedicoEspecialidad')
 
     def __str__(self):
-        return f"{self.nombre_completo()}"
+        especialidades = ", ".join([me.especialidad.nombre for me in MedicoEspecialidad.objects.filter(medico=self)])
+        return f"{self.matricula} - {self.nombre_completo()} - {especialidades}"
 
 class MedicoEspecialidad(models.Model):
     medico = models.ForeignKey(Medico, on_delete=models.CASCADE, db_column='matricula')
     especialidad = models.ForeignKey(Especialidad, on_delete=models.CASCADE, db_column='especialidad_id')
     
     def __str__(self):
-        return f"Médico: {self.medico.nombre_completo()} - Especialidad: {self.especialidad.descripcion}"
+        return f"Médico: {self.medico.nombre_completo()} - Especialidad: {self.especialidad.nombre}"
+    
+    class Meta:
+        verbose_name_plural = "Medico especialidades"
        
 class Turnos(models.Model):
     fecha = models.DateField()
@@ -51,4 +58,8 @@ class Turnos(models.Model):
     historia_clinica = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     
     def __str__(self):
-        return f" Paciente: {self.historia_clinica.nombre_completo()} Turno: {self.fecha} {self.hora} con el médico: {self.matricula.nombre_completo()}"
+        return f" Paciente: {self.historia_clinica.nombre_completo()} | Turno: {self.fecha} {self.hora} con el médico: {self.matricula.nombre_completo()}"
+    
+    class Meta:
+        verbose_name = "Turno"
+        verbose_name_plural = "Turnos"
