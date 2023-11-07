@@ -145,7 +145,7 @@ class EspecialidadCreateView(LoginRequiredMixin, CreateView):
     success_url = '/'
     fields = '__all__'
     
-class PacienteCreateView(LoginRequiredMixin, CreateView):
+class PacienteCreateView(CreateView):
     model = Paciente
     form_class = PacienteAltaForm  # Usamos el formulario personalizado del modelForms de forms.py
     template_name = 'mediturnosApp/pacientes/pacientes-alta.html'

@@ -9,7 +9,7 @@
     <form class="container-login" method="POST" action=" {% url 'login' %} "> 
         {% csrf_token %}
         <h2>Ingresa tus datos para iniciar sesión en tu cuenta</h2>
-        <input class="input-inicio-sesion" type="text" name="username" placeholder="Correo electrónico">
+        <input class="input-inicio-sesion" type="text" name="username" placeholder="Ingresa tu nombre de usuario">
         <div class="input-password">
             <input class="input-inicio-sesion" type="password" name="password" placeholder="Contraseña" id="ingresodecontraseña">
             <button class="btn-hide-show">
