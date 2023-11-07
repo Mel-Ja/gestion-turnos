@@ -6,6 +6,15 @@
 {% block titulo_principal %}Inicio de sesión para pacientes{% endblock %}
 
 {% block principal %}    
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <form class="container-login" method="POST" action=" {% url 'login' %} "> 
         {% csrf_token %}
         <h2>Ingresa tus datos para iniciar sesión en Mediturnos®</h2>

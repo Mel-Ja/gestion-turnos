@@ -113,6 +113,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
+
+
+
+
 //inicio de sesión
 const passWordInput = document.querySelector
 ('#ingresodecontraseña')

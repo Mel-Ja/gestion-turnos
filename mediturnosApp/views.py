@@ -28,14 +28,12 @@ def inicioDeSesion(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect("indice") 
+            return redirect("indice")
         else:
-            context = {
-                'mensaje' : "login invalido"
-            }
-            return render(request, 'mediturnosApp/index/login.html', context)
-    else:
-        return render(request,'mediturnosApp/index/login.html')
+            messages.error(request, "Usuario o contraseña incorrectos. Por favor, inténtalo de nuevo.")
+    
+    # Asegúrate de devolver una respuesta HTTP incluso si las credenciales son incorrectas
+    return render(request, 'mediturnosApp/index/login.html')
  
  
 def cerrarSesion(request):

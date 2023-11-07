@@ -585,11 +585,10 @@ footer {
 }
 
 .messages{
-  position: relative;
-  top: 50%;
-  left: 40%;
-  background-color: rgba(0, 255, 85, 0.298);
-  width:35%;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 0, 0, 0.298);
+  width:100%;
   padding: 10px 10px;
   border-radius: 7px;
 }
