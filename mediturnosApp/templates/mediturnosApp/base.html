@@ -37,14 +37,14 @@
                         {% comment %} <a class="nav-item {% if request.path == '/agenda/' %}active{% endif %} botonesEncabezado" href="{% url 'agenda' %}">Agenda</a> {% endcomment %}
                     
                         {% comment %} <a class="nav-item {% if '/medicos/' in request.path %}active{% endif %} botonesEncabezado" href="{% url 'medicos' id_especialidad=0 %}">Médicos</a> {% endcomment %}                       
-                        <a class="nav-item {% if request.path == '/medicos/' %}active{% endif %} botonesEncabezado" href="{% url 'medicos' %}">Médicos</a>
+                        
 
-                        <a class="nav-item secciondeedicion {% if request.path == '/medicos/listado/' %}active{% endif %} botonesEncabezado" href="{% url 'medicos-listado' %}">Médicos nuevos</a>
+                        <a class="nav-item{% if request.path == '/medicos/listado/' %}active{% endif %} botonesEncabezado" href="{% url 'medicos-listado' %}">Médicos</a>
 
                         {% if user.is_authenticated %}
-                        <a class="nav-item secciondeedicion {% if request.path == '/especialidades/alta/' %}active{% endif %} botonesEncabezado" href="{% url 'especialidad-alta' %}">Alta de especialidad (1ero)</a>
+                        <a class="nav-item secciondeedicion {% if request.path == '/especialidades/alta/' %}active{% endif %} botonesEncabezado" href="{% url 'especialidad-alta' %}">Alta de especialidad</a>
                         
-                        <a class="nav-item secciondeedicion {% if request.path == '/medicos/alta/' %}active{% endif %} botonesEncabezado" href="{% url 'medicos-alta' %}">Alta de Médico (2do)</a>
+                        <a class="nav-item secciondeedicion {% if request.path == '/medicos/alta/' %}active{% endif %} botonesEncabezado" href="{% url 'medicos-alta' %}">Alta de Médico</a>
 
                         <a class="nav-item secciondeedicion {% if request.path == '/pacientes/alta/' %}active{% endif %} botonesEncabezado" href="{% url 'pacientes-alta' %}">Alta de Pacientes  </a>
 

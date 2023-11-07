@@ -51,7 +51,7 @@ def especialidades(request):
 
     return render(request, 'mediturnosApp/especialidades/especialidades.html', context)
 
-@login_required
+
 def medicos(request):
     listado = Medico.objects.all().order_by('apellido')
     context = {
@@ -131,7 +131,7 @@ def agenda(request):
 class MedicoListView(ListView):
     model = Medico
     context_object_name = 'medicos'
-    template_name = 'mediturnosApp/medicos/medicos-nuevos-listado.html' 
+    template_name = 'mediturnosApp/medicos/medicos.html' 
 
 class MedicoCreateView(LoginRequiredMixin, CreateView):
     model = Medico

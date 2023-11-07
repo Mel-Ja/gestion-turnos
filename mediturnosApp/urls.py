@@ -10,7 +10,6 @@ urlpatterns = [
     path('login/', views.inicioDeSesion, name="login"),
     path('cerrar-sesion/', views.cerrarSesion, name="cerrar-sesion"),
     path('especialidades/', views.especialidades, name="especialidades"),
-    path('medicos/', views.medicos, name="medicos"),
     path('medicos/<int:id_especialidad>/', views.medicosxesp, name="medicosxesp"),
     path('agenda/', views.agenda, name="agenda"),
     path('medicos/alta', views.MedicoCreateView.as_view(), name="medicos-alta"),
