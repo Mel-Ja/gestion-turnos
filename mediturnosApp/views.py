@@ -9,6 +9,9 @@ from django.views.generic.list import ListView
 from .forms import SolicitarTurnoForm
 from .forms import EspecialidadForm, MedicoAltaForm, PacienteAltaForm, TurnosAltaForm
 from .models import Especialidad, Medico, Paciente, Turnos
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
@@ -18,12 +21,27 @@ def index(request):
         }
     return render(request,'mediturnosApp/index/indice.html', contexto)
 
-def login(request):
-    context = {
-        
-    }
-    return render(request,'mediturnosApp/index/login.html', context)
-
+def inicioDeSesion(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect("indice") 
+        else:
+            context = {
+                'mensaje' : "login invalido"
+            }
+            return render(request, 'mediturnosApp/index/login.html', context)
+    else:
+        return render(request,'mediturnosApp/index/login.html')
+ 
+ 
+def cerrarSesion(request):
+    logout(request)
+    return redirect("indice") 
+ 
 def especialidades(request):
     listado = Especialidad.objects.all().order_by('nombre')
     context = {
@@ -33,6 +51,7 @@ def especialidades(request):
 
     return render(request, 'mediturnosApp/especialidades/especialidades.html', context)
 
+@login_required
 def medicos(request):
     listado = Medico.objects.all().order_by('apellido')
     context = {
@@ -65,7 +84,7 @@ def medicosxesp(request, id_especialidad):
     # return render(request, 'mediturnosApp/medicos/medicos.html', context)
 
 
-
+@login_required
 def solicitarturno(request):
     
     if request.method == "POST":
@@ -114,25 +133,25 @@ class MedicoListView(ListView):
     context_object_name = 'medicos'
     template_name = 'mediturnosApp/medicos/medicos-nuevos-listado.html' 
 
-class MedicoCreateView(CreateView):
+class MedicoCreateView(LoginRequiredMixin, CreateView):
     model = Medico
     form_class = MedicoAltaForm  # Usamos el formulario personalizado del modelForms de forms.py
     template_name = 'mediturnosApp/medicos/medicos-alta.html'
     success_url = '/'
 
-class EspecialidadCreateView(CreateView):
+class EspecialidadCreateView(LoginRequiredMixin, CreateView):
     model = Especialidad
     template_name = 'mediturnosApp/especialidades/especialidades-alta.html'
     success_url = '/'
     fields = '__all__'
     
-class PacienteCreateView(CreateView):
+class PacienteCreateView(LoginRequiredMixin, CreateView):
     model = Paciente
     form_class = PacienteAltaForm  # Usamos el formulario personalizado del modelForms de forms.py
     template_name = 'mediturnosApp/pacientes/pacientes-alta.html'
     success_url = '/'    
 
-class TurnosCreateView(CreateView):
+class TurnosCreateView(LoginRequiredMixin, CreateView):
     model = Turnos
     form_class = TurnosAltaForm  # Usamos el formulario personalizado del modelForms de forms.py
     template_name = 'mediturnosApp/turnos/solicitarturno.html'
