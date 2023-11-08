@@ -53,7 +53,11 @@ que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera dis
               {% for medico in medicos %}
                 <li class="card-item  medicos-nuevos-tarjetas">
                     <div class="card">
-                        <img class="card-img-top medicos-nuevos-img" src="{% static 'mediturnosApp/img/medicoengeneral.png' %}" alt="Logo">
+                        {% if medico.especialidades.count > 1 %}
+                            <img class="card-img-top medicos-nuevos-img medicomultiple" src="{% static 'mediturnosApp/img/especialidad-multiple.png' %}" alt="Especialidad Predeterminada">
+                        {% else %}
+                            <img class="card-img-top medicos-nuevos-img" src="{{ medico.especialidades.first.imagen.url }}" alt="Especialidad">
+                        {% endif %}
                         {% comment %} {% if medico.especialidad == 'Clínica' %}
                             <img class="card-img-top" src="{% static 'mediturnosApp/img/clinico.png' %}" alt="Logo">
                         {% endif %}

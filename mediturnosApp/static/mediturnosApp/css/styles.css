@@ -289,15 +289,29 @@ footer {
 .card-especialidad {
   align-items: center;
   justify-items: center;
+  
 }
 .especialidad {
   border: 1px solid #dedede;
   margin-top: 25px;  
+  margin-left: 20px;
   /* width: 60%; */
 
 }
 
+.especialidad-imagen{
+  scale: 1.2;
+  margin-top: 20px;
+  margin-bottom: 2px;
+  margin-right: 25px;
+}
+
+
 .especialidad-titulo {
+  display: flex;
+  height: 148px;
+  justify-content: center;
+  align-items: center;
   padding: 10px;
   /* background-color: #637691; */
   color: #507dbb;
@@ -305,6 +319,7 @@ footer {
   font-size: 20px;
   vertical-align: middle;
   text-align: center;
+  margin-right: 25px;
 }
 
 
@@ -314,6 +329,12 @@ footer {
   vertical-align: middle;
 }
 
+.texto-ver-medicos{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 /*
 .fecha{
   position: fixed;
@@ -467,7 +488,7 @@ footer {
   }
 
 .formulario{
-  width: 90%;
+  width: 50%;
   height: auto; /* Ajusta la altura según sea necesario */
   border-style: outset;
   border-color: #0d6dfdba;
@@ -479,6 +500,20 @@ footer {
   align-items: center;
   margin: 0 auto; /* Esto centrará el div en la página */
   margin-top:30px;
+}
+
+.formulario-especialidad{
+  width: 80%;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  
+  /* text-align: center; */
+}
+
+.formulario-especialidades-alta{
+  display:block;
+  text-align: center;
 }
 
 .input-no-valido {
@@ -516,6 +551,7 @@ footer {
 	display: grid;
 	grid-gap: 20px;	
 }
+
 
 /* .div-imagen-frente {
   width: 60%;
@@ -608,6 +644,19 @@ footer {
   
 }
 
+.medicomultiple{
+  display: flex;
+  scale: 1.05;
+  margin-top: 20px;
+  margin-bottom: 2px;
+}
+
+.tabla{
+  width: 80%;
+}
+
+
+
 .secciondeedicion{
   color:rgba(159, 35, 35, 0.866);
 }
@@ -618,16 +667,11 @@ footer {
 }
 
 
-.formularioespecialidad{
-  padding-left: 20px;
-  padding-right: 20px;
-  display: flex;
-  
-  /* text-align: center; */
-}
+
 
 #id_especialidades{
-  margin-top: 22px;
+  margin-top: 15px;
+  list-style: none;
 }
 
 #id_especialidades > div{
@@ -662,6 +706,8 @@ footer {
   justify-content: space-between;
   align-items: center;
 } */
+
+
 
 
 

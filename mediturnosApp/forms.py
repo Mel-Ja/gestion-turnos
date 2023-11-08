@@ -135,6 +135,9 @@ class MedicoAltaForm(forms.ModelForm):
             'especialidades': forms.CheckboxSelectMultiple(),
         }
     
+    
+    
+    
 class PacienteAltaForm(forms.ModelForm):
 
     def clean_historia_clinica(self):
