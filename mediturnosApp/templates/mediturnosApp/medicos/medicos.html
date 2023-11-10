@@ -52,7 +52,7 @@ que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera dis
             <ul class="card-list">
               {% for medico in medicos %}
                 <li class="card-item  medicos-nuevos-tarjetas">
-                    <div class="card">
+                    <div class="card pt-2">
                         {% if medico.especialidades.count > 1 %}
                             <img class="card-img-top medicos-nuevos-img medicomultiple" src="{% static 'mediturnosApp/img/especialidad-multiple.png' %}" alt="Especialidad Predeterminada">
                         {% else %}
@@ -68,10 +68,10 @@ que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera dis
                         <img class="card-img-top" src="{% static 'mediturnosApp/img/traumatologia.png' %}" alt="Logo">
                         {% endif %}  {% endcomment %}
                         <div class="card-body">
-                            <h5 class="card-title">{{ medico.nombre_completo }}</h5>
+                            <h5 class="card-title text-center mt-4">{{ medico.nombre_completo }}</h5>
                             {% comment %} <p class="card-text">{{ medico.especialidad }}</p> {% endcomment %}
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer w-100 text-center">
                             <small class="text-muted">Matricula N°: {{ medico.matricula }}</small>
                         </div>
                     </div>

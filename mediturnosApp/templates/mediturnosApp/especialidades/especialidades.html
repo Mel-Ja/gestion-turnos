@@ -16,13 +16,16 @@ esa lista llega con el nombre: especialidades
    
 
 {% comment %} listamos cada una de las especialidades de la lista {% endcomment %}
-<table class="table table-striped tabla">
-    <div class="card-especialidad">
+
+<br>
+<div class="card-especialidad table-responsive">
+    <table class="table table-striped tabla">
+        <tbody>
         {% for especialidad in especialidades %}
         
             <tr>
                 <td>
-                    <img class="especialidad-imagen" src="{{ especialidad.imagen.url }}" width = '110' height="110"/>
+                    <img class="especialidad-imagen" src="{{ especialidad.imagen.url }}" class="img-fluid" height="110"/>
                 </td>
             
                 <td>
@@ -39,6 +42,7 @@ esa lista llega con el nombre: especialidades
                 </td>
             </tr>
         {% endfor %}
+        </tbody>
     </table>
 </div>
 

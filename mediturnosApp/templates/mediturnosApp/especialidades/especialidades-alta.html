@@ -8,30 +8,25 @@
 {% block titulo_principal %}Alta de una nueva especialidad{% endblock %}
 {% block principal %}
 
-<div class="contenedor-turnos">
-    
-</div>
-
-<div class="formulario  formulario-especialidad">
-    
-    <br>
-    <h3> Indicar la nueva especialidad </h3>
-    <br>
-    <form class="formulario-especialidades-alta" method="POST" action=" {% url 'especialidad-alta' %} " enctype="multipart/form-data">
-
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <div class="d-flex justify-content-center">
-        <button type="submit" id="boton-enviar" class="btn btn-primary" placeholder="hola">Realizar alta</button>
+    <div class="contenedor-turnos">
+        
     </div>
 
-    </form>
-    <br>
-<div>
+    <div class="formulario formulario-especialidad row">
 
+        <h3 class="text-center"> Indicar la nueva especialidad </h3>
+        
+        <form class="formulario-especialidades-alta col-12 col-md-6" method="POST" action=" {% url 'especialidad-alta' %} " enctype="multipart/form-data">
 
-
+            {% csrf_token %}
+            {{ form.as_p }}
+    
+            <div class="d-flex justify-content-center">
+                <button type="submit" id="boton-enviar" class="btn btn-primary container" placeholder="hola">Realizar alta</button>
+            </div>
+    
+        </form>
+    </div>
 
 {% endblock %}
 {% block fecha %} 
