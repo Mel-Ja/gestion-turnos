@@ -184,8 +184,13 @@ def verificar_dni(request): #Definimos una función de vista llamada verificar_d
 ######################### No borrar, me da una idea de algo a futuro ##############################   
 
 
+
+# Vista utilizada para traer los medicos que correspondan a la especialidad que el usuario elige en el front.
+# Esta vista retorna un JSON y lo procesamos desde app.js para retornar los medicos correspondientes en el Select correspondiente.
+
 def cargar_medicos(request):
     especialidad_id = request.GET.get('especialidad_id')
+    # La consulta de abajo lo que hace es acceder a los campos de la relación entre medico y especialidad.
     medicos = Medico.objects.filter(medicoespecialidad__especialidad__id=especialidad_id)
     medicos_list = [{"id": medico.matricula, "nombre": medico.nombre_completo()} for medico in medicos]
     return JsonResponse(medicos_list, safe=False)

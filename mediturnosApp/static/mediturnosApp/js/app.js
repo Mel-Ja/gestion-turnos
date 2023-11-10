@@ -99,6 +99,8 @@ el input este en tipo texto, se pasa a modo password, y se oculta un icono,
 y se muestra el otro
 */
 
+
+/* Función cargar medicos que llama a la view cargar_medicos y crea los elementos Option correspondientes en el select de Medicos */
 function cargarMedicos() {
     var especialidadSelect = document.getElementById('id_especialidad');
     var medicoSelect = document.getElementById('id_medico');
