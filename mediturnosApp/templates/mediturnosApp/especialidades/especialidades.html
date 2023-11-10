@@ -16,7 +16,7 @@ esa lista llega con el nombre: especialidades
    
 
 {% comment %} listamos cada una de las especialidades de la lista {% endcomment %}
-    {% if especialidades.count == 0 %}
+    {% if user.is_authenticated and especialidades.count == 0 %}
         <img class="card-img-top gif-cargue-especialidad" src="{% static 'mediturnosApp/img/cargue-especialidad.gif' %}" alt="Cargando...">
     {% endif %}
 <br>
