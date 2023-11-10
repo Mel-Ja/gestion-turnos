@@ -105,9 +105,12 @@
                                     <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
                                 </li>
                             {% endif %}
+
+                            {% if user.is_authenticated %}
                             <li class="nav-item {% if request.path == '/admin/' %}active{% endif %}">
                                 <a class="nav-link botonesEncabezado" href="{% url 'admin:index' %}">Administración</a>
                             </li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
