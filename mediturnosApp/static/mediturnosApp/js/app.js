@@ -43,79 +43,9 @@ document.addEventListener('input', function (e) {
 
 //Deshabilita en el formulario, la opcion "elegir" del select Especialidades
 document.addEventListener('DOMContentLoaded', function () {
-    var especialidadSelect = document.getElementById('id_especialidad');
-    var optionElegir = especialidadSelect.querySelector('option[value=""]');
-
-    // Cambia el color de la opción "Elegir"
-    optionElegir.style.color = 'gray';
-
-    // Deshabilita la opción "Elegir"
-    optionElegir.disabled = true;
+    var medicoSelect = document.getElementById('id_medico');
+    medicoSelect.disabled = true;
 });
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    var especialidadSelect = document.getElementById("id_especialidad");
-    var medicoSelect = document.getElementById("id_medico");
-
-    // Define un objeto que mapea especialidades a médicos
-    var medicosPorEspecialidad = {
-        Pediatría: ["Carlos López", "Laura García", "Diego Fernández"],
-        Traumatología: ["María Rodríguez", "Pepe Argento", "Sofía Torres"],
-        Clínica: ["Juan Perez", "Laura García", "Ana Martinez"]
-    };
-
-    // Escucha el cambio en el select de especialidad
-    especialidadSelect.addEventListener("change", function () {
-        var especialidadSeleccionada = especialidadSelect.value;
-        var medicos = medicosPorEspecialidad[especialidadSeleccionada] || [];
-
-        // Limpiar el campo de selección de médicos
-        medicoSelect.innerHTML = "";
-
-        // Agregar opción predeterminada
-        var defaultOption = document.createElement("option");
-        defaultOption.value = "";
-        defaultOption.text = "Seleccione un médico";
-        medicoSelect.appendChild(defaultOption);
-
-        // Agregar opciones de médicos
-        medicos.forEach(function (medico) {
-            var option = document.createElement("option");
-            option.value = medico;
-            option.text = medico;
-            medicoSelect.appendChild(option);
-        });
-    });
-
-    window.addEventListener("DOMContentLoaded", function () {
-        // Obtén referencias a los controles select
-        var especialidadSelect = document.getElementById("id_especialidad");
-        var medicoSelect = document.getElementById("id_medico");
-        var opcionMedico = document.getElementById("id_medico");
-        medicoSelect.disabled = true;
-        if (opcionMedico){
-            var optionIndex = 0;
-            opcionMedico.options[optionIndex].text = "Elija una especialidad";
-        }
-
-        // Agrega un evento "change" al select de especialidad
-        especialidadSelect.addEventListener("change", function () {
-            // Verifica si el valor de especialidadSelect no es vacío
-            if (especialidadSelect.value !== "") {
-                // Habilita el select de médicos
-                medicoSelect.disabled = false;
-            }
-        });
-    });
-    
-});
-
-
-
-
-
-
 
 
 //inicio de sesión
@@ -168,3 +98,28 @@ y mostrando el otro, en caso de que sea al reves, que cuando se haga click
 el input este en tipo texto, se pasa a modo password, y se oculta un icono,
 y se muestra el otro
 */
+
+function cargarMedicos() {
+    var especialidadSelect = document.getElementById('id_especialidad');
+    var medicoSelect = document.getElementById('id_medico');
+    
+    var especialidadId = especialidadSelect.value;
+    medicoSelect.innerHTML = '<option value="">Seleccione un médico</option>';
+
+    if (especialidadId) {
+        console.log('Especialidad seleccionada:', especialidadId); // Agrega este mensaje de depuración
+        fetch('/cargar_medicos/?especialidad_id=' + especialidadId)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Respuesta de cargar_medicos:', data); // Agrega este mensaje de depuración
+                data.forEach(function(medico) {
+                    var option = document.createElement('option');
+                    option.value = medico.id;
+                    option.textContent = medico.nombre;
+                    medicoSelect.appendChild(option);
+                });
+                medicoSelect.disabled = false;
+            })
+            .catch(error => console.error(error));
+    }
+}
