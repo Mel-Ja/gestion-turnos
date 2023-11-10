@@ -12,12 +12,12 @@
     
 </div>
 
-<div class="formulario  formularioespecialidad">
+<div class="formulario  formulario-especialidad">
     
     <br>
     <h3> Indicar la nueva especialidad </h3>
     <br>
-    <form method="POST" action=" {% url 'especialidad-alta' %} " enctype="multipart/form-data">
+    <form class="formulario-especialidades-alta" method="POST" action=" {% url 'especialidad-alta' %} " enctype="multipart/form-data">
 
     {% csrf_token %}
     {{ form.as_p }}

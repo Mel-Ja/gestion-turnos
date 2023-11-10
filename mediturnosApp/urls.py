@@ -18,8 +18,7 @@ urlpatterns = [
     path('pacientes/alta', views.PacienteCreateView.as_view(), name="pacientes-alta"),
     path('pacientes/turnos', views.TurnosCreateView.as_view(), name="solicitar-turno"),
     path('verificar_dni', views.verificar_dni, name='verificar_dni'),
-    
- 
-    
 ]
+
+
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
