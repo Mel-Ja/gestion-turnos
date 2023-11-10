@@ -3,30 +3,6 @@ from datetime import datetime, timedelta
 from django.core.exceptions import ValidationError
 from .models import Especialidad, Medico, Paciente, Turnos
 
-
-# Define las opciones de especialidades
-ESPECIALIDADES_CHOICES = [
-    ('', 'Elegir'),
-    ('Pediatría', 'Pediatría'),
-    ('Clínica', 'Clínica'),
-    ('Traumatología', 'Traumatología'),
-    ('Cirugía', 'Cirugía'),
-    ('Obstetricia', 'Obstetricia'),
-    ('Oftalmología', 'Oftalmología')
-]
-
-MEDICOS_CHOICES = [
-    ('','Seleccione un médico'),
-    ('Juan Perez','Juan Perez'),
-    ('Laura García','Laura García'),
-    ('Ana Martinez','Ana Martinez'),
-    ('Carlos López','Carlos López'),
-    ('Diego Fernández','Diego Fernández'),
-    ('María Rodríguez','María Rodríguez'),
-    ('Pepe Argento','Pepe Argento'),
-    ('Sofía Torres','Sofía Torres')
-]
-
 HOUR_CHOICES = [(f"{hour:02d}:{minute:02d}", f"{hour:02d}:{minute:02d}") for hour in range(8, 20) for minute in range(0, 60, 15)]
 
 class EspecialidadForm(forms.ModelForm):
@@ -39,9 +15,9 @@ class SolicitarTurnoForm(forms.Form):
     apellido = forms.CharField(label="Apellido", required=True, widget=forms.TextInput(attrs={'class': 'form-control solo-letras', 'placeholder': 'Ingrese su apellido'}))
     dni = forms.CharField(label="DNI", required=True, widget=forms.TextInput(attrs={'class': 'form-control dni-input', 'pattern': '[0-9]{8}', 'title': 'El DNI debe contener 8 dígitos numéricos', 'maxlength': '8', 'placeholder': 'Ingrese su dni'}))
     email = forms.EmailField(label="Email", required=True, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su email'}))
-    especialidad = forms.ChoiceField(label="Especialidad", choices=ESPECIALIDADES_CHOICES, widget=forms.Select(attrs={'class': 'form-control solo-letras'}))
+    # especialidad = forms.ChoiceField(label="Especialidad", choices=ESPECIALIDADES_CHOICES, widget=forms.Select(attrs={'class': 'form-control solo-letras'}))
     
-    medico = forms.ChoiceField(label="Médico", choices=MEDICOS_CHOICES, widget=forms.Select(attrs={'class': 'form-control solo-letras', }))
+    # medico = forms.ChoiceField(label="Médico", choices=MEDICOS_CHOICES, widget=forms.Select(attrs={'class': 'form-control solo-letras', }))
     fecha = forms.DateField(
         label="Fecha",
         required=True,
@@ -166,6 +142,20 @@ class PacienteAltaForm(forms.ModelForm):
 HOUR_CHOICES = [(f"{hour:02d}:{minute:02d}", f"{hour:02d}:{minute:02d}") for hour in range(8, 20) for minute in range(0, 60, 15)]
 
 class TurnosAltaForm(forms.ModelForm):
+    especialidad = forms.ModelChoiceField(
+        label="Especialidad",
+        queryset=Especialidad.objects.all(),  # Obtener todas las especialidades de la base de datos
+        empty_label="Seleccione una especialidad",  # Opcional: Puedes agregar un label inicial
+        widget=forms.Select(attrs={'class': 'form-control', 'id':'id_especialidad', 'onchange':'cargarMedicos()'})
+    )
+
+    matricula = forms.ModelChoiceField(
+        label="Médicos",
+        queryset=Medico.objects.all(),
+        empty_label="Seleccione un médico",
+        widget=forms.Select(attrs={'class': 'form-control', 'id': 'id_medico'})
+    )
+
     fecha = forms.DateField(
         label="Fecha",
         required=True,  # Hacer que la fecha sea obligatoria
@@ -194,13 +184,11 @@ class TurnosAltaForm(forms.ModelForm):
         super(TurnosAltaForm, self).__init__(*args, **kwargs)
         # Personaliza la representación del campo historia_clinica
         self.fields['historia_clinica'].label_from_instance = lambda obj: f"{obj.nombre} {obj.apellido}"
-        self.fields['matricula'].label_from_instance = lambda obj: f"{obj.nombre} {obj.apellido}"
 
 
     class Meta:
         model = Turnos
-        fields = ['historia_clinica', 'matricula', 'fecha', 'hora', 'cancelado']  # Agregar 'fecha' y 'hora' al formulario
+        fields = ['historia_clinica', 'especialidad', 'matricula', 'fecha', 'hora', 'cancelado']  # Agregar 'fecha' y 'hora' al formulario
         labels = {
             'historia_clinica': 'Paciente',
-            'matricula': 'Médico',
         }

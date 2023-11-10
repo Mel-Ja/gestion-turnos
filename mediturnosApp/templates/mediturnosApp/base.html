@@ -1,34 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>{% block titulo %}{% endblock %}</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'mediturnosApp/css/styles.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet"> -->
 
-    <script src="https://kit.fontawesome.com/d6857610b3.js" crossorigin="anonymous"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@300;500&family=Lobster&display=swap" rel="stylesheet">
-</head>
-<body>
-   
-    <header>
-        <!-- <a class="header-logo" href="index.html">
-            <img src="imagenes/logo.png">
-        </a>
-        <nav id="header-nav" class="header-nav">
-            <div class="nav-links">
-                <a class="link-item" -->
-            <div class="logo">
-                <img src="{% static 'mediturnosApp/img/logo.png' %}" alt="Logo">
-            </div>
-            {% comment %} Inicio Navbar {% endcomment %}
             
-                <nav class="nav">
+                <!-- <nav class="nav">
                     <div class="nav-links">
                         <a class="nav-item {% if request.path == '/' %}active{% endif %} botonesEncabezado" href="{% url 'indice' %}">Home</a>
 
@@ -57,30 +29,109 @@
                             <a class="nav-item {% if request.path == '/login/' %}active{% endif %} botonesEncabezado" href="{% url 'login' %}">Iniciar Sesión</a>
                         {% endif %}
 
-                        
+                        <a class="nav-item botonesEncabezado" href="{% url 'admin:index' %}">Administración</a>
+
                     </div>
-                </nav>
-           
-            {% comment %} Fin Navbar {% endcomment %}
+                </nav> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}{% endblock %}</title>
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'mediturnosApp/css/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="{% static 'mediturnosApp/img/Logo.png' %}" type="image/png">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap" rel="stylesheet"> -->
+
+    <script src="https://kit.fontawesome.com/d6857610b3.js" crossorigin="anonymous"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@300;500&family=Lobster&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-to shadow">
+                <div class="container">
+                    <a class="navbar-brand logo" href="{% url 'indice' %}"><img src="{% static 'mediturnosApp/img/logo.png' %}" alt="Logo"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+                                <a class="nav-link" href="{% url 'indice' %}">Home</a>
+                            </li>
+                            <li class="nav-item {% if request.path == '/especialidades/' %}active{% endif %}">
+                                <a class="nav-link" href="{% url 'especialidades' %}">Especialidades</a>
+                            </li>
+                            <li class="nav-item {% if request.path == '/medicos/listado/' %}active{% endif %}">
+                                <a class="nav-link" href="{% url 'medicos-listado' %}">Médicos</a>
+                            </li>
+
+                            {% if user.is_authenticated %}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                      Administrar Altas
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item secciondeedicion {% if request.path == '/especialidades/alta/' %}active{% endif %}">
+                                            <a class="nav-link dropdown-item" href="{% url 'especialidad-alta' %}">Alta de especialidad</a>
+                                        </li>
+
+                                        <li class="nav-item secciondeedicion {% if request.path == '/medicos/alta/' %}active{% endif %}">
+                                            <a class="nav-link dropdown-item" href="{% url 'medicos-alta' %}">Alta de Médico</a>
+                                        </li>
+
+                                        <li class="nav-item secciondeedicion {% if request.path == '/pacientes/alta/' %}active{% endif %}">
+                                            <a class="nav-link dropdown-item" href="{% url 'pacientes-alta' %}">Alta de Pacientes</a>
+                                        </li>
+                                    </ul>
+
+                                </li>
+                                <li class="nav-item secciondeedicion {% if request.path == '/cerrar-sesion/' %}active{% endif %}">
+                                    <a class="nav-link {% if request.path == '/pacientes/turnos/' %}active{% endif %} botonesEncabezado" href="{% url 'solicitar-turno' %}">Solicitar turno</a>
+                                </li>
+
+                                <li class="nav-item {% if request.path == '/cerrar-sesion/' %}active{% endif %}">
+                                    <a class="nav-link" href="{% url 'cerrar-sesion' %}">Cerrar Sesión</a>
+                                </li>
+                            {% endif %}
+
+                            {% if not user.is_authenticated %}
+                                <li class="nav-item {% if request.path == '/login/' %}active{% endif %}">
+                                    <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+                                </li>
+                            {% endif %}
+                            <li class="nav-item {% if request.path == '/admin/' %}active{% endif %}">
+                                <a class="nav-link botonesEncabezado" href="{% url 'admin:index' %}">Administración</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         
     </header>
-    <main>
+
         
-        <div class="container">
+        <div class="container flex-grow-1">
             <h1 class="tituloppal">{% block titulo_principal %}{% endblock %}</h1>
             <h4 class="titulosec">{% block titulo_secundario %}{% endblock %}</h4> 
             {% block principal %}{% endblock %}
         </div>
-    </main>
+
     
     
     {% comment %} Inicio Footer {% endcomment %} 
-    <footer> 
+    <footer class="footer"> 
         <div class="footer-redes">
             <div class="footer-redestxt">
                 <h4>Seguinos en nuestras redes</h4>
             </div>
-            <div>
+            <div class="footer-redes-items">
+
                 <a class="link-item" href="https://www.twitter.com" target="_blank" title="Twitter">
                     <i class="fa fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -90,12 +141,22 @@
                 <a class="link-item" href="https://www.instagram.com" target="_blank" title="Instagram">
                     <i class="fa fa-instagram" aria-hidden="true"></i>
                 </a>
+                <a class="link-item" href="https://www.youtube.com" target="_blank" title="YouTube">
+                    <i class="fa fa-youtube" aria-hidden="true"></i>
+                </a>
+                <a class="link-item" href="https://www.tiktok.com" target="_blank" title="TikTok">
+                    <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+                </a>            
+                <a class="link-item" href="https://web.whatsapp.com" target="_blank" title="WhatsApp">
+                    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+                </a>
+
             </div>
         </div>
-        <div class="footer-derechos">
-            2023 Mediturnos
+        <div class="footer-derechos text-muted p-2">
+            <p>&copy;2023 Mediturnos
             <br>
-            Todos los derechos reservados
+            Todos los derechos reservados</p>
         </div>
         <div class="footer-fecha">
             {{ fecha }} 
@@ -104,6 +165,10 @@
     {% comment %} Fin Footer {% endcomment %}
     
    <script src="{% static 'mediturnosApp/js/app.js' %}"></script>
+   <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> -->
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
    {% comment %} api de chat proveniente de app.purechat.com {% endcomment %}
    <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: 'e580a924-8d32-4966-b697-6d26d0179769', f: true }); done = true; } }; })();</script>
 </body>

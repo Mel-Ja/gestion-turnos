@@ -12,23 +12,23 @@
     
 </div>
 
-<div class="formulario alta-paciente">
+<div class="formulario alta-paciente row">
     
     <br>
-    <h3> Datos del nuevo paciente </h3>
+    <h3 class="text-center"> Datos del nuevo paciente </h3>
     <br>
-    <form method="POST" action=" {% url 'pacientes-alta' %} ">
+    <form method="POST" action=" {% url 'pacientes-alta' %} " class="col-12 col-md-6">
 
     {% csrf_token %}
     {{ form.as_p }}
 
     <div class="d-flex justify-content-center">
-        <button type="submit" id="boton-enviar" class="btn btn-primary">Enviar</button>
+        <button type="submit" id="boton-enviar" class="btn btn-primary container">Enviar</button>
     </div>
 
     </form>
     <br>
-<div>
+</div>
 
 
 

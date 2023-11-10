@@ -18,6 +18,7 @@ urlpatterns = [
     path('pacientes/alta', views.PacienteCreateView.as_view(), name="pacientes-alta"),
     path('pacientes/turnos', views.TurnosCreateView.as_view(), name="solicitar-turno"),
     path('verificar_dni', views.verificar_dni, name='verificar_dni'),
+    path('cargar_medicos/', views.cargar_medicos, name='cargar_medicos'),
 ]
 
 
