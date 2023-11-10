@@ -14,7 +14,7 @@ y nos envia una lista con diferentes especialidades medicas
 esa lista llega con el nombre: especialidades
 {% endcomment %}
    
-
+<h4 class="cantidad-medicos">{{especialidades.count}} especialidades</h3>
 {% comment %} listamos cada una de las especialidades de la lista {% endcomment %}
     {% if user.is_authenticated and especialidades.count == 0 %}
         <img class="card-img-top gif-cargue-especialidad" src="{% static 'mediturnosApp/img/cargue-especialidad.gif' %}" alt="Cargando...">
