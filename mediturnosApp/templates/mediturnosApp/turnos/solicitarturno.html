@@ -11,17 +11,17 @@
 {% comment %} Inicio de No borrar, es una prueba {% endcomment %}
 <div class="verificar-dni">
     <input type="text" id="dni" name="dni">
-    <button id="verificar-dni">Verificar DNI</button>
+    <button id="verificar-dni" class="btn btn-outline-dark mt-2">Verificar DNI</button>
 </div>
 {% comment %} fin de no borrar, es una prueba {% endcomment %}
 
-<div class="contenedor-turnos">
-    <div class="formulario ">
+<div>
+    <div class="formulario row">
         
         <br>
-        <h3> Datos del paciente</h3>
+        <h3 class="text-center"> Datos del paciente</h3>
         <br>
-        <form method="POST" action=" {% url 'solicitar-turno' %} ">
+        <form method="POST" action=" {% url 'solicitar-turno' %} " class="col-12 col-md-8">
 
         {% csrf_token %}
         {{ form.as_p }}
@@ -32,7 +32,7 @@
 
         </form>
         <br>
-    <div>
+    </div>
 
 </div>
 

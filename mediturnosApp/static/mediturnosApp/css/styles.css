@@ -736,9 +736,44 @@ input[type="file"] {
 } */
 
 .verificar-dni{
+  display: flex;
+  gap: .8rem;
+  align-items: center;
   position: absolute;
-  top: 650px; /* Ajusta este valor según tus necesidades */
-  right: 10px;
+  bottom: 220px; /* Ajusta este valor según tus necesidades */
+  right: 50%;
+  transform: translateX(50%);
+  height: 3rem;
+  width: auto;
+}
+.verificar-dni input,
+.verificar-dni button {
+  width: 100%
+}
+
+
+@media (max-width: 728px){
+  .verificar-dni{
+    bottom: 200px; /* Ajusta este valor según tus necesidades */
+    width: 90%
+
+  }
+}
+
+@media (max-width: 354px){
+  .verificar-dni{
+    bottom: 170px; /* Ajusta este valor según tus necesidades */
+    width: 90%
+
+  }
+}
+
+@media (max-width: 320px){
+  .verificar-dni{
+    bottom: 130px; /* Ajusta este valor según tus necesidades */
+    width: 90%
+
+  }
 }
 
 /* .nav-links{
