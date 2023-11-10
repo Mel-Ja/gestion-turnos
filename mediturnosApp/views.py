@@ -152,6 +152,12 @@ class TurnosCreateView(LoginRequiredMixin, CreateView):
     template_name = 'mediturnosApp/turnos/solicitarturno.html'
     success_url = '/'    
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Turno reservado exitosamente")
+        return response
+    
+    
 ################### No borrar, es una alternativa para chequear si un dni existe ##############
 def verificar_dni(request): #Definimos una función de vista llamada verificar_dni, que atendera cuando se ingrese en el navegador "/verificar_dni", o cuando se envien datos a esa direccion. Esta funcion de vista, a la que le llegan datos en el request, verificara si el dni del paciente existe. 
     if request.method == "POST": #Si el metodo es POST, significa que el usuario apreto enviar al formulario, y nos mando el dni
