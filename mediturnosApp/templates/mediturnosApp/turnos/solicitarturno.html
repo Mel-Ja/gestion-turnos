@@ -5,21 +5,21 @@
 
 
 
-{% block titulo_principal %}Realice la solicitud de su turno completando el siguiente formulario:{% endblock %}
+{% block titulo_principal %}Solicitud de turno{% endblock %}
 {% block principal %}
 
 {% comment %} Inicio de No borrar, es una prueba {% endcomment %}
-<div class="verificar-dni">
-    <input type="text" id="dni" name="dni">
-    <button id="verificar-dni" class="btn btn-outline-dark mt-2">Verificar DNI</button>
-</div>
+{% comment %} <div class="verificar-dni"> {% endcomment %}
+    {% comment %} <input type="text" id="dni" name="dni"> {% endcomment %}
+    {% comment %} <button id="verificar-dni" class="btn btn-outline-dark mt-2">Verificar DNI</button> {% endcomment %}
+{% comment %} </div> {% endcomment %}
 {% comment %} fin de no borrar, es una prueba {% endcomment %}
 
 <div>
     <div class="formulario row">
         
         <br>
-        <h3 class="text-center"> Datos del paciente</h3>
+        <h3 class="text-center"> Complete el siguiente el formulario:</h3>
         <br>
         <form method="POST" action=" {% url 'solicitar-turno' %} " class="col-12 col-md-8">
 

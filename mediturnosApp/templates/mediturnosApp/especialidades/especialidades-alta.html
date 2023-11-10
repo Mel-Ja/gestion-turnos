@@ -5,17 +5,18 @@
 
 
 
-{% block titulo_principal %}Alta de una nueva especialidad{% endblock %}
+{% block titulo_principal %}Alta de especialidad{% endblock %}
 {% block principal %}
 
     <div class="contenedor-turnos">
         
     </div>
 
+    <br>
     <div class="formulario formulario-especialidad row">
 
-        <h3 class="text-center"> Indicar la nueva especialidad </h3>
-        
+        <h3 class="text-center"> Ingrese los datos de la nueva especialidad: </h3>
+        <br>
         <form class="formulario-especialidades-alta col-12 col-md-6" method="POST" action=" {% url 'especialidad-alta' %} " enctype="multipart/form-data">
 
             {% csrf_token %}
