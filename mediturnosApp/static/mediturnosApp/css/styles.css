@@ -675,8 +675,8 @@ input[type="file"] {
   text-align: center;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 0, 0, 0.298);
-  width:50%;
+  background-color: rgba(0, 255, 13, 0.298);
+  width:100%;
   padding: 10px 10px;
   border-radius: 7px;
 }
@@ -687,6 +687,13 @@ input[type="file"] {
   justify-content: center;
   align-items: center;
   font-size: 20px;
+}
+
+.sucess{
+  display:flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .medicos-nuevos-img{
@@ -817,6 +824,7 @@ input[type="file"] {
     --color-background: #d2cecb;
     --color-hover: #f0f0f0;
 }
+
 
 .container-login{
     /* border-color: #0d6dfdba;
