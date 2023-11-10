@@ -275,6 +275,9 @@ h4 {
     }
 }
 
+form{
+  transform: translateY(-50px);
+}
 
 @keyframes agitar {
   0%, 100% { transform: rotate(-3deg); }
@@ -528,18 +531,34 @@ h4 {
 } */
 
 label {
-  display: inline-block;
+
+  display: flex;
   margin-bottom: .8rem;
   margin-right: .8rem;
   color: #777;
+  text-align: center;
+  justify-content: center;
+  margin-top: 50px;
 }
-input[type=text], input[type=email], input[type=password], input[type=number], textarea {
+input[type=text], input[type=email], input[type=date], input[type=password], input[type=number], textarea {
+
   padding: 1rem 1.5rem;
   border: none;
   border-radius: .5rem;
   width: 100%;
   color: #333;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+  box-shadow: 0 2px 8px rgb(25, 29, 37);
+  text-align: center;
+}
+
+select{
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: .5rem;
+  width: 100%;
+  color: #333;
+  box-shadow: 0 2px 8px rgb(25, 29, 37);
+  text-align:center;
 }
 
 .formulario-especialidad{
@@ -741,9 +760,18 @@ input[type="file"] {
   list-style: none;
 }
 
+#id_especialidades input{
+  display:inline-block;
+  justify-content: start;
+  margin-right: 15px;
+}
+
+
 #id_especialidades > div{
   margin-top: 10px;
 }
+
+
 /* 
 .alta-paciente form p:nth-child(6) label{
   display: block; Asegura que el label esté en una línea por sí solo
@@ -921,7 +949,7 @@ input[type="file"] {
     width: 100%;
     padding: 15px 0;
     border: none;
-    background-color: #84a3d08c;
+    background-color: #84a3d0c7;
     color: #333;
     border-radius: 10px;
     cursor: pointer;
