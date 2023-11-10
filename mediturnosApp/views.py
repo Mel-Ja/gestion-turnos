@@ -133,6 +133,12 @@ class MedicoCreateView(LoginRequiredMixin, CreateView):
     form_class = MedicoAltaForm  # Usamos el formulario personalizado del modelForms de forms.py
     template_name = 'mediturnosApp/medicos/medicos-alta.html'
     success_url = '/'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Obtener el conteo de especialidades y agregarlo al contexto
+        context['cantidad_especialidades'] = Especialidad.objects.count()
+        return context
 
 class EspecialidadCreateView(LoginRequiredMixin, CreateView):
     model = Especialidad
@@ -156,6 +162,13 @@ class TurnosCreateView(LoginRequiredMixin, CreateView):
         response = super().form_valid(form)
         messages.success(self.request, "Turno reservado exitosamente")
         return response
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Obtener el conteo de especialidades y agregarlo al contexto
+        context['cantidad_medicos'] = Medico.objects.count()
+        context['cantidad_pacientes'] = Paciente.objects.count()
+        return context    
     
     
 ################### No borrar, es una alternativa para chequear si un dni existe ##############

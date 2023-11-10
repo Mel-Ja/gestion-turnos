@@ -14,28 +14,34 @@
     {% comment %} <button id="verificar-dni" class="btn btn-outline-dark mt-2">Verificar DNI</button> {% endcomment %}
 {% comment %} </div> {% endcomment %}
 {% comment %} fin de no borrar, es una prueba {% endcomment %}
+    {% if cantidad_pacientes == 0 %}
+    <img class="card-img-top gif-cargue-paciente" src="{% static 'mediturnosApp/img/cargue-paciente.gif' %}" alt="Cargando...">
+    {% else %}
+        {% if cantidad_medicos == 0 %}
+                <img class="card-img-top gif-cargue-medicos-turno" src="{% static 'mediturnosApp/img/cargue-medicos.gif' %}" alt="Cargando...">
+            {% else %}
+            <div>
+                <div class="formulario row">
+                    
+                    <br>
+                    <h3 class="text-center"> Complete el siguiente el formulario:</h3>
+                    <br>
+                    <form method="POST" action=" {% url 'solicitar-turno' %} " class="col-12 col-md-8">
 
-<div>
-    <div class="formulario row">
-        
-        <br>
-        <h3 class="text-center"> Complete el siguiente el formulario:</h3>
-        <br>
-        <form method="POST" action=" {% url 'solicitar-turno' %} " class="col-12 col-md-8">
+                    {% csrf_token %}
+                    {{ form.as_p }}
 
-        {% csrf_token %}
-        {{ form.as_p }}
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" id="boton-enviar" class="btn btn-primary">Solicitar turno</button>
+                    </div>
 
-        <div class="d-flex justify-content-center">
-            <button type="submit" id="boton-enviar" class="btn btn-primary">Solicitar turno</button>
-        </div>
+                    </form>
+                    <br>
+                </div>
 
-        </form>
-        <br>
-    </div>
-
-</div>
-
+            </div>
+        {% endif %}
+    {% endif %}
 
 
 {% comment %} Inicio de No borrar, es una prueba {% endcomment %}
