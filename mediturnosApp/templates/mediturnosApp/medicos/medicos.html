@@ -16,19 +16,18 @@ tambien nos envia a esta template la lista de medicos
 que de acuerdo a el id_especialidad ingresado por el usuario, esa lista sera distinta
 {% endcomment %}
 
-    {% if id == 1 %}
-        <h4>Especialidad Clinica:
-    {% elif id == 2 %}
-        <h4>Especialidad Pediatría:
-    {% elif id == 3 %}
-        <h4>Especialidad Traumatología:
-    {% endif %}
+
+        {% if medicos.count == 1 %}
+            <h4 class="cantidad-medicos">{{medicos.count}} médico</h3>
+        {% else %}
+            <h4 class="cantidad-medicos">{{medicos.count}} médicos</h3>
+        {% endif %}
 
     {% comment %} 
     En la lista de medicos que viene desde la vista
     vemos cuanta cantidad de registros vienen, con el medicos|length
     {% endcomment %}
-    <h4 class="cantidad-medicos">{{medicos.count}} médicos</h3>
+    
         {% if user.is_authenticated and medicos.count == 0 %}
         <img class="card-img-top gif-cargue-medicos" src="{% static 'mediturnosApp/img/cargue-medicos.gif' %}" alt="Cargando...">
         {% endif %}
