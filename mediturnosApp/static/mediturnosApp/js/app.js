@@ -42,6 +42,15 @@ document.addEventListener('input', function (e) {
 });
 
 
+//Deshabilitamos en el formulario, la opcion "elegir" del select Especialidades
+document.addEventListener('DOMContentLoaded', function () { //cuando se carga toda la pagina se ejecuta esta funcion
+    var medicoSelect = document.getElementById('id_medico'); //agarra el select de los medicos y lo mete en la variable medicoSelect
+    medicoSelect.disabled = true; //y aca lo deshabilita a ese select
+});
+
+
+
+
 //inicio de sesión
 const passWordInput = document.querySelector
 ('#ingresodecontraseña')
@@ -93,12 +102,6 @@ el input este en tipo texto, se pasa a modo password, y se oculta un icono,
 y se muestra el otro
 */
 
-
-//Deshabilitamos en el formulario, la opcion "elegir" del select Especialidades
-document.addEventListener('DOMContentLoaded', function () { //cuando se carga toda la pagina se ejecuta esta funcion
-    var medicoSelect = document.getElementById('id_medico'); //agarra el select de los medicos y lo mete en la variable medicoSelect
-    medicoSelect.disabled = true; //y aca lo deshabilita a ese select
-});
 
 
 
