@@ -14,6 +14,7 @@ urlpatterns = [
     path('agenda/', views.agenda, name="agenda"),
     path('medicos/alta', views.MedicoCreateView.as_view(), name="medicos-alta"),
     path('medicos/listado', views.MedicoListView.as_view(), name="medicos-listado"),
+    path('medicos-listado-por-especialidad/<int:especialidad_id>/', views.MedicoPorEspecialidadListView.as_view(), name='medicos-listado-por-especialidad'),
     path('especialidades/alta', views.EspecialidadCreateView.as_view(), name="especialidad-alta"),
     path('pacientes/alta', views.PacienteCreateView.as_view(), name="pacientes-alta"),
     path('pacientes/turnos', views.TurnosCreateView.as_view(), name="solicitar-turno"),

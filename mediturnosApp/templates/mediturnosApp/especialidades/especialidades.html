@@ -40,7 +40,7 @@ esa lista llega con el nombre: especialidades
                     <!-- <div class="especialidad-descripcion"> -->
                     <h4> {{ especialidad.descripcion }} </h4>
                     <!--<br><a class="texto-ver-medicos" href="#">Ver médicos</a>-->
-                    <br><a class="texto-ver-medicos" href="{% url 'medicos-listado' %}">Ver médicos</a>
+                    <br><a class="texto-ver-medicos" href="{% url 'medicos-listado-por-especialidad' especialidad.id %}">Ver médicos</a>
                     <!-- </div> -->
                 </td>
             </tr>

@@ -127,6 +127,30 @@ class MedicoListView(ListView):
     model = Medico
     context_object_name = 'medicos'
     template_name = 'mediturnosApp/medicos/medicos.html' 
+    
+class MedicoPorEspecialidadListView(ListView):
+    model = Medico
+    context_object_name = 'medicos'
+    template_name = 'mediturnosApp/medicos/medicos-por-especialidad.html'
+
+    def get_queryset(self):
+        especialidad_id = int(self.kwargs['especialidad_id'])
+        return Medico.objects.filter(medicoespecialidad__especialidad__id=especialidad_id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        especialidad_id = int(self.kwargs['especialidad_id'])
+        try:
+            especialidad = Especialidad.objects.get(id=especialidad_id)
+            especialidad_nombre = especialidad.nombre
+        except Especialidad.DoesNotExist:
+            especialidad_nombre = None
+
+        context['especialidad_id'] = especialidad_id
+        context['especialidad_nombre'] = especialidad_nombre
+        return context
+    
+    
 
 class MedicoCreateView(LoginRequiredMixin, CreateView):
     model = Medico
@@ -208,8 +232,10 @@ def verificar_dni(request): #Definimos una función de vista llamada verificar_d
 # Esta vista retorna un JSON y lo procesamos desde app.js para retornar los medicos correspondientes en el Select correspondiente.
 
 def cargar_medicos(request):
-    especialidad_id = request.GET.get('especialidad_id')
+    especialidad_id = request.GET.get('especialidad_id') #pone el id de la especialidad elegida por el usuario, que llega en el request, en la variable especialidad_id
     # La consulta de abajo lo que hace es acceder a los campos de la relación entre medico y especialidad.
-    medicos = Medico.objects.filter(medicoespecialidad__especialidad__id=especialidad_id)
-    medicos_list = [{"id": medico.matricula, "nombre": medico.nombre_completo()} for medico in medicos]
+    medicos = Medico.objects.filter(medicoespecialidad__especialidad__id=especialidad_id) #trae de la tabla medicos, a todos los medicos, que tengan en la tabla relacionada MedicoEspecialidad, el id de la especialidad elegida por el usuario. Los guiones bajos se utilizan para navegar a través de las relaciones en el modelo. En este caso, parece que hay una relación entre Medico y Especialidad llamada medicoespecialidad
+    medicos_list = [{"id": medico.matricula, "nombre": medico.nombre_completo()} for medico in medicos] #crea un diccionario en la variable medicos_list, donde recorre con un for la lista medicos, y en cada iteracion hace un clave - valor
     return JsonResponse(medicos_list, safe=False)
+    #safe=False permite la serialización de tipos de datos que no son básicos de Python. En este caso, se permite la serialización de listas (y no solo de diccionarios). Esto es útil cuando se quiere serializar una lista de objetos, como en este caso, donde medicos_list es una lista de diccionarios.
+    #safe=False se utiliza en este caso porque estamos serializando una lista (medicos_list) en lugar de un objeto JSON único. Esto le indica a Django que no debe asumir automáticamente que el objeto a serializar es seguro y le permite serializar listas.
