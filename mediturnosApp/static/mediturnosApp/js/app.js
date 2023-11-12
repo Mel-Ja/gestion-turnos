@@ -126,6 +126,7 @@ function cargarMedicos() {
                 //un ejemplo de esa respuesta seria: un json, con este diccionario clave-valor:
                 //{ id = 001 , nombre = "Martin Alejandro Nuñez" }
                 //en este caso devuelve el unico medico que tiene la especialidad seleccionada
+                if (data.length > 0){
                 data.forEach(function(medico) { //se hace un foreach en data, donde en cada iteracion, cada elemento actual va a tener el nombre de "medico"
                     var option = document.createElement('option'); //Se crea un nuevo elemento HTML <option> utilizando el método createElement del objeto document. Este elemento de opción se utilizará para representar a un médico en un menú desplegable.
                     option.value = medico.id; //Se establece el valor del option, dandole de valor el id del medico. Esto se hace para que cuando el usuario seleccione este médico, se use el id de ese medico como valor 
@@ -133,8 +134,16 @@ function cargarMedicos() {
                     medicoSelect.appendChild(option); //El elemento de opción creado se agrega como hijo al elemento <select>, en este caso representado por la variable medicoSelect. El médico ahora estará disponible como una opción en el menú desplegable. Digamos que aca insertamos esa opcion que creamos, en el select
                 });
                 medicoSelect.disabled = false; //aca habilitamos el select de medicos, para que se pueda elegir
+                }
+                else{   //en caso de que no haya medicos para especialidad:
+                    medicoSelect.disabled = true; //Deshabilitamos la opcion de elegir medico
+                    medicoSelect.innerHTML = '<option value="">No hay medicos disponibles para esta especialidad</option>'; 
+                }
             })
             .catch(error => console.error(error)); //Captura cualquier error que ocurra durante la ejecución de la operación asíncrona y lo imprime en la consola. 
+    }
+    else{
+        medicoSelect.disabled = true; //Deshabilitamos la opcion de elegir medico, en caso de que especialidadId sea una cadena vacia o nula, esta linea de codigo sirve por si se vuelve a poner "seleccione una especiliadad" en el input de arriba
     }
 }
 
