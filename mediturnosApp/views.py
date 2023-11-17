@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.contrib import messages
 from django.http import HttpResponse
 from django.http import JsonResponse
@@ -11,7 +11,7 @@ from .forms import EspecialidadForm, MedicoAltaForm, PacienteAltaForm, TurnosAlt
 from .models import Especialidad, Medico, Paciente, Turnos
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
 # Create your views here.
@@ -152,7 +152,8 @@ class MedicoPorEspecialidadListView(ListView):
     
     
 
-class MedicoCreateView(LoginRequiredMixin, CreateView):
+class MedicoCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = ('mediturnosApp.add_medico')
     model = Medico
     form_class = MedicoAltaForm  # Usamos el formulario personalizado del modelForms de forms.py
     template_name = 'mediturnosApp/medicos/medicos-alta.html'
@@ -163,18 +164,32 @@ class MedicoCreateView(LoginRequiredMixin, CreateView):
         # Obtener el conteo de especialidades y agregarlo al contexto
         context['cantidad_especialidades'] = Especialidad.objects.count()
         return context
+    
+    def handle_no_permission(self):
+        # Personaliza la redirección cuando el usuario no tiene el permiso
+        return redirect('login')
 
-class EspecialidadCreateView(LoginRequiredMixin, CreateView):
+class EspecialidadCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = ('mediturnosApp.add_especialidad')
     model = Especialidad
     template_name = 'mediturnosApp/especialidades/especialidades-alta.html'
     success_url = '/'
     fields = '__all__'
+
+    def handle_no_permission(self):
+        # Personaliza la redirección cuando el usuario no tiene el permiso
+        return redirect('login')
     
-class PacienteCreateView(CreateView):
+class PacienteCreateView(PermissionRequiredMixin,CreateView):
+    permission_required = ('mediturnosApp.add_paciente')
     model = Paciente
     form_class = PacienteAltaForm  # Usamos el formulario personalizado del modelForms de forms.py
     template_name = 'mediturnosApp/pacientes/pacientes-alta.html'
-    success_url = '/'    
+    success_url = '/'
+
+    def handle_no_permission(self):
+        # Personaliza la redirección cuando el usuario no tiene el permiso
+        return redirect('login')
 
 class TurnosCreateView(LoginRequiredMixin, CreateView):
     model = Turnos
