@@ -8,7 +8,20 @@ html, body {
   height: 100%;
 }
 
-body{
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5vh;
+}
+
+.user p {
+  color: #4079b1;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+body {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -66,7 +79,7 @@ h4 {
 
 
 .logo{
-  width: 110px;
+  width: 0px;
   height: 91px;
   display: flex;
   justify-content: center;

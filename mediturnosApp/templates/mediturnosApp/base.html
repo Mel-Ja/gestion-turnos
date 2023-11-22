@@ -95,6 +95,9 @@
 
                             {% if perms.mediturnosApp %}
                             <li class="nav-item secciondeedicion">
+                                <a class="nav-link botonesEncabezado" href="{% url 'agenda' %}">Agenda</a>
+                            </li>
+                            <li class="nav-item secciondeedicion">
                                 <a class="nav-link {% if request.path == '/pacientes/turnos/' %}active{% endif %} botonesEncabezado" href="{% url 'solicitar-turno' %}">Solicitar turno</a>
                             </li>
                             {% endif %}
@@ -104,23 +107,24 @@
                                     <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
                                 </li>
                             {% else %}
+                                {% if user.is_staff or user.is_superuser %}
+                                <li class="nav-item {% if request.path == '/admin/' %}active{% endif %}">
+                                    <a class="nav-link botonesEncabezado" href="{% url 'admin:index' %}">Administración</a>
+                                </li>
+                                {% endif %}
                                 <li class="nav-item {% if request.path == '/cerrar-sesion/' %}active{% endif %}">
                                     <a class="nav-link" href="{% url 'cerrar-sesion' %}">Cerrar Sesión</a>
                                 </li>
-                            {% endif %}
-
-                            
-
-                            {% if user.is_staff or user.is_superuser %}
-                            <li class="nav-item {% if request.path == '/admin/' %}active{% endif %}">
-                                <a class="nav-link botonesEncabezado" href="{% url 'admin:index' %}">Administración</a>
-                            </li>
                             {% endif %}
                         </ul>
                     </div>
                 </div>
             </nav>
-        
+            {% if user.is_authenticated %}
+            <div class="user">
+                    <p>Bienvenida/o <b>{{user.username}}</b></p>
+            </div>
+            {%endif%}
     </header>
 
         

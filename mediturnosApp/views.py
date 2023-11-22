@@ -12,6 +12,7 @@ from .models import Especialidad, Medico, Paciente, Turnos
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
 
 
 # Create your views here.
@@ -107,14 +108,46 @@ def solicitarturno(request):
                 
     return render(request, "mediturnosApp/turnos/solicitarturno.html", contexto)
 
+@login_required
+def obtener_turnos(request):
+    # Obtener el paciente asociado al usuario autenticado
+    paciente = request.user.paciente
 
+    # Consultar los turnos del paciente
+    turnos_del_paciente = Turnos.objects.filter(historia_clinica=paciente)
+
+    # Preparar los datos para ser mostrados en la plantilla
+    datos_turnos = []
+    for turno in turnos_del_paciente:
+        datos_turnos.append({
+            'fecha': turno.fecha,
+            'hora': turno.hora,
+            'nombre_medico': turno.matricula.nombre_completo(),
+            'cancelado': "Sí" if turno.cancelado else "No",
+        })
+
+    # Puedes pasar estos datos a tu plantilla
+    return render(request, 'tu_template.html', {'datos_turnos': datos_turnos})
+
+@login_required
 def agenda(request):
-    contexto = {
-            'fecha': datetime.now().strftime('%d/%m/%Y %H:%M')
-                }
-    return render(request, "mediturnosApp/turnos/agenda.html", contexto)
-    
+    # Obtener el paciente asociado al usuario autenticado
+    paciente = request.user.paciente
+    # Consultar los turnos del paciente
+    turnos_del_paciente = Turnos.objects.filter(historia_clinica=paciente)
 
+    # Preparar los datos para ser mostrados en la plantilla
+    datos_turnos = []
+    for turno in turnos_del_paciente:
+        datos_turnos.append({
+            'fecha': turno.fecha,
+            'hora': turno.hora,
+            'nombre_medico': turno.matricula.nombre_completo(),
+            'cancelado': "CANCELADO" if turno.cancelado else "TURNO ASIGNADO",
+        })
+
+    # Puedes pasar estos datos a tu plantilla
+    return render(request, 'mediturnosApp/turnos/agenda.html', {'datos_turnos': datos_turnos})
 
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # Aclaracion importe!!
@@ -180,16 +213,17 @@ class EspecialidadCreateView(PermissionRequiredMixin, CreateView):
         # Personaliza la redirección cuando el usuario no tiene el permiso
         return redirect('login')
     
-class PacienteCreateView(PermissionRequiredMixin,CreateView):
-    permission_required = ('mediturnosApp.add_paciente')
+class PacienteCreateView(CreateView):
+    # permission_required = ('mediturnosApp.add_paciente')
     model = Paciente
     form_class = PacienteAltaForm  # Usamos el formulario personalizado del modelForms de forms.py
     template_name = 'mediturnosApp/pacientes/pacientes-alta.html'
     success_url = '/'
 
-    def handle_no_permission(self):
-        # Personaliza la redirección cuando el usuario no tiene el permiso
-        return redirect('login')
+    # def handle_no_permission(self):
+    #     # Personaliza la redirección cuando el usuario no tiene el permiso
+    #     return redirect('login')
+
 
 class TurnosCreateView(LoginRequiredMixin, CreateView):
     model = Turnos
