@@ -71,7 +71,7 @@
                                 <a class="nav-link" href="{% url 'medicos-listado' %}">Médicos</a>
                             </li>
 
-                            {% if user.is_authenticated %}
+                            {% if user.is_staff or user.is_superuser %}
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                       Administrar Altas
@@ -91,22 +91,27 @@
                                     </ul>
 
                                 </li>
-                                <li class="nav-item secciondeedicion {% if request.path == '/cerrar-sesion/' %}active{% endif %}">
-                                    <a class="nav-link {% if request.path == '/pacientes/turnos/' %}active{% endif %} botonesEncabezado" href="{% url 'solicitar-turno' %}">Solicitar turno</a>
-                                </li>
+                            {% endif %}
 
-                                <li class="nav-item {% if request.path == '/cerrar-sesion/' %}active{% endif %}">
-                                    <a class="nav-link" href="{% url 'cerrar-sesion' %}">Cerrar Sesión</a>
-                                </li>
+                            {% if perms.mediturnosApp %}
+                            <li class="nav-item secciondeedicion">
+                                <a class="nav-link {% if request.path == '/pacientes/turnos/' %}active{% endif %} botonesEncabezado" href="{% url 'solicitar-turno' %}">Solicitar turno</a>
+                            </li>
                             {% endif %}
 
                             {% if not user.is_authenticated %}
                                 <li class="nav-item {% if request.path == '/login/' %}active{% endif %}">
                                     <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
                                 </li>
+                            {% else %}
+                                <li class="nav-item {% if request.path == '/cerrar-sesion/' %}active{% endif %}">
+                                    <a class="nav-link" href="{% url 'cerrar-sesion' %}">Cerrar Sesión</a>
+                                </li>
                             {% endif %}
 
-                            {% if user.is_authenticated %}
+                            
+
+                            {% if user.is_staff or user.is_superuser %}
                             <li class="nav-item {% if request.path == '/admin/' %}active{% endif %}">
                                 <a class="nav-link botonesEncabezado" href="{% url 'admin:index' %}">Administración</a>
                             </li>
