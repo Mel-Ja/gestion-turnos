@@ -94,12 +94,14 @@
                             {% endif %}
 
                             {% if perms.mediturnosApp %}
-                            <li class="nav-item secciondeedicion">
-                                <a class="nav-link botonesEncabezado" href="{% url 'agenda' %}">Agenda</a>
-                            </li>
-                            <li class="nav-item secciondeedicion">
-                                <a class="nav-link {% if request.path == '/pacientes/turnos/' %}active{% endif %} botonesEncabezado" href="{% url 'solicitar-turno' %}">Solicitar turno</a>
-                            </li>
+                                {% if not user.is_superuser and not user.is_staff  %}
+                                    <li class="nav-item secciondeedicion">
+                                        <a class="nav-link botonesEncabezado" href="{% url 'agenda' %}">Agenda</a>
+                                    </li>
+                                    <li class="nav-item secciondeedicion">
+                                        <a class="nav-link {% if request.path == '/pacientes/turnos/' %}active{% endif %} botonesEncabezado" href="{% url 'solicitar-turno' %}">Solicitar turno</a>
+                                    </li>
+                                {% endif %}   
                             {% endif %}
 
                             {% if not user.is_authenticated %}
@@ -122,7 +124,7 @@
             </nav>
             {% if user.is_authenticated %}
             <div class="user">
-                    <p>Bienvenida/o <b>{{user.username}}</b></p>
+                    <p>Bienvenido/a <b>{{user.username}}</b></p>
             </div>
             {%endif%}
     </header>
