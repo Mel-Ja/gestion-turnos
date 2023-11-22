@@ -2,6 +2,8 @@ from django import forms
 from datetime import datetime, timedelta
 from django.core.exceptions import ValidationError
 from .models import Especialidad, Medico, Paciente, Turnos
+from django.contrib.auth.models import User
+from django.contrib.auth.models import Group, Permission
 
 HOUR_CHOICES = [(f"{hour:02d}:{minute:02d}", f"{hour:02d}:{minute:02d}") for hour in range(8, 20) for minute in range(0, 60, 15)]
 
@@ -77,9 +79,6 @@ class SolicitarTurnoForm(forms.Form):
                 raise forms.ValidationError("La hora seleccionada no está disponible para esta fecha")
 
         return hora
-    
-    
-
 
 class MedicoAltaForm(forms.ModelForm):
     # Definimos los campos adicionales de Persona, que no se muestran en el formulario 
@@ -110,11 +109,11 @@ class MedicoAltaForm(forms.ModelForm):
         widgets = {
             'especialidades': forms.CheckboxSelectMultiple(),
         }
-    
-    
-    
-    
+
 class PacienteAltaForm(forms.ModelForm):
+
+    username = forms.CharField(max_length=30, label='Usuario')
+    password = forms.CharField(widget=forms.PasswordInput, label='Contraseña')
 
     def clean_historia_clinica(self):
         if int(self.cleaned_data['historia_clinica']) < 0:
@@ -130,12 +129,36 @@ class PacienteAltaForm(forms.ModelForm):
             raise ValidationError("El dni debe contener al menos 8 caracteres")
 
         return self.cleaned_data['dni']
-   
+    
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if User.objects.filter(username=username).exists():
+            raise ValidationError("Este nombre de usuario ya está en uso")
+        return username
+
+    def save(self, commit=True):
+        paciente = super(PacienteAltaForm, self).save(commit=False)
+        user = User(username=self.cleaned_data['username'])
+        user.set_password(self.cleaned_data['password'])
+        
+        if commit:
+            user.save()
+            paciente.user = user  # Asigna el usuario al paciente
+            paciente.save()
+            self.save_m2m()
+
+        # Asigna el permiso al usuario
+            grupo_paciente, creado = Group.objects.get_or_create(name='Paciente')  # Crea o obtiene el grupo 'Paciente'
+            paciente.user.groups.add(grupo_paciente)  # Asigna el usuario al grupo 'Paciente'
+
+            
+        return paciente
+
     class Meta:
         model = Paciente
-        fields = '__all__'
+        fields = ['nombre', 'apellido', 'email', 'dni', 'historia_clinica', 'username', 'password']
         labels = {
-            'historia_clinica': 'Alta única de historia clínica',  # Label personalizada
+            'historia_clinica': 'Alta única de historia clínica',
         }
         
         

@@ -8,13 +8,30 @@
 
 
 {% block principal %}
-<div class="contenedor-agenda">
-    <div class="div-imagen-agenda">
-        <img src="{% static 'mediturnosApp/img/agenda.png' %}" alt="Mediturnos">
-    </div>
-   
-</div>
-<div class="contenedor-agenda"><br><br><br><br><br><br><br><br><br><br><br></div>
+    <table class="table caption-top">
+        <thead>
+        <tr>
+            <th scope="col">Fecha</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Médico</th>
+            <th scope="col">Estado</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% if datos_turnos|length == 0 %}
+                <p>No hay turnos asignados.</p>
+            {%else%}
+                {% for turno in datos_turnos %}
+                    <tr>
+                        <td>{{turno.fecha}}</td>
+                        <td>{{turno.hora}}</td>
+                        <td>{{turno.nombre_medico}}</td>
+                        <td>{{turno.cancelado}}</td>
+                    </tr>
+                {% endfor %}
+            {%endif%}
+        </tbody>
+    </table>
 {% endblock %}
 
 {% block fecha %} 
