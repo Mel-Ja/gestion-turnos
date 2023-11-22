@@ -1,11 +1,10 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
 from django.http import JsonResponse
 from datetime import datetime
-from django.views.generic.edit import CreateView
-from django.views.generic.list import ListView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 from .forms import SolicitarTurnoForm
 from .forms import EspecialidadForm, MedicoAltaForm, PacienteAltaForm, TurnosAltaForm
 from .models import Especialidad, Medico, Paciente, Turnos
@@ -242,7 +241,174 @@ class TurnosCreateView(LoginRequiredMixin, CreateView):
         context['cantidad_medicos'] = Medico.objects.count()
         context['cantidad_pacientes'] = Paciente.objects.count()
         return context    
+
+
+
+
+@login_required
+def administracion_index(request):
+
+    contexto = {}
+
+    return render(request, 'mediturnosApp/administracion/administracion-index.html', contexto)
+
+
+class EspecialidadesAdminListView(ListView):
+    model = Especialidad
+    context_object_name = 'especialidades'
+    template_name = 'mediturnosApp/administracion/especialidades/index.html'
+    queryset = Especialidad.objects.all()
+
+    def get(self, request: HttpRequest, *args: any, **kwargs: any):
+        if 'nombre' in request.GET:
+            self.queryset = self.queryset.filter(nombre__contains=request.GET['nombre'])
+
+        return super().get(request, *args, **kwargs)
+
+def especialidades_alta(request):
+
+    contexto = {}
+
+    return render(request, 'mediturnosApp/administracion/especialidades/especialidad-alta.html', contexto)
+
+def especialidades_eliminar(request):
+
+    contexto = {}
+
+    return render(request, 'mediturnosApp/administracion/especialidades/especialidad-eliminar.html', contexto)
+
+def especialidades_modificar(request):
+
+    contexto = {}
+
+    return render(request, 'mediturnosApp/administracion/especialidades/especialidad-modificar.html', contexto)
+
+
+class MedicoAdminListView(ListView):
+    model = Medico
+    context_object_name = 'medicos'
+    template_name = 'mediturnosApp/administracion/medicos/index.html'
+    queryset = Medico.objects.all()
+    ordering = ['matricula']
+
+    def get(self, request: HttpRequest, *args: any, **kwargs: any):
+        if 'nombre' in request.GET:
+            self.queryset = self.queryset.filter(nombre__contains=request.GET['nombre'])
+
+        return super().get(request, *args, **kwargs)
+
+class MedicoAdminCreateView(CreateView):
+    model = Medico
+    form_class = MedicoAltaForm
+    template_name = 'mediturnosApp/administracion/medicos/medico-alta.html'
+    success_url = reverse_lazy('medicos_index')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Médico agregado exitosamente")
+        return response
     
+
+class MedicoAdminDeleteView(DeleteView):
+    model = Medico
+    template_name = 'mediturnosApp/administracion/medicos/medico-eliminar.html'
+    success_url = reverse_lazy('medicos_index')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, "Medico eliminado exitosamente")
+        return super().delete(request, *args, **kwargs)
+    
+    def get_success_url(self):
+        messages.success(self.request, "Medico eliminado exitosamente")
+        return reverse_lazy('medicos_index')
+    
+
+class MedicoAdminUpdateView(UpdateView):
+    model = Medico
+    form_class = MedicoAltaForm
+    template_name = 'mediturnosApp/administracion/medicos/medico-modificar.html'
+    success_url = reverse_lazy('medicos_index')
+
+
+class PacienteListView(ListView):
+    model = Paciente
+    context_object_name = 'pacientes'
+    template_name = 'mediturnosApp/administracion/pacientes/index.html'
+    queryset = Paciente.objects.all()
+    ordering = ['historia_clinica']
+
+    def get(self, request: HttpRequest, *args: any, **kwargs: any):
+        if 'nombre' in request.GET:
+            self.queryset = self.queryset.filter(nombre__contains=request.GET['nombre'])
+
+        return super().get(request, *args, **kwargs)
+    
+
+class PacienteAdminCreateView(CreateView):
+    model = Paciente
+    form_class = PacienteAltaForm
+    template_name = 'mediturnosApp/administracion/pacientes/paciente-alta.html'
+    success_url = reverse_lazy('pacientes_index')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, "Paciente agregado exitosamente")
+        return response
+
+
+class PacienteDeleteView(DeleteView):
+    model = Paciente
+    template_name = 'mediturnosApp/administracion/pacientes/paciente-eliminar.html'
+    success_url = reverse_lazy('pacientes_index')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, "Paciente eliminado exitosamente")
+        return super().delete(request, *args, **kwargs)
+    
+    def get_success_url(self):
+        messages.success(self.request, "Paciente eliminado exitosamente")
+        return reverse_lazy('pacientes_index')
+
+
+class PacienteUpdateView(UpdateView):
+    model = Paciente
+    form_class = PacienteAltaForm
+    template_name = 'mediturnosApp/administracion/pacientes/paciente-modificar.html'
+    success_url = reverse_lazy('pacientes_index')
+
+
+class TurnosAdminListView(ListView):
+    model = Turnos
+    context_object_name = 'turnos'
+    template_name = 'mediturnosApp/administracion/turnos/index.html'
+    queryset = Turnos.objects.all()
+
+
+@login_required
+def turnos_index(request):
+    contexto = {}
+
+    return render(request, 'mediturnosApp/administracion/turnos/index.html', contexto)
+
+
+@login_required
+def turnos_cancelar(request):
+    contexto = {}
+
+    return render(request, 'mediturnosApp/administracion/turnos/turno-cancelar.html', contexto)
+
+@login_required
+def perfil_index(request):
+    contexto = {}
+
+    return render(request, 'mediturnosApp/administracion/perfil/index.html', contexto)
+
+@login_required
+def recuperar_password(request):
+    contexto = {}
+
+    return render(request, 'mediturnosApp/administracion/perfil/recuperar-password.html', contexto)
+
     
 ################### No borrar, es una alternativa para chequear si un dni existe ##############
 def verificar_dni(request): #Definimos una función de vista llamada verificar_dni, que atendera cuando se ingrese en el navegador "/verificar_dni", o cuando se envien datos a esa direccion. Esta funcion de vista, a la que le llegan datos en el request, verificara si el dni del paciente existe. 

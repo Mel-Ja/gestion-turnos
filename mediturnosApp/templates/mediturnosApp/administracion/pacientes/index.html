@@ -1,0 +1,87 @@
+{% extends "mediturnosApp/base_administracion.html" %}
+{% block titulo %} Pacientes - Mediturnos {% endblock %}
+{% load static %}
+
+
+{% block titulo_principal %} Pacientes {% endblock %}
+{% block principal %}
+
+<div class="px-md-5 w-100 row mb-5 justify-content-center">
+
+    <div class="col-12 col-md-6">
+        <a href="{% url 'pacientes_alta' %}" class="card-admin">
+            <div class="px-4 py-3 rounded border d-flex align-items-center justify-content-between">
+                <h4 class="fs-4 m-0">Agregar paciente</h4>
+                <span><i class="fa-solid fa-circle-plus fa-2xl"></i></span>
+            </div>
+        </a>
+    </div>
+
+    {% comment %} <div class="col-12 col-md-6">
+        <a href="{% url 'pacientes_eliminar' historia_clinica %}" class="card-admin">
+            <div class="px-4 py-3 rounded shadow-sm d-flex align-items-center justify-content-between">
+                <h4 class="fs-4 m-0">Eliminar paciente</h4>
+                <span><i class="fa-regular fa-trash-can fa-2xl text-danger"></i></i></span>
+            </div>
+        </a>
+    </div> {% endcomment %}
+</div>
+
+
+
+<div class="row px-md-5">
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+    <div class="">
+        <form action="" method="get" class="form-admin">
+            <div class="row flex-wrap align-items-center justify-content-end">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <input type="text" id="nombre" name="nombre" class="form-control border p-2" placeholder="Buscar por nombre">
+                </div>
+                <div class="col-4 col-md-2">
+                    <button class="btn btn-success  mt-2 m-md-0 container">Buscar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="px-md-5 py-4 table-responsive">
+    <table class="table table-bordered shadow">
+        <thead>
+            <tr>
+                <th scope="col">Historia clínica</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Email</th>
+                <th scope="col"></th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- datos -->
+            {% for paciente in pacientes %}
+            <tr>
+                <th scope="row">{{ paciente.historia_clinica }}</th>
+                <td>{{ paciente.nombre }}</td>
+                <td>{{ paciente.apellido }}</td>
+                <td>{{ paciente.dni }}</td>
+                <td>{{ paciente.email }}</td>
+                <td class="text-center"><a href="{% url 'pacientes_modificar' paciente.historia_clinica %}"><i class="fa-regular fa-pen-to-square fa-xl text-warning me-2"></i></a>
+                    <a href="{% url 'pacientes_eliminar' paciente.historia_clinica %}"><i class="fa-regular fa-trash-can fa-xl text-danger"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "mediturnosApp/base_administracion.html" %}
+{% block titulo %} Turnos - Mediturnos {% endblock %}
+{% load static %}
+
+
+{% block titulo_principal %} Turnos {% endblock %}
+{% block principal %}
+
+{% comment %} <div class="px-md-5 w-100 row mb-5 justify-content-center">
+
+    <div class="col-12 col-md-6">
+        <a href="{% url 'pacientes_alta' %}" class="card-admin">
+            <div class="px-4 py-3 rounded border d-flex align-items-center justify-content-between">
+                <h4 class="fs-4 m-0">Agregar paciente</h4>
+                <span><i class="fa-solid fa-circle-plus fa-2xl"></i></span>
+            </div>
+        </a>
+    </div>
+
+</div> {% endcomment %}
+
+
+
+<div class="row px-md-5">
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+    {% comment %} <div class="">
+        <form action="" method="get" class="form-admin">
+            <div class="row flex-wrap align-items-center justify-content-end">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <input type="text" id="nombre" name="nombre" class="form-control border p-2" placeholder="Buscar por nombre">
+                </div>
+                <div class="col-4 col-md-2">
+                    <button class="btn btn-success  mt-2 m-md-0 container">Buscar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div> {% endcomment %}
+
+
+<div class="px-md-5 py-4 table-responsive">
+    <table class="table table-bordered shadow">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Hora</th>
+                <th scope="col">Cancelado</th>
+                <th scope="col"></th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <!-- datos -->
+            {% for turno in turnos %}
+            <tr>
+                <th scope="row">{{ turno.id }}</th>
+                <td>{{ turno.fecha }}</td>
+                <td>{{ turno.hora }}</td>
+                <td>{{ turno.cancelado }}</td>
+                <td class="text-center"><a href="#"><i class="fa-regular fa-pen-to-square fa-xl text-warning me-2"></i></a>
+                    <a href="#"><i class="fa-regular fa-trash-can fa-xl text-danger"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

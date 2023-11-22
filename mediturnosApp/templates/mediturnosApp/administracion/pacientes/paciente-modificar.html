@@ -1,0 +1,36 @@
+{% extends "mediturnosApp/base_administracion.html" %}
+{% block titulo %} Modificar paciente - Mediturnos {% endblock %}
+{% load static %}
+
+
+{% block principal %}
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8">
+            <h2 class="fs-3">Modificar paciente</h2>
+
+            <div class="formulario alta-paciente row">
+    
+                <br>
+                <h3 class="text-center"> Modifique los datos del paciente: </h3>
+                <br>
+                <form method="POST" class="col-12 col-md-6">
+            
+                {% csrf_token %}
+                {{ form}}
+            
+                <div class="d-flex justify-content-center mt-5">
+                    <a href="{% url 'pacientes_index' %}" class="btn btn-outline-dark container me-2 d-flex align-items-center justify-content-center">Cancelar</a>
+                    <button type="submit" id="boton-enviar" class="btn btn-primary mt-0 container">Modificar</button>
+                </div>
+            
+                </form>
+                <br>
+            </div>
+
+        </div>
+
+        
+    </div>
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "mediturnosApp/base_administracion.html" %}
+{% block titulo %} Dashboard - Mediturnos {% endblock %}
+{% load static %}
+
+{% block titulo_principal %} Dashboard {% endblock %}
+
+{% block principal %}
+<div class="row justify-content-center gy-4 w-100 align-items-center m-0">
+    <!-- col -->
+    <div class="col-12 col-md-8 shadow rounded-3">
+        <div class="row">
+            <!-- col -->
+            <div class="col-12 col-md-8 flex-grow-1 p-5">
+                <h3 class="fs-1 fw-semibold blue-dark-clr">Hola, {{user.username}}</h3>
+                <p class="lead lh-base fw-normal"> Este es tu espacio personal de salud, tu comodidad y bienestar son nuestra prioridad. Explora y gestiona tu perfil con facilidad <br>¿En qué podemos ayudarte hoy?</p>
+            </div>
+            <!-- col -->
+            <div class="col-12 col-md-4 flex-grow-1 align-self-end p-0 text-end">
+                <img src="{% static 'mediturnosApp/img/dashboard.png' %}" alt="dashboard img" class="img-fluid">
+            </div>    
+        </div>
+
+    </div>
+
+   
+
+
+    <!-- col -->
+    <div class="col-12 col-md-8">
+        <div class="row justify-content-between gy-4">
+            <!-- Pacientes card -->
+            <div class="admin-card col-12 col-md-5 shadow rounded-3 p-5 flex-grow-1 me-md-2">
+                <div class="icon-wrapper mb-4" data-color="light-blue">
+                    <i class="fa-solid fa-hospital-user"></i>
+                </div>
+                <p class="fs-2 text-capitalize fw-semibold blue-dark-clr mb-4 lh-1">Pacientes</p>
+                <a href="{% url 'pacientes_index' %}" class="lead fw-normal card-link">Gestionar <i class="fa-solid fa-circle-arrow-right"></i></a>
+            </div>
+            <!-- Médicos card -->
+            <div class="admin-card col-12 col-md-5 shadow rounded-3 p-5 flex-grow-1 ms-md-2">
+                <div class="icon-wrapper mb-4" data-color="light-green">
+                    <i class="fa-solid fa-user-doctor"></i>
+                </div>
+                <p class="fs-2 text-capitalize fw-semibold blue-dark-clr mb-4 lh-1">Médicos</p>
+                <a href="{% url 'medicos_index' %}" class="lead fw-normal card-link">Gestionar <i class="fa-solid fa-circle-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- col -->
+    <div class="col-12 col-md-8">
+        <div class="row justify-content-between gy-4">
+            <!-- Especialidades card -->
+            <div class="admin-card col-12 col-md-5 shadow rounded-3 p-5 flex-grow-1 me-md-2">
+                <div class="icon-wrapper mb-4" data-color="light-blue">
+                    <i class="fa-solid fa-house-medical"></i>
+                </div>
+                <p class="fs-2 text-capitalize fw-semibold blue-dark-clr mb-4 lh-1 text-break">Especialidades</p>
+                <a href="{% url 'especialidades_index' %}" class="lead fw-normal card-link">Gestionar <i class="fa-solid fa-circle-arrow-right"></i></a>
+            </div>
+            <!-- Mis turnos card -->
+            <div class="admin-card col-12 col-md-5 shadow rounded-3 p-5 flex-grow-1 ms-md-2">
+                <div class="icon-wrapper mb-4" data-color="light-green">
+                    <i class="fa-solid fa-calendar-day"></i>
+                </div>
+                <p class="fs-2 text-capitalize fw-semibold blue-dark-clr mb-4 lh-1">Turnos</p>
+                <a href="{% url 'turnos_index' %}" class="lead fw-normal card-link">Gestionar turnos <i class="fa-solid fa-circle-arrow-right"></i></a>
+            </div>
+            
+        </div>
+    </div>
+
+     <!-- col -->
+     <div class="col-12 col-md-8">
+        <div class="row justify-content-between gy-4">
+            <!-- Mi perfil card -->
+            <div class="admin-card col-12 col-md-5 shadow rounded-3 p-5 flex-grow-1 me-md-2">
+                <div class="icon-wrapper mb-4" data-color="light-blue">
+                    <i class="fa-regular fa-address-card"></i>
+                </div>
+                <p class="fs-2 text-capitalize fw-semibold blue-dark-clr mb-4 lh-1">Mi perfil</p>
+                <a href="#" class="lead fw-normal card-link">Gestionar perfil <i class="fa-solid fa-circle-arrow-right"></i></a>
+            </div>
+            <!-- card -->
+            {% comment %} <div class="admin-card col-12 col-md-5 shadow rounded-3 p-5 flex-grow-1 ms-md-2">
+                <div class="icon-wrapper mb-4" data-color="light-green">
+                    <i class="fa-solid fa-user-doctor"></i>
+                </div>
+                <p class="fs-2 text-capitalize fw-semibold blue-dark-clr mb-4 lh-1">Médicos</p>
+                <a href="#" class="lead fw-normal card-link">Gestionar <i class="fa-solid fa-circle-arrow-right"></i></a>
+            </div> {% endcomment %}
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
+{% comment %} mediturnosApp/turnos/agenda.html {% endcomment %}

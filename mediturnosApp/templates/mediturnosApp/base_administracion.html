@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}{% endblock %}</title>
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'mediturnosApp/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'mediturnosApp/css/administrador_styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="{% static 'mediturnosApp/img/Logo.png' %}" type="image/png">
+
+    <script src="https://kit.fontawesome.com/d6857610b3.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@300;500&family=Lobster&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="d-block">
+    <div class="main-container pb-5">
+        
+        <div id="sidebar" class="sidebar px-3 pt-3 pb-4">
+            <!-- logo -->
+            <div class="header-box">
+                <span class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white">
+                    <img src="{% static 'mediturnosApp/img/logo.png' %}" alt="Logo" class="logoDashboard">
+                </span>
+
+                <button id="btn-close" class="btn btn-outline-dark btn-close d-lg-none" data-bs-toggle="offcanvas"
+                    data-bs-target="sidebar" aria-controls="sidebar"></button>
+            </div>
+
+            <nav>
+                <ul class="list-unstyled components mb-5">
+                    <li class=""><a href="{% url 'administracion_index' %}" class="fs-6 nav-link">Dashboard</a></li>
+
+                    <li class="">
+                        <button class="btn btn-toggle p-0" data-bs-toggle="collapse"
+                            data-bs-target="#pacientes-collapse" aria-expanded="false">Pacientes</button>
+                        <div class="collapse" id="pacientes-collapse">
+                            <ul class="btn-toggle-nav list-unstyled">
+                                <li class="mx-2"><a href="{% url 'pacientes_index' %}" class="nav-link">Overview</a></li>
+                                <li class="mx-2"><a href="{%url 'pacientes_alta' %}" class="nav-link">Alta paciente</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    
+                    <li class="">
+                        <button class="btn btn-toggle p-0" data-bs-toggle="collapse" data-bs-target="#medicos-collapse"
+                            aria-expanded="false">Médicos</button>
+                        <div class="collapse" id="medicos-collapse">
+                            <ul class="btn-toggle-nav list-unstyled">
+                                <li class="mx-2"><a href="{% url 'medicos_index' %}" class="nav-link">Overview</a></li>
+                                <li class="mx-2"><a href="{% url 'medicos_alta' %}" class="nav-link">Agregar médicos</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="">
+                        <button class="btn btn-toggle p-0" data-bs-toggle="collapse"
+                            data-bs-target="#especialidades-collapse" aria-expanded="false">Especialidades</button>
+                        <div class="collapse" id="especialidades-collapse">
+                            <ul class="btn-toggle-nav list-unstyled">
+                                <li class="mx-2"><a href="{% url 'especialidades_index' %}" class="nav-link">Overview</a></li>
+                                <li class="mx-2"><a href="{% url 'especialidades_alta' %}" class="nav-link">Agregar especialidad</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="">
+                        <button class="btn btn-toggle p-0" data-bs-toggle="collapse" data-bs-target="#turnos-collapse"
+                            aria-expanded="false">Turnos</button>
+                        <div class="collapse" id="turnos-collapse">
+                            <ul class="btn-toggle-nav list-unstyled">
+                                <li class="mx-2"><a href="{% url 'turnos_index' %}" class="nav-link">Ver turnos</a></li>
+                                <li class="mx-2"><a href="{% url 'turnos_cancelar' %}" class="nav-link">Cancelar turno</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="">
+                        <button class="btn btn-toggle p-0" data-bs-toggle="collapse" data-bs-target="#perfil-collapse"
+                            aria-expanded="false">Mi perfil</button>
+
+                        <div class="collapse" id="perfil-collapse">
+                            <ul class="btn-toggle-nav list-unstyled small">
+                                <li class="mx-2"><a href="#" class="nav-link">Overview</a></li>
+                                <li class="mx-2"><a href="#" class="nav-link">Cambiar contraseña</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+
+
+                    <li class="text-dark">
+                        <a href="{% url 'indice' %}" class="fs-6 nav-link">
+                            <i class="fa-solid fa-left-long"></i> Volver
+                        </a>
+                    </li>
+                </ul>
+                <hr/>
+            </nav>
+        </div>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="py-4 d-flex align-items-center justify-content-between">
+                    <button id="sidebarToggle" class="btn btn-outline-dark d-lg-none d-block" data-bs-toggle="offcanvas"
+                        data-bs-target="#sidebar" aria-controls="sidebar"><i class="fa-solid fa-bars"></i></button>
+
+                    <h1 class="m-0 text-center fs-3">{% block titulo_principal %}{% endblock %}</h1>
+                    <div class="dropdown">
+                        <a class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Mi perfil</a></li>
+                            <li><a class="dropdown-item" href="#">Cambiar contraseña</a></li>
+                            <hr/>
+                            <li><a class="dropdown-item" href="{% url 'cerrar-sesion' %}">Cerrar sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                {% block principal %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'mediturnosApp/js/app.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script>
+        const sidebar = new bootstrap.Offcanvas(document.getElementById('sidebar'));
+
+        document.getElementById('sidebarToggle').addEventListener('click', () => {
+            sidebar.show();
+            document.getElementById('sidebarToggle').style.visibility = 'hidden';
+            document.getElementById('main-container').classList.add('sidebar-open');
+        });
+
+        document.getElementById('btn-close').addEventListener('click', () => {
+            sidebar.hide();
+            setTimeout(() => {
+                document.getElementById('sidebarToggle').style.visibility = 'visible';
+                document.getElementById('main-container').classList.remove('sidebar-open');
+            }, 300);
+        });
+    </script>
+</body>
+
+</html>

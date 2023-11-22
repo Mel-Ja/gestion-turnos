@@ -113,6 +113,9 @@
                                 <li class="nav-item {% if request.path == '/admin/' %}active{% endif %}">
                                     <a class="nav-link botonesEncabezado" href="{% url 'admin:index' %}">Administración</a>
                                 </li>
+                                <li class="nav-item {% if request.path == '/admin/' %}active{% endif %}">
+                                    <a class="nav-link botonesEncabezado" href="{% url 'administracion_index' %}">Dashboard</a>
+                                </li>
                                 {% endif %}
                                 <li class="nav-item {% if request.path == '/cerrar-sesion/' %}active{% endif %}">
                                     <a class="nav-link" href="{% url 'cerrar-sesion' %}">Cerrar Sesión</a>
@@ -122,15 +125,16 @@
                     </div>
                 </div>
             </nav>
-            {% if user.is_authenticated %}
-            <div class="user">
-                    <p>Bienvenido/a <b>{{user.username}}</b></p>
-            </div>
-            {%endif%}
+            
     </header>
 
         
         <div class="container flex-grow-1">
+            {% if user.is_authenticated %}
+            <div class="user mt-4 text-end">
+                    <p>Bienvenido/a <b>{{user.username}}</b></p>
+            </div>
+            {%endif%}
             <h1 class="tituloppal">{% block titulo_principal %}{% endblock %}</h1>
             <h4 class="titulosec">{% block titulo_secundario %}{% endblock %}</h4> 
             {% block principal %}{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "mediturnosApp/base_administracion.html" %}
+{% block titulo %} Eliminar médico - Mediturnos {% endblock %}
+{% load static %}
+
+
+{% block principal %}
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8">
+            {% comment %} <h2 class="fs-3">Dar de baja paciente</h2> {% endcomment %}
+
+            <div class="formulario alta-paciente row">
+
+                <form method="POST" class="col-12 col-md-6 form-admin">
+            
+                {% csrf_token %}
+                {% comment %} {{ form}} {% endcomment %}
+                <p class="fs-5">Dar de baja a: <span class="fw-bold"> {{ object.nombre_completo }}</span> (Matrícula: {{object.matricula}})</p>
+
+                <br>
+                
+                <div class="d-flex justify-content-center ">
+                    <a href="{% url 'medicos_index' %}" class="btn btn-outline-dark container me-2">Cancelar</a>
+                    <button type="submit" id="boton-enviar" class="btn btn-danger container">Eliminar</button>
+                </div>
+            
+                </form>
+                <br>
+            </div>
+
+        </div>
+
+        
+    </div>
+
+{% endblock %}
